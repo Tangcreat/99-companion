@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从只会执行命令的副官，长成一个会为一只松鼠立誓、也会在忠诚与是非之间独自挣扎的指挥者。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718350.4625232
+    },
+    {
+      "id": "lore-c59e25af",
+      "title": "重塑之手在南极的完整布局：遗",
+      "kind": "world",
+      "keywords": [],
+      "content": "重塑之手在南极的完整布局：遗址城、隐秘神殿、各支盟军的驻防海岸与近海防线上的改造生物",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.4711344
+    },
+    {
+      "id": "lore-c45a46b6",
+      "title": "安插在队伍中的眼线与“面具”",
+      "kind": "world",
+      "keywords": [],
+      "content": "安插在队伍中的眼线与“面具”试炼的运作方式，以及安德烈小队是如何被夺走意志的",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.4909494
+    },
+    {
+      "id": "lore-0c90898a",
+      "title": "芝诺装备的刻录编号规则，能凭",
+      "kind": "world",
+      "keywords": [],
+      "content": "芝诺装备的刻录编号规则，能凭一枚手榴弹认出红弩箭的所属",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.5003018
+    },
+    {
+      "id": "lore-ced2474e",
+      "title": "伊戈尔与阿尔卡纳交易的内容",
+      "kind": "world",
+      "keywords": [],
+      "content": "伊戈尔与阿尔卡纳交易的内容，以及“奇迹”只能庇护有限人数的实情",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.5073211
+    },
+    {
+      "id": "lore-498f757e",
+      "title": "基金会科算中心在“暴雨”研究",
+      "kind": "world",
+      "keywords": [],
+      "content": "基金会科算中心在“暴雨”研究上的新突破（平衡伞、稳定磁场）",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.5168476
+    },
+    {
+      "id": "lore-b476e186",
+      "title": "狮鹫军庇护所的位置与撤退路线",
+      "kind": "world",
+      "keywords": [],
+      "content": "狮鹫军庇护所的位置与撤退路线",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.5242424
+    },
+    {
+      "id": "lore-7a21a30e",
+      "title": "伊戈尔",
+      "kind": "person",
+      "keywords": [
+        "伊戈尔"
+      ],
+      "content": "养父兼上级；“我会跟随，而非选择”，即便不认同也照办",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.534148
+    },
+    {
+      "id": "lore-727d0d8f",
+      "title": "洛佩拉",
+      "kind": "person",
+      "keywords": [
+        "洛佩拉"
+      ],
+      "content": "妹妹，同为伊戈尔养女；从亲密打闹到亲手向她开枪，最后说“永别了，妹妹”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.5430315
+    },
+    {
+      "id": "lore-3bdaeae2",
+      "title": "托勒密",
+      "kind": "person",
+      "keywords": [
+        "托勒密"
+      ],
+      "content": "同僚，狮鹫军另一名骨干；替他上药、安排康复训练，也嫌他冲动",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.5497363
+    },
+    {
+      "id": "lore-7ebfed4c",
+      "title": "红弩箭",
+      "kind": "person",
+      "keywords": [
+        "红弩箭"
+      ],
+      "content": "芝诺中尉，被她亲手拘押；没有私怨，只说是命令，并保证无人能伤害她",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.5604029
+    },
+    {
+      "id": "lore-ec2752aa",
+      "title": "乌尔里希",
+      "kind": "person",
+      "keywords": [
+        "乌尔里希"
+      ],
+      "content": "拉普拉斯科算中心的研究员，南极的谈判对手；以情报换情报，最终被他说服",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.5750053
+    },
+    {
+      "id": "lore-8f261910",
+      "title": "嚼嚼松果",
+      "kind": "person",
+      "keywords": [
+        "嚼嚼松果"
+      ],
+      "content": "在南极遇见的松鼠，临时战友；郑重以待，以军人的荣誉起誓兑现承诺",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.5877948
+    },
+    {
+      "id": "lore-d47a7fe9",
+      "title": "安德烈",
+      "kind": "person",
+      "keywords": [
+        "安德烈"
+      ],
+      "content": "旧部，被重塑之手夺走意志后背叛；痛心而果决：“你背叛了你的信念和荣誉”，但仍为其收尸",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.5999227
+    },
+    {
+      "id": "lore-d14decff",
+      "title": "丹尼洛夫",
+      "kind": "person",
+      "keywords": [
+        "丹尼洛夫"
+      ],
+      "content": "直升机机长；信任他的飞行，也为他签下的名字道谢",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.6131008
+    }
+  ]
+}

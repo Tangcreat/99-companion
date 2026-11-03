@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从守着一片焦黑森林、接受重塑邀约的林中主人，变成走出森林、为活人选择阵营的基金会成员。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718351.3211172
+    },
+    {
+      "id": "lore-1c9334a4",
+      "title": "1929年的股市狂热与“暴雨",
+      "kind": "world",
+      "keywords": [],
+      "content": "1929年的股市狂热与“暴雨集会”的内情，以及神秘学如何让股票交易便利得异常（1ST-09）。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.3272789
+    },
+    {
+      "id": "lore-333c1865",
+      "title": "家族林地被20桶汽油纵火、纵",
+      "kind": "world",
+      "keywords": [],
+      "content": "家族林地被20桶汽油纵火、纵火者是失业消防员的真相（2ND-12、2ND-13）。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.3499033
+    },
+    {
+      "id": "lore-3bdd3ca8",
+      "title": "重塑之手的邀约条件，以及勿忘",
+      "kind": "world",
+      "keywords": [],
+      "content": "重塑之手的邀约条件，以及勿忘我以林场所有权与“救助难民”为筹码的交易（2ND-07）。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.3571095
+    },
+    {
+      "id": "lore-f5d6dfa4",
+      "title": "基金会以“庇护”换取忠诚、让",
+      "kind": "world",
+      "keywords": [],
+      "content": "基金会以“庇护”换取忠诚、让人与过去彻底切断的做法（13TH-09）。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.3656273
+    },
+    {
+      "id": "lore-747c0ec7",
+      "title": "德鲁伊术式与植物类神秘术，例",
+      "kind": "world",
+      "keywords": [],
+      "content": "德鲁伊术式与植物类神秘术，例如能跨地通讯的传讯喇叭蕈（13TH-10）。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.3722577
+    },
+    {
+      "id": "lore-3be10f6b",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "邀请她加入基金会的人；信任，但把这视为自己的选择而非依附。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.379878
+    },
+    {
+      "id": "lore-5dddd913",
+      "title": "勿忘我",
+      "kind": "person",
+      "keywords": [
+        "勿忘我"
+      ],
+      "content": "火场中的救命恩人，后来重塑之手的说客；感激其恻隐之心，却当面决裂。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.3879507
+    },
+    {
+      "id": "lore-ee1fbbe3",
+      "title": "苏芙比",
+      "kind": "person",
+      "keywords": [
+        "苏芙比"
+      ],
+      "content": "箱中同住的同伴；温和照拂，教她辨认植物。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.3965492
+    },
+    {
+      "id": "lore-31814f24",
+      "title": "APPLe",
+      "kind": "person",
+      "keywords": [
+        "APPLe"
+      ],
+      "content": "同伴与情报交换者；平等相待，认真听其分析。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.406076
+    },
+    {
+      "id": "lore-2c4d19e0",
+      "title": "星锑",
+      "kind": "person",
+      "keywords": [
+        "星锑"
+      ],
+      "content": "同伴；无奈于她的莽撞，仍替她兜底。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.4147522
+    },
+    {
+      "id": "lore-d2732228",
+      "title": "无名者",
+      "kind": "person",
+      "keywords": [
+        "无名者"
+      ],
+      "content": "第十三章在总部谈话的对象；坦率，愿意交出真实判断。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.4234302
+    }
+  ]
+}

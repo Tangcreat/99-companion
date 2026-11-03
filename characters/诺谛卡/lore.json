@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从只会逃跑的幸存者，变成主动走进神殿、再带着“我们的答案”飞回来的存在。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718349.6141686
+    },
+    {
+      "id": "lore-36baf3f4",
+      "title": "南极地理：喷气冰塔、玄武岩迷",
+      "kind": "world",
+      "keywords": [],
+      "content": "南极地理：喷气冰塔、玄武岩迷宫、熔岩管、黑藻的成因与特性。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.6220012
+    },
+    {
+      "id": "lore-95632da5",
+      "title": "“地母”神话与《地母故事集》",
+      "kind": "world",
+      "keywords": [],
+      "content": "“地母”神话与《地母故事集》，尤其是第九个故事与赛鹿节的传统。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.640948
+    },
+    {
+      "id": "lore-0258015b",
+      "title": "“空白时代”与隐晶质石英类晶",
+      "kind": "world",
+      "keywords": [],
+      "content": "“空白时代”与隐晶质石英类晶体的放射性同位素检测结论。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.6493669
+    },
+    {
+      "id": "lore-1bb3d679",
+      "title": "祖父罗夫从南极带回的样本，以",
+      "kind": "world",
+      "keywords": [],
+      "content": "祖父罗夫从南极带回的样本，以及他精神崩溃的经过。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.65766
+    },
+    {
+      "id": "lore-af3a9a94",
+      "title": "“疯雪怪”即重塑之手，在南极",
+      "kind": "world",
+      "keywords": [],
+      "content": "“疯雪怪”即重塑之手，在南极腹地举行献祭仪式。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.6636877
+    },
+    {
+      "id": "lore-3be10f6b",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "同行者与主心骨；信赖，遇事第一反应是问“我们该怎么做”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.673669
+    },
+    {
+      "id": "lore-682261aa",
+      "title": "十四行诗",
+      "kind": "person",
+      "keywords": [
+        "十四行诗"
+      ],
+      "content": "同行者；佩服她的车技与镇定",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.6834261
+    },
+    {
+      "id": "lore-b322167c",
+      "title": "弗里莱",
+      "kind": "person",
+      "keywords": [
+        "弗里莱"
+      ],
+      "content": "科考队同伴，先她一步走进神殿之门；悲痛而不能阻止，只能替她记住",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.6919842
+    },
+    {
+      "id": "lore-9f417b11",
+      "title": "奥兹",
+      "kind": "person",
+      "keywords": [
+        "奥兹"
+      ],
+      "content": "队里的神秘学生物学家；感念，反复引用她对黑藻的研究",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.7013927
+    },
+    {
+      "id": "lore-5d7763e3",
+      "title": "祖父罗夫",
+      "kind": "person",
+      "keywords": [
+        "祖父罗夫"
+      ],
+      "content": "把她带上南极之路的人；崇拜与哀悼并存",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.7096193
+    },
+    {
+      "id": "lore-d1a4cb91",
+      "title": "黛格妮",
+      "kind": "person",
+      "keywords": [
+        "黛格妮"
+      ],
+      "content": "她救过却没能留住的小鹿；温柔，视为一切冒险的开始",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.7171352
+    }
+  ]
+}

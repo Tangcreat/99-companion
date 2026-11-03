@@ -1,0 +1,193 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-2b338a70",
+      "title": "琥珀屋项目的内情：基金会与芝",
+      "kind": "world",
+      "keywords": [
+        "灌体",
+        "兀尔德"
+      ],
+      "content": "琥珀屋项目的内情：基金会与芝诺如何在别列格勒地下建立实验室，以及“灌体”实验与兀尔德的关系",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793717705.5241613
+    },
+    {
+      "id": "lore-6eab0933",
+      "title": "他亲手送进琥珀屋的四十三个人",
+      "kind": "world",
+      "keywords": [
+        "四十三个人",
+        "收殓",
+        "躯壳"
+      ],
+      "content": "他亲手送进琥珀屋的四十三个人，以及收殓的四十三具失去灵魂的躯壳",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793717705.5317283
+    },
+    {
+      "id": "lore-66d05e5c",
+      "title": "阿尔卡纳并未随肉体湮灭而消失",
+      "kind": "world",
+      "keywords": [
+        "阿尔卡纳"
+      ],
+      "content": "阿尔卡纳并未随肉体湮灭而消失，且能与人的头脑对话",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793717705.5403516
+    },
+    {
+      "id": "lore-e940c4c3",
+      "title": "“奇迹”——那只小立方体能让",
+      "kind": "world",
+      "keywords": [
+        "奇迹",
+        "暴雨"
+      ],
+      "content": "“奇迹”——那只小立方体能让人越过“暴雨”，但离开南极后无法再庇护一人以上",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793717705.5488427
+    },
+    {
+      "id": "lore-f66d7207",
+      "title": "格鲁托夫已戴上面具通过试炼",
+      "kind": "world",
+      "keywords": [
+        "冬",
+        "冬天"
+      ],
+      "content": "格鲁托夫已戴上面具通过试炼，并夺走了被偷走的“冬天”",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793717705.556868
+    },
+    {
+      "id": "lore-9931dc86",
+      "title": "基金会与芝诺在圣保罗事件后彼",
+      "kind": "world",
+      "keywords": [
+        "基金会",
+        "芝诺",
+        "派系嫌隙"
+      ],
+      "content": "基金会与芝诺在圣保罗事件后彼此遮掩、相互要挟的派系嫌隙",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793717705.5653605
+    },
+    {
+      "id": "lore-d90930ef",
+      "title": "莫莉德尔",
+      "kind": "person",
+      "keywords": [
+        "莫莉德尔"
+      ],
+      "content": "养女兼副官，被他称为“我的女儿”；信任到把狮鹫军的指挥权托付给她，也清楚她“常常搞不明白自己”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793717705.5751302
+    },
+    {
+      "id": "lore-b0ad4c3c",
+      "title": "洛佩拉",
+      "kind": "person",
+      "keywords": [
+        "洛佩拉"
+      ],
+      "content": "养女，芝诺少尉；欣慰于她的枪法与胆气，却始终没把她算进真正的计划里",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793717705.5836668
+    },
+    {
+      "id": "lore-7f7ad285",
+      "title": "托勒密",
+      "kind": "person",
+      "keywords": [
+        "托勒密"
+      ],
+      "content": "部下，被他视作狮鹫军未来的指挥人选；严厉敲打，又承诺“你会有亲手剜出他的眼睛的机会”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793717705.5907457
+    },
+    {
+      "id": "lore-5094ac0c",
+      "title": "阿尔卡纳",
+      "kind": "person",
+      "keywords": [
+        "阿尔卡纳"
+      ],
+      "content": "交易对象，被称作“传道者”；拒绝做祂的使徒，只索取回报，同时怀有同等的敌意",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793717705.6007395
+    },
+    {
+      "id": "lore-323969b7",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "基金会司辰，临时的合作者；认为她才是“带领人们走出洪水的救世主”，并押注在她身上",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793717705.6087701
+    },
+    {
+      "id": "lore-4888f9ab",
+      "title": "格鲁托夫",
+      "kind": "person",
+      "keywords": [
+        "格鲁托夫"
+      ],
+      "content": "曾经的亲信，如今的死敌；承认“我应该知道他的野心在脱离芝诺之后是不可控的”，并为此自责",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793717705.6175215
+    },
+    {
+      "id": "lore-fd04a853",
+      "title": "红弩箭",
+      "kind": "person",
+      "keywords": [
+        "红弩箭"
+      ],
+      "content": "芝诺中尉，被他请来训练新兵；欣赏她的斯拉夫脾气，坦然接受她随时可能来审判自己",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793717705.6270363
+    },
+    {
+      "id": "lore-49d8571f",
+      "title": "阿尔谢尼",
+      "kind": "person",
+      "keywords": [
+        "阿尔谢尼"
+      ],
+      "content": "老战友，1999年战死于阿巴丹；在纪功廊前一遍遍念他的名字，记得照片拍得不错",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793717705.6357517
+    },
+    {
+      "id": "lore-27e451e6",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [
+        "服从",
+        "暴雨"
+      ],
+      "content": "从把“服从”当作荣耀、把士兵送进火线的芝诺将军，变成亲手撕碎那面旗帜、带着孩子们在“暴雨”里找出路的叛将。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793717705.6440744
+    }
+  ]
+}

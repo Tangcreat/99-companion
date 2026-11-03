@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>99陪伴</title>
+<style>
+:root{
+  --bg:#fff; --bg2:#f6f7f9; --bg3:#eef0f3; --rail:#f2f4f7;
+  --ink:#1f2328; --ink2:#5c6370; --ink3:#9aa1ad;
+  --line:#e6e8ec; --line2:#eff1f4;
+  --brand:#4c7ef3; --brand-d:#3a67d6; --brand-l:#eaf0ff;
+  --me:#4c7ef3; --me-ink:#fff; --her:#fff;
+  --ok:#22a06b; --warn:#d98324; --bad:#d64545;
+  --shadow:0 1px 2px rgba(20,25,35,.04),0 6px 18px rgba(20,25,35,.06);
+}
+[data-theme="dark"]{
+  --bg:#171a1f; --bg2:#1e222a; --bg3:#252a33; --rail:#14171c;
+  --ink:#e8ebf0; --ink2:#a5adba; --ink3:#6f7783;
+  --line:#2a2f38; --line2:#232830;
+  --brand:#5b8cf7; --brand-d:#4877e0; --brand-l:#1e2635;
+  --me:#3f6fd8; --me-ink:#fff; --her:#232830;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font:14px/1.55 -apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+  background:var(--bg); color:var(--ink); overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+input,textarea{font:inherit;color:inherit}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:#c9ced6;border-radius:4px}
+[data-theme="dark"] ::-webkit-scrollbar-thumb{background:#3a414d}
+::-webkit-scrollbar-track{background:transparent}
+
+.app{display:flex;height:100%}
+
+/* ============ 最左图标栏 ============ */
+.rail{
+  width:58px;flex:0 0 58px;background:var(--rail);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;padding:14px 0 10px;gap:4px;
+}
+.rail .logo{
+  width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#6f9bff,#9b7bff);
+  color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700;
+  margin-bottom:12px;letter-spacing:-.5px;
+}
+.rail button{
+  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  color:var(--ink3);position:relative;transition:.15s;
+}
+.rail button:hover{background:var(--bg3);color:var(--ink2)}
+.rail button.on{background:var(--brand-l);color:var(--brand)}
+.rail .spacer{flex:1}
+.rail svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round}
+.rail .dot{position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;
+  background:var(--bad);border:1.5px solid var(--rail)}
+
+/* ============ 联系人列 ============ */
+.contacts{
+  width:266px;flex:0 0 266px;background:var(--bg2);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;min-width:0;
+}
+.contacts.hide{display:none}
+.ct-head{padding:14px 16px 8px;display:flex;align-items:center;gap:8px}
+.ct-head h2{margin:0;font-size:15px;font-weight:600}
+.ct-head .n{font-size:12px;color:var(--ink3);font-weight:400}
+.ct-head .spacer{flex:1}
+.icon-btn{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:var(--ink3)}
+.icon-btn:hover{background:var(--bg3);color:var(--ink2)}
+.icon-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.search{margin:4px 12px 10px;position:relative}
+.search input{
+  width:100%;padding:7px 10px 7px 30px;border:1px solid transparent;border-radius:9px;
+  background:var(--bg3);outline:none;font-size:13px;
+}
+.search input:focus{background:var(--bg);border-color:var(--brand)}
+.search svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);width:14px;height:14px;
+  stroke:var(--ink3);fill:none;stroke-width:2;stroke-linecap:round}
+.ct-group{padding:6px 16px;font-size:11.5px;color:var(--ink3);letter-spacing:.03em}
+.ct-list{flex:1;overflow-y:auto;padding:0 8px 10px}
+.person{
+  display:flex;align-items:center;gap:10px;padding:8px 9px;border-radius:10px;
+  cursor:pointer;transition:background .12s;position:relative;
+}
+.person:hover{background:var(--bg3)}
+.person.on{background:var(--brand-l)}
+.av{width:38px;height:38px;border-radius:10px;flex:0 0 38px;object-fit:cover;background:var(--bg3);
+  display:grid;place-items:center;font-weight:600;font-size:15px}
+.person .info{min-width:0;flex:1}
+.person .nm{font-size:13.5px;font-weight:500;display:flex;align-items:center;gap:5px}
+.person .st{font-size:11.5px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.person .badge{width:6px;height:6px;border-radius:50%;background:var(--ok);flex:0 0 6px}
+.person .badge.zz{background:var(--ink3)}
+.ct-foot{padding:8px 10px;border-top:1px solid var(--line)}
+.btn-add{
+  width:100%;padding:9px;border-radius:9px;background:var(--brand);color:#fff;
+  font-size:13px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.btn-add:hover{background:var(--brand-d)}
+.btn-add svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+/* ============ 聊天区 ============ */
+.chat{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--bg)}
+.chat-head{
+  height:58px;flex:0 0 58px;display:flex;align-items:center;gap:11px;padding:0 18px;
+  border-bottom:1px solid var(--line);
+}
+.chat-head .av{width:34px;height:34px;border-radius:9px;flex:0 0 34px;font-size:13px}
+.chat-head .who{min-width:0}
+.chat-head .nm{font-size:14.5px;font-weight:600;display:flex;align-items:center;gap:6px}
+.chat-head .st{font-size:11.5px;color:var(--ink3)}
+.chat-head .spacer{flex:1}
+.chat-head .tools{display:flex;gap:2px}
+
+.stream{flex:1;overflow-y:auto;padding:18px 0 8px;background:var(--bg)}
+.stream-in{max-width:760px;margin:0 auto;padding:0 22px}
+
+.tsep{text-align:center;margin:16px 0 14px;font-size:11.5px;color:var(--ink3)}
+.tsep span{background:var(--bg3);padding:3px 10px;border-radius:20px}
+
+.msg{display:flex;gap:9px;margin-bottom:12px;align-items:flex-start}
+.msg.me{flex-direction:row-reverse}
+.msg .av{width:32px;height:32px;border-radius:9px;flex:0 0 32px;font-size:12.5px}
+.msg .body{max-width:min(72%,560px);min-width:0}
+.msg .bub{
+  padding:9px 13px;border-radius:12px;background:var(--her);box-shadow:var(--shadow);
+  white-space:pre-wrap;word-break:break-word;line-height:1.62;
+  animation:pop .16s ease-out;
+}
+.msg.me .bub{background:var(--me);color:var(--me-ink);box-shadow:none}
+.msg.me .bub a{color:#dbe7ff}
+.msg .bub.sticker{padding:0;background:transparent!important;box-shadow:none}
+.msg .bub.sticker img{display:block;max-width:154px;max-height:154px;border-radius:10px;
+  border:1px solid var(--line);background:var(--bg2)}
+.msg .meta{font-size:11px;color:var(--ink3);margin-top:4px;opacity:0;transition:.15s}
+.msg:hover .meta{opacity:1}
+.msg.me .meta{text-align:right}
+@keyframes pop{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.meta button{color:var(--brand);font-size:11px}
+.meta button:hover{text-decoration:underline}
+
+.typing-bub{display:inline-flex;gap:4px;padding:13px 15px;background:var(--her);
+  border-radius:12px;box-shadow:var(--shadow)}
+.typing-bub i{width:6px;height:6px;border-radius:50%;background:var(--ink3);animation:bn 1.2s infinite}
+.typing-bub i:nth-child(2){animation-delay:.15s}
+.typing-bub i:nth-child(3){animation-delay:.3s}
+@keyframes bn{0%,60%,100%{transform:none;opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+
+.empty-chat{flex:1;display:grid;place-items:center;color:var(--ink3);font-size:13px;text-align:center;line-height:2}
+
+/* 输入区 */
+.sp-panel{
+  display:none;max-width:760px;margin:0 auto 8px;width:100%;
+  border:1px solid var(--line);border-radius:12px;background:var(--bg);
+  box-shadow:var(--shadow);flex-direction:column;overflow:hidden;
+}
+.sp-panel.on{display:flex}
+.sp-head{display:flex;align-items:center;gap:8px;padding:7px 9px;border-bottom:1px solid var(--line)}
+.sp-tabs{display:flex;gap:3px;overflow-x:auto;flex:1;scrollbar-width:none}
+.sp-tabs::-webkit-scrollbar{display:none}
+.sp-tabs button{padding:4px 9px;border-radius:7px;font-size:11.5px;color:var(--ink2);white-space:nowrap;flex:0 0 auto}
+.sp-tabs button.on{background:var(--brand-l);color:var(--brand);font-weight:500}
+.sp-q{width:132px;padding:5px 9px;border:1px solid var(--line);border-radius:7px;
+  background:var(--bg2);font-size:12px;outline:none;flex:0 0 132px}
+.sp-q:focus{border-color:var(--brand)}
+.sp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(62px,1fr));
+  gap:6px;padding:9px;overflow-y:auto;max-height:250px}
+.sp-grid img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:8px;
+  background:var(--bg2);cursor:pointer;border:1px solid transparent;transition:.12s}
+.sp-grid img:hover{border-color:var(--brand);transform:translateY(-1px)}
+.sp-empty{grid-column:1/-1;text-align:center;color:var(--ink3);font-size:12.5px;
+  padding:22px 10px;line-height:1.9}
+
+.composer{padding:0 18px 16px;background:var(--bg)}
+.composer-in{max-width:760px;margin:0 auto;border:1px solid var(--line);border-radius:12px;
+  background:var(--bg);box-shadow:var(--shadow);overflow:hidden}
+.composer-in:focus-within{border-color:#c3d3fb}
+[data-theme="dark"] .composer-in:focus-within{border-color:#3a4a6e}
+textarea#input{
+  width:100%;border:none;outline:none;resize:none;padding:11px 13px 4px;
+  max-height:140px;background:transparent;line-height:1.6;font-size:14px;
+}
+.composer-bar{display:flex;align-items:center;gap:2px;padding:4px 8px 7px}
+.composer-bar .spacer{flex:1}
+.hint{font-size:11px;color:var(--ink3);margin-right:8px}
+.send{
+  padding:5px 14px;border-radius:8px;background:var(--brand);color:#fff;font-size:13px;
+  display:flex;align-items:center;gap:5px;font-weight:500;
+}
+.send:hover{background:var(--brand-d)}
+.send:disabled{opacity:.45;cursor:default}
+.send svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ============ 右侧抽屉 ============ */
+.drawer{
+  width:0;flex:0 0 0;border-left:1px solid var(--line);background:var(--bg2);
+  overflow:hidden;transition:flex-basis .2s ease,width .2s ease;
+}
+.drawer.open{width:310px;flex:0 0 310px}
+.drawer-in{width:310px;height:100%;display:flex;flex-direction:column}
+.tabs{display:flex;gap:2px;padding:10px 12px 4px;border-bottom:1px solid var(--line)}
+.tabs button{flex:1;padding:6px;border-radius:7px;font-size:12.5px;color:var(--ink2)}
+.tabs button.on{background:var(--bg);color:var(--brand);font-weight:600;box-shadow:var(--shadow)}
+.tabbody{flex:1;overflow-y:auto;padding:12px}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:8px 0;font-size:12.5px;
+  border-bottom:1px dashed var(--line)}
+.kv span:first-child{color:var(--ink2)}
+.kv b{font-weight:600}
+.memo{font-size:12.5px;padding:9px 11px;background:var(--bg);border:1px solid var(--line);
+  border-radius:9px;margin-bottom:7px;line-height:1.5}
+.memo .s{font-size:11px;color:var(--ink3);margin-top:4px;display:flex;align-items:center;gap:6px}
+.pill{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:20px;
+  background:var(--brand-l);color:var(--brand)}
+.pill.ok{background:rgba(34,160,107,.12);color:var(--ok)}
+.pill.warn{background:rgba(217,131,36,.13);color:var(--warn)}
+.pill.bad{background:rgba(214,69,69,.13);color:var(--bad)}
+.muted{color:var(--ink3);font-size:12.5px;text-align:center;padding:20px 0;line-height:1.9}
+.srow{display:flex;align-items:center;gap:9px;margin-bottom:8px;font-size:12.5px;color:var(--ink2)}
+.srow span{flex:0 0 30px}
+.srow b{flex:0 0 26px;text-align:right;font-variant-numeric:tabular-nums}
+.srow input[type=range]{flex:1;accent-color:var(--brand);height:4px}
+
+/* ============ 弹窗 ============ */
+.mask{position:fixed;inset:0;background:rgba(20,25,35,.36);display:none;z-index:60;
+  backdrop-filter:blur(2px)}
+.mask.on{display:grid;place-items:center}
+.sheet{
+  background:var(--bg);border-radius:14px;width:min(560px,94vw);max-height:88vh;
+  display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(10,15,25,.28);
+  animation:up .18s ease-out;
+}
+@keyframes up{from{opacity:0;transform:translateY(10px) scale(.99)}to{opacity:1;transform:none}}
+.sheet-head{display:flex;align-items:center;padding:16px 20px 12px;border-bottom:1px solid var(--line)}
+.sheet-head h3{margin:0;font-size:15px;font-weight:600;flex:1}
+.sheet-body{padding:6px 20px 18px;overflow-y:auto}
+.sheet-foot{padding:12px 20px 16px;display:flex;gap:8px;justify-content:flex-end;
+  border-top:1px solid var(--line)}
+
+.sec{padding:14px 0;border-bottom:1px solid var(--line2)}
+.sec:last-child{border-bottom:none}
+.sec-t{font-size:13px;font-weight:600;margin-bottom:3px}
+.sec-d{font-size:11.5px;color:var(--ink3);line-height:1.6}
+.sec-row{display:flex;align-items:center;gap:12px}
+.sec-row .txt{flex:1;min-width:0}
+.btn{width:100%;padding:10px;border-radius:9px;background:var(--bg3);font-size:13px;
+  text-align:center;transition:.13s}
+.btn:hover{background:var(--line)}
+.btn.primary{background:var(--brand);color:#fff;font-weight:500}
+.btn.primary:hover{background:var(--brand-d)}
+.btn.sm{width:auto;padding:6px 12px;font-size:12.5px}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.ghost{background:transparent;border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--bg3)}
+
+label.fl{display:block;font-size:12px;color:var(--ink2);margin:12px 0 5px}
+input.fi,select.fi,textarea.fi{
+  width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;
+  background:var(--bg2);outline:none;font-size:13px;
+}
+input.fi:focus,textarea.fi:focus,select.fi:focus{border-color:var(--brand);background:var(--bg)}
+textarea.fi{resize:vertical;min-height:110px;line-height:1.6}
+.rowo{display:flex;gap:9px}
+.rowo>*{flex:1}
+.seg{display:flex;background:var(--bg3);border-radius:8px;padding:3px;gap:2px}
+.seg button{flex:1;padding:5px 10px;border-radius:6px;font-size:12.5px;color:var(--ink2)}
+.seg button.on{background:var(--bg);color:var(--ink);box-shadow:var(--shadow);font-weight:500}
+.switch{width:38px;height:22px;border-radius:20px;background:var(--line);position:relative;
+  transition:.18s;flex:0 0 38px}
+.switch.on{background:var(--brand)}
+.switch i{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;
+  background:#fff;transition:.18s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.switch.on i{left:18px}
+
+.hintbox{background:var(--brand-l);border-radius:10px;padding:11px 13px;font-size:12.5px;
+  line-height:1.7;color:var(--ink2);margin-bottom:6px}
+.hintbox b{color:var(--ink)}
+.err{color:var(--bad);font-size:12.5px;margin-top:8px;line-height:1.6}
+.okmsg{color:var(--ok);font-size:12.5px;margin-top:8px}
+
+.avatar-pick{display:flex;align-items:center;gap:14px;margin:6px 0 4px}
+.avatar-pick .big{width:64px;height:64px;border-radius:16px;background:var(--bg3);
+  display:grid;place-items:center;font-size:24px;color:var(--ink3);overflow:hidden;flex:0 0 64px;
+  cursor:pointer;border:1.5px dashed var(--line);position:relative}
+.avatar-pick .big img{width:100%;height:100%;object-fit:cover}
+.avatar-pick .big:hover{border-color:var(--brand)}
+.draft-view{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg2);
+  max-height:280px;overflow-y:auto;font-size:12.5px;line-height:1.75;white-space:pre-wrap}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid var(--line);
+  border-top-color:var(--brand);border-radius:50%;animation:sp .7s linear infinite;
+  vertical-align:-2px;margin-right:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- 图标栏 -->
+  <nav class="rail">
+    <div class="logo">99</div>
+    <button class="on" title="消息">
+      <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.8-.8L3 21l1.9-4.6A8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"/></svg>
+    </button>
+    <button title="联系人" onclick="toggleContacts()">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </button>
+    <button title="记忆" onclick="toggleDrawer()">
+      <svg viewBox="0 0 24 24"><path d="M12 8v8M8 12h8"/><circle cx="12" cy="12" r="9"/></svg>
+    </button>
+    <div class="spacer"></div>
+    <button title="设置" onclick="openSettings()">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 9 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 9a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+    </button>
+  </nav>
+
+  <!-- 联系人 -->
+  <section class="contacts" id="contacts">
+    <div class="ct-head">
+      <h2>联系人 <span class="n" id="ctCount"></span></h2>
+      <div class="spacer"></div>
+      <button class="icon-btn" onclick="buildGroup()" title="按同场关系自动建群">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+      </button>
+      <button class="icon-btn" onclick="openAdd()" title="添加角色">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+    <div class="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" placeholder="搜索角色或群" oninput="renderList()">
+    </div>
+    <div class="ct-list" id="list"></div>
+    <div class="ct-foot">
+      <button class="btn-add" onclick="openAdd()">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        添加角色
+      </button>
+    </div>
+  </section>
+
+  <!-- 聊天 -->
+  <main class="chat">
+    <div class="chat-head">
+      <div class="av" id="headAv">?</div>
+      <div class="who">
+        <div class="nm" id="headName">未选择</div>
+        <div class="st" id="headState">从左边选一个角色，或点「添加角色」</div>
+      </div>
+      <div class="spacer"></div>
+      <div class="tools">
+        <button class="icon-btn" title="记忆面板" onclick="toggleDrawer()">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="stream" id="stream">
+      <div class="empty-chat" id="emptyChat">
+        还没有角色<br>
+        <span style="font-size:12px">点左下「添加角色」，只需一个名字</span>
+      </div>
+      <div class="stream-in" id="streamIn" style="display:none"></div>
+    </div>
+
+    <div class="composer">
+      <div class="sp-panel" id="spPanel">
+        <div class="sp-head">
+          <div class="sp-tabs" id="spTabs"></div>
+          <input class="sp-q" id="spQ" placeholder="搜情绪" oninput="renderStickers()">
+          <button class="icon-btn" onclick="toggleStickers()">
+            <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="sp-grid" id="spGrid"></div>
+      </div>
+      <div class="composer-in">
+        <textarea id="input" rows="1" placeholder="说点什么…"></textarea>
+        <div class="composer-bar">
+          <button class="icon-btn" title="表情包" onclick="toggleStickers()">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5a4.5 4.5 0 0 0 7 0"/><path d="M9 9h.01M15 9h.01"/></svg>
+          </button>
+          <button class="icon-btn" title="记忆" onclick="toggleDrawer()">
+            <svg viewBox="0 0 24 24"><path d="M9 21V9a3 3 0 0 1 3-3h6"/><path d="M3 15h6"/><circle cx="18" cy="18" r="3"/></svg>
+          </button>
+          <div class="spacer"></div>
+          <span class="hint">Enter 发送 · Shift+Enter 换行</span>
+          <button class="send" id="sendBtn" onclick="send()" disabled>
+            发送
+            <svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 抽屉 -->
+  <aside class="drawer" id="drawer">
+    <div class="drawer-in">
+      <div class="tabs">
+        <button class="on" data-tab="state" onclick="switchTab('state',this)">状态</button>
+        <button data-tab="memo" onclick="switchTab('memo',this)">记忆</button>
+        <button data-tab="lore" onclick="switchTab('lore',this)">设定</button>
+        <button data-tab="fact" onclick="switchTab('fact',this)">事实</button>
+      </div>
+      <div class="tabbody" id="tabBody"><div class="muted">选择角色后显示</div></div>
+    </div>
+  </aside>
+</div>
+
+<!-- ============ 设置 ============ -->
+<div class="mask" id="mSettings">
+  <div class="sheet">
+    <div class="sheet-head"><h3>设置</h3>
+      <button class="icon-btn" onclick="close_('mSettings')"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="sheet-body">
+
+      <div class="sec">
+        <div class="sec-t">模型 API</div>
+        <div class="sec-d">任何 OpenAI 兼容端点。分析用便宜模型、回复用主力模型，能省一半钱。</div>
+        <label class="fl">Base URL</label>
+        <input class="fi" id="cfgBase" placeholder="https://api.deepseek.com">
+        <div class="rowo">
+          <div><label class="fl">模型名</label><input class="fi" id="cfgModel" placeholder="deepseek-chat"></div>
+          <div><label class="fl">分析模型（可空）</label><input class="fi" id="cfgAnalysis" placeholder="同上"></div>
+        </div>
+        <label class="fl">API Key</label>
+        <input class="fi" id="cfgKey" type="password" placeholder="留空则不修改">
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn sm ghost" onclick="testConn()">测试连接</button>
+          <button class="btn sm primary" onclick="saveSettings()">保存</button>
+        </div>
+        <div id="cfgMsg"></div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-row">
+          <div class="txt"><div class="sec-t">外观主题</div><div class="sec-d">只影响界面，不影响数据</div></div>
+          <div class="seg" style="width:150px">
+            <button id="thLight" class="on" onclick="setTheme('light')">浅色</button>
+            <button id="thDark" onclick="setTheme('dark')">深色</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-row">
+          <div class="txt"><div class="sec-t">消息密度</div><div class="sec-d">调整气泡间距</div></div>
+          <select class="fi" id="cfgDensity" style="width:130px" onchange="setDensity(this.value)">
+            <option value="cozy">舒适</option><option value="compact">紧凑</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-row">
+          <div class="txt"><div class="sec-t">导入角色卡</div><div class="sec-d">Tavern V2 / V1 / PNG 内嵌卡</div></div>
+          <button class="btn sm ghost" onclick="close_('mSettings');openImport()">选择文件</button>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-t">表情包</div>
+        <div class="sec-d">角色会按当轮情绪挑图发。图片名建议写成「情绪_xxx.png」（如 <code>开心_01.png</code>、<code>无语_汗.png</code>），情绪对不上她就不发。</div>
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button class="btn sm ghost" onclick="rescanStickers()">重新扫描</button>
+        </div>
+        <div id="stkMsg"></div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-t">数据</div>
+        <div class="sec-d">所有记忆与聊天都存在本机 <code>data/companion.db</code>，不上传任何服务器。</div>
+        <div style="margin-top:10px"><button class="btn sm ghost" onclick="openDataFolder()">在文件夹中显示</button></div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-t">关于</div>
+        <div class="sec-d">星伴克隆 · 架构参照「星伴 Starlit」自行实现<br>
+          后端 Python 标准库 · 前端无框架 · 角色全部由你导入</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ 添加角色 ============ -->
+<div class="mask" id="mAdd">
+  <div class="sheet">
+    <div class="sheet-head"><h3 id="addTitle">添加角色</h3>
+      <button class="icon-btn" onclick="close_('mAdd')"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="sheet-body" id="addBody">
+      <div class="hintbox">
+        给一个名字就够了。模型会写出一张完整人格卡，你可以在下面直接改，满意了再保存。
+      </div>
+      <div class="avatar-pick">
+        <div class="big" id="avPick" onclick="document.getElementById('avFile').click()">＋</div>
+        <div style="flex:1">
+          <div style="font-size:12.5px;line-height:1.7">头像（可选）<br>
+            <span style="color:var(--ink3);font-size:11.5px">本地图片，会转成 256×256</span></div>
+        </div>
+        <input type="file" id="avFile" accept="image/*" style="display:none">
+      </div>
+      <div class="rowo">
+        <div><label class="fl">角色名 *</label><input class="fi" id="addName" placeholder="例如：沈知夏"></div>
+        <div><label class="fl">作品（可空）</label><input class="fi" id="addSeries" placeholder="原创就留空"></div>
+      </div>
+      <label class="fl">补充要求（可空）</label>
+      <input class="fi" id="addNotes" placeholder="例如：话少一点，别太热情">
+      <div style="margin-top:14px">
+        <button class="btn primary" id="genBtn" onclick="doGenerate()">生成人设</button>
+      </div>
+      <div id="addMsg"></div>
+
+      <div id="draftBox" style="display:none;margin-top:16px">
+        <label class="fl">生成结果（可直接编辑）</label>
+        <input class="fi" id="draftSummary" placeholder="一句话概括" style="margin-bottom:9px">
+        <textarea class="fi" id="draftPersona" style="min-height:240px;font-size:12.5px"></textarea>
+        <div class="sec-d" style="margin-top:6px" id="draftInfo"></div>
+      </div>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn sm ghost" onclick="close_('mAdd')">取消</button>
+      <button class="btn sm primary" id="saveCharBtn" style="display:none" onclick="saveChar()">保存角色</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 设定条目 ============ -->
+<div class="mask" id="mLore">
+  <div class="sheet" style="width:min(540px,94vw)">
+    <div class="sheet-head"><h3>添加设定条目</h3>
+      <button class="icon-btn" onclick="close_('mLore')"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="sheet-body">
+      <div class="hintbox">写她世界里既成的事：一段过往、一个地点、一个她在意的人。写得越具体越好，不要写"她有复杂的过去"这种。</div>
+      <div class="rowo">
+        <div><label class="fl">标题 *</label><input class="fi" id="loreTitle" placeholder="那年的梅雨"></div>
+        <div style="max-width:150px"><label class="fl">类型</label>
+          <select class="fi" id="loreKind">
+            <option value="history">往事</option>
+            <option value="place">地点</option>
+            <option value="person">人物</option>
+            <option value="habit">习惯</option>
+            <option value="world">世界观</option>
+            <option value="rule">规则</option>
+          </select>
+        </div>
+      </div>
+      <label class="fl">触发词（逗号分隔，聊天里提到就注入）</label>
+      <input class="fi" id="loreKeys" placeholder="梅雨, 那年, 潮">
+      <label class="fl">内容 *</label>
+      <textarea class="fi" id="loreContent" placeholder="梅雨季节书店漏过一次水，她一个人搬了三天书，后来再也不肯把书放在靠窗的位置。"></textarea>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12.5px;cursor:pointer">
+        <input type="checkbox" id="loreAlways" style="width:15px;height:15px">
+        每轮都注入（只在世界观铁律时勾，会一直占上下文）
+      </label>
+      <div id="loreMsg"></div>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn sm ghost" onclick="close_('mLore')">取消</button>
+      <button class="btn sm primary" onclick="saveLore()">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 导入角色卡 ============ -->
+<div class="mask" id="mImport">
+  <div class="sheet">
+    <div class="sheet-head"><h3>导入角色卡</h3>
+      <button class="icon-btn" onclick="close_('mImport')"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="sheet-body">
+      <div class="hintbox">支持 Tavern Card V2（JSON）、V1 裸卡、PNG 内嵌卡。人设需 ≥ 200 字。</div>
+      <div class="btn" id="dropZone" style="padding:34px;border:1.5px dashed var(--line);border-radius:12px">
+        点击选择文件，或把 .json / .png 拖进来
+        <input type="file" id="fileInput" accept=".json,.png" style="display:none">
+      </div>
+      <div id="impMsg"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const S = {
+  chars: [], cur: null, tab: 'state', theme: 'light',
+  avatarB64: null, generating: false,
+  groups: [], group: null, mode: 'dm',
+};
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+async function api(path, opts){
+  const r = await fetch(path, opts);
+  const ct = r.headers.get('content-type') || '';
+  return ct.includes('json') ? await r.json() : await r.text();
+}
+function post(path, body){
+  return api(path, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+}
+function close_(id){ $(id).classList.remove('on'); }
+function open_(id){ $(id).classList.add('on'); }
+
+/* ---------- 主题 / 密度 ---------- */
+function setTheme(t){
+  S.theme = t;
+  document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : '');
+  $('thLight').classList.toggle('on', t === 'light');
+  $('thDark').classList.toggle('on', t === 'dark');
+  localStorage.setItem('starlit-theme', t);
+}
+function setDensity(v){
+  document.querySelectorAll('.msg').forEach(m => m.style.marginBottom = v === 'compact' ? '6px' : '12px');
+  localStorage.setItem('starlit-density', v);
+  $('cfgDensity').value = v;
+}
+(function initPrefs(){
+  const t = localStorage.getItem('starlit-theme'); if (t) setTheme(t);
+  const d = localStorage.getItem('starlit-density') || 'cozy';
+  $('cfgDensity').value = d; setDensity(d);
+})();
+
+/* ---------- 头像 ---------- */
+function avatarEl(src, name, accent, size, cls){
+  const col = accent || '#8899bb';
+  const el = document.createElement('div');
+  el.className = 'av';
+  el.style.width = size + 'px'; el.style.height = size + 'px';
+  el.style.flex = `0 0 ${size}px`;
+  el.style.background = col + '22';
+  el.style.color = col;
+  el.style.fontSize = Math.round(size * 0.42) + 'px';
+  el.textContent = (name || '?').trim().charAt(0) || '?';
+  if (src){
+    const img = new Image();
+    img.onload = () => { el.textContent = ''; el.style.background = 'transparent'; el.appendChild(img);
+      img.style.cssText = `width:100%;height:100%;object-fit:cover;border-radius:inherit`; };
+    img.src = src;
+  }
+  return el;
+}
+
+/* ---------- 联系人列表 ---------- */
+async function loadChars(){
+  const d = await api('/api/characters');
+  S.chars = d.characters || [];
+  try{
+    const g = await api('/api/groups');
+    S.groups = g.groups || [];
+  }catch(e){ S.groups = []; }
+  renderList();
+}
+
+function renderList(){
+  const q = ($('q').value || '').trim().toLowerCase();
+  const list = S.chars.filter(c =>
+    !q || c.name.toLowerCase().includes(q) || (c.series || '').toLowerCase().includes(q));
+  const glist = S.groups.filter(g =>
+    !q || (g.name || '').toLowerCase().includes(q) ||
+    (g.member_names || []).some(n => n.toLowerCase().includes(q)));
+  $('ctCount').textContent = S.chars.length ? `${S.chars.length}` : '';
+
+  const box = $('list');
+  box.innerHTML = '';
+
+  if (glist.length){
+    const gh = document.createElement('div');
+    gh.className = 'ct-group';
+    gh.textContent = `群聊 ${glist.length}`;
+    box.appendChild(gh);
+    for (const g of glist){
+      const el = document.createElement('div');
+      el.className = 'person' + (S.mode === 'group' && S.group && S.group.id === g.id ? ' on' : '');
+      const av = document.createElement('div');
+      av.className = 'av';
+      av.style.cssText = 'background:var(--brand-l);color:var(--brand);font-size:14px';
+      av.textContent = (g.name || '群').slice(0, 1);
+      el.appendChild(av);
+      const info = document.createElement('div');
+      info.className = 'info';
+      info.innerHTML = `<div class="nm">${esc(g.name)}</div>
+        <div class="st">${(g.member_names || []).map(esc).join('、')}</div>`;
+      el.appendChild(info);
+      el.onclick = () => selectGroup(g.id);
+      box.appendChild(el);
+    }
+  }
+
+  if (!S.chars.length && !S.groups.length){
+    box.innerHTML += '<div class="muted">还没有角色<br><span style="font-size:11.5px">点下面「添加角色」</span></div>';
+    return;
+  }
+  if (S.chars.length){
+    const feat = list.filter(c => c.featured);
+    const rest = list.filter(c => !c.featured);
+    const mk = (c) => {
+      const el = document.createElement('div');
+      el.className = 'person' + (S.cur && S.cur.slug === c.slug ? ' on' : '');
+      el.appendChild(avatarEl(c.avatar, c.name, c.accent, 38));
+      const info = document.createElement('div');
+      info.className = 'info';
+      info.innerHTML = `<div class="nm">${esc(c.name)}</div>
+        <div class="st">${c.asleep ? '休息中 · ' : ''}${esc(c.state.mood)}</div>`;
+      el.appendChild(info);
+      const b = document.createElement('div');
+      b.className = 'badge' + (c.asleep ? ' zz' : '');
+      el.appendChild(b);
+      el.onclick = () => selectChar(c.slug);
+      return el;
+    };
+    if (feat.length){
+      const h = document.createElement('div');
+      h.className = 'ct-group';
+      h.innerHTML = `推荐 <span style="opacity:.7">${feat.length}</span>`;
+      box.appendChild(h);
+      feat.forEach(c => box.appendChild(mk(c)));
+    }
+    if (rest.length){
+      const h = document.createElement('div');
+      h.className = 'ct-group';
+      h.innerHTML = `其他角色 <span style="opacity:.7">${rest.length}</span>`;
+      box.appendChild(h);
+      rest.forEach(c => box.appendChild(mk(c)));
+    }
+    if (!list.length) box.innerHTML += '<div class="muted">没有匹配的角色</div>';
+    return;
+  }
+  for (const c of list){
+    const el = document.createElement('div');
+    el.className = 'person' + (S.cur && S.cur.slug === c.slug ? ' on' : '');
+    el.appendChild(avatarEl(c.avatar, c.name, c.accent, 38));
+    const info = document.createElement('div');
+    info.className = 'info';
+    info.innerHTML = `<div class="nm">${esc(c.name)}</div>
+      <div class="st">${c.asleep ? '休息中 · ' : ''}${esc(c.state.mood)}</div>`;
+    el.appendChild(info);
+    const b = document.createElement('div');
+    b.className = 'badge' + (c.asleep ? ' zz' : '');
+    el.appendChild(b);
+    el.onclick = () => selectChar(c.slug);
+    box.appendChild(el);
+  }
+}
+
+/* ---------- 选择角色 ---------- */
+async function selectChar(slug){
+  S.mode = 'dm'; S.group = null;
+  await loadChars();
+  S.cur = S.chars.find(c => c.slug === slug) || null;
+  if (!S.cur) return;
+  renderList();
+  const c = S.cur;
+  const headAv = $('headAv');
+  headAv.replaceWith(Object.assign(avatarEl(c.avatar, c.name, c.accent, 34), {id:'headAv'}));
+  $('headName').innerHTML = esc(c.name) + (c.series ? ` <span style="font-size:11px;color:var(--ink3);font-weight:400">${esc(c.series)}</span>` : '');
+  $('headState').textContent = `${c.asleep ? '休息中 · ' : ''}${c.phase} · 心情 ${c.state.mood} · 精力 ${c.state.energy}`;
+  $('sendBtn').disabled = false;
+  $('emptyChat').style.display = 'none';
+  $('streamIn').style.display = '';
+  await loadHistory();
+  if ($('drawer').classList.contains('open')) renderTab();
+  localStorage.setItem('starlit-last', slug);
+}
+
+/* ---------- 群聊 ---------- */
+async function buildGroup(){
+  const d = await post('/api/groups/auto', {});
+  if (d.error){ alert(d.error); return; }
+  await loadChars();
+  selectGroup(d.group.id);
+}
+
+async function selectGroup(gid){
+  S.mode = 'group';
+  S.group = S.groups.find(g => g.id === gid) || null;
+  S.cur = null;
+  if (!S.group) return;
+  renderList();
+  const av = $('headAv');
+  av.style.background = 'var(--brand-l)';
+  av.style.color = 'var(--brand)';
+  av.style.fontSize = '15px';
+  av.textContent = (S.group.name || '群').slice(0, 1);
+  $('headName').textContent = S.group.name;
+  $('headState').textContent = (S.group.member_names || []).join(' · ');
+  $('emptyChat').style.display = 'none';
+  $('streamIn').style.display = '';
+  $('sendBtn').disabled = false;
+  await loadGroupHistory();
+}
+
+async function loadGroupHistory(){
+  const box = $('streamIn');
+  box.innerHTML = '';
+  const d = await api('/api/group/messages?id=' + encodeURIComponent(S.group.id));
+  const msgs = d.messages || [];
+  if (!msgs.length){
+    const s = document.createElement('div');
+    s.className = 'tsep';
+    s.innerHTML = `<span>${esc(S.group.name)} · 说句话试试</span>`;
+    box.appendChild(s);
+    return;
+  }
+  let last = 0;
+  for (const m of msgs){
+    if (!last || m.ts - last > 300) box.appendChild(timeSep(m.ts));
+    if (m.role === 'user') addBubble('user', m.text, m.ts, false);
+    else addGroupBubble(m.speaker, m.slug, m.text, false);
+    last = m.ts;
+  }
+  scrollBottom();
+}
+
+function addGroupBubble(name, slug, text, animate = true){
+  const box = $('streamIn');
+  const c = S.chars.find(x => x.slug === slug);
+  const row = document.createElement('div');
+  row.className = 'msg her';
+  row.appendChild(avatarEl(c ? c.avatar : null, name || '?',
+                           c ? c.accent : '#8899bb', 32));
+  const body = document.createElement('div');
+  body.className = 'body';
+  if (name){
+    const nm = document.createElement('div');
+    nm.style.cssText = 'font-size:11px;color:var(--ink3);margin:0 0 3px 2px';
+    nm.textContent = name;
+    body.appendChild(nm);
+  }
+  const bub = document.createElement('div');
+  bub.className = 'bub';
+  bub.textContent = text;
+  if (!animate) bub.style.animation = 'none';
+  body.appendChild(bub);
+  row.appendChild(body);
+  box.appendChild(row);
+  scrollBottom();
+  return row;
+}
+
+/* ---------- 消息流 ---------- */
+function fmtTime(ts){
+  const d = new Date(ts * 1000), now = new Date();
+  const hm = `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+  const sameDay = d.toDateString() === now.toDateString();
+  if (sameDay) return `今天 ${hm}`;
+  const y = new Date(now.getTime() - 86400000);
+  if (d.toDateString() === y.toDateString()) return `昨天 ${hm}`;
+  return `${d.getMonth()+1}月${d.getDate()}日 ${hm}`;
+}
+
+async function loadHistory(){
+  const box = $('streamIn');
+  box.innerHTML = '';
+  const d = await api('/api/messages?char=' + encodeURIComponent(S.cur.slug));
+  const msgs = d.messages || [];
+  if (!msgs.length){
+    const s = document.createElement('div');
+    s.className = 'tsep';
+    s.innerHTML = `<span>和 ${esc(S.cur.name)} 的第一句话</span>`;
+    box.appendChild(s);
+    return;
+  }
+  let last = 0;
+  for (const m of msgs){
+    if (!last || m.ts - last > 300) box.appendChild(timeSep(m.ts));
+    if (m.type === 'sticker') addSticker(m.role, m.url, false);
+    else addBubble(m.role, m.text, m.ts, false);
+    last = m.ts;
+  }
+  scrollBottom();
+}
+
+function timeSep(ts){
+  const d = document.createElement('div');
+  d.className = 'tsep';
+  d.innerHTML = `<span>${fmtTime(ts)}</span>`;
+  return d;
+}
+
+function addBubble(role, text, ts, animate = true){
+  const box = $('streamIn');
+  const me = role === 'user';
+  const row = document.createElement('div');
+  row.className = 'msg ' + (me ? 'me' : 'her');
+  if (me){
+    row.appendChild(avatarEl(null, '我', '#4c7ef3', 32));
+  } else {
+    row.appendChild(avatarEl(S.cur ? S.cur.avatar : null, S.cur ? S.cur.name : '?',
+                             S.cur ? S.cur.accent : null, 32));
+  }
+  const body = document.createElement('div');
+  body.className = 'body';
+  const bub = document.createElement('div');
+  bub.className = 'bub';
+  bub.textContent = text;
+  if (!animate) bub.style.animation = 'none';
+  body.appendChild(bub);
+  const meta = document.createElement('div');
+  meta.className = 'meta';
+  meta.innerHTML = (ts ? fmtTime(ts).replace('今天 ', '') : '');
+  if (!me){
+    const btn = document.createElement('button');
+    btn.textContent = '重新回复';
+    btn.style.marginLeft = '8px';
+    btn.onclick = () => regen(text);
+    meta.appendChild(btn);
+  }
+  body.appendChild(meta);
+  row.appendChild(body);
+  box.appendChild(row);
+  scrollBottom();
+  return row;
+}
+
+function addSticker(role, url, animate = true){
+  const box = $('streamIn');
+  const me = role === 'user';
+  const row = document.createElement('div');
+  row.className = 'msg ' + (me ? 'me' : 'her');
+  row.appendChild(me
+    ? avatarEl(null, '我', '#4c7ef3', 32)
+    : avatarEl(S.cur ? S.cur.avatar : null, S.cur ? S.cur.name : '?',
+               S.cur ? S.cur.accent : null, 32));
+  const b = document.createElement('div');
+  b.className = 'bub sticker';
+  const img = document.createElement('img');
+  img.src = url; img.loading = 'lazy'; img.alt = '表情包';
+  if (!animate) img.style.animation = 'none';
+  b.appendChild(img);
+  row.appendChild(b);
+  box.appendChild(row);
+  scrollBottom();
+  return row;
+}
+
+function showTyping(){
+  const box = $('streamIn');
+  const row = document.createElement('div');
+  row.className = 'msg her'; row.id = 'typingRow';
+  row.appendChild(avatarEl(S.cur ? S.cur.avatar : null, S.cur ? S.cur.name : '?',
+                           S.cur ? S.cur.accent : null, 32));
+  const b = document.createElement('div');
+  b.className = 'typing-bub';
+  b.innerHTML = '<i></i><i></i><i></i>';
+  row.appendChild(b);
+  box.appendChild(row);
+  scrollBottom();
+}
+const hideTyping = () => { const r = $('typingRow'); if (r) r.remove(); };
+function scrollBottom(){ const s = $('stream'); s.scrollTop = s.scrollHeight; }
+
+/* ---------- 发送 ---------- */
+async function send(){
+  const input = $('input');
+  const text = input.value.trim();
+  if (!text || (!S.cur && !S.group)) return;
+  input.value = ''; input.style.height = 'auto';
+  $('sendBtn').disabled = true;
+
+  const now = Date.now() / 1000;
+  addBubble('user', text, now);
+  showTyping();
+
+  try{
+    if (S.mode === 'group'){
+      const g = await post('/api/group/chat', {id: S.group.id, text});
+      hideTyping();
+      if (g.error){ addBubble('char', '（出错：' + g.error + '）', now); return; }
+      for (const sp of (g.speakers || [])){
+        for (const b of (sp.bubbles || [])){
+          addGroupBubble(sp.name, sp.slug, b);
+          await sleep(360 + Math.random() * 420);
+        }
+        await sleep(480);
+      }
+      return;
+    }
+    const d = await post('/api/chat', {slug: S.cur.slug, text});
+    if (d.error){ hideTyping(); addBubble('char', '（出错：' + d.error + '）', now); return; }
+    await sleep(Math.min(d.delay_ms || 900, 4000));
+    hideTyping();
+    const bubbles = d.bubbles || [];
+    for (let i = 0; i < bubbles.length; i++){
+      addBubble('char', bubbles[i], Date.now() / 1000 + i * 0.01);
+      if (i < bubbles.length - 1) await sleep(450 + Math.random() * 600);
+    }
+    if (d.sticker && d.sticker.url){
+      await sleep(700);
+      addSticker('char', d.sticker.url);
+    }
+    if (d.risk && d.risk !== 'none'){
+      const s = document.createElement('div');
+      s.className = 'tsep';
+      s.innerHTML = `<span style="color:var(--warn)">⚠ 识别到风险信号：${esc(d.risk)}，已记入事件流</span>`;
+      $('streamIn').appendChild(s);
+    }
+    await refreshCur();
+  }catch(e){
+    hideTyping();
+    addBubble('char', '（服务异常：' + e.message + '）', now);
+  }finally{
+    $('sendBtn').disabled = false;
+    $('input').focus();
+  }
+}
+
+async function regen(text){
+  if (!S.cur) return;
+  const d = await api('/api/messages?char=' + encodeURIComponent(S.cur.slug));
+  const msgs = d.messages || [];
+  // 找到这条用户消息之前的内容，重新生成
+  addBubble('user', text, Date.now()/1000);
+  showTyping();
+  try{
+    const r = await post('/api/chat', {slug: S.cur.slug, text});
+    await sleep(Math.min(r.delay_ms || 900, 3000));
+    hideTyping();
+    for (const b of (r.bubbles || [])) addBubble('char', b, Date.now()/1000);
+  }catch(e){ hideTyping(); }
+}
+
+async function refreshCur(){
+  if (!S.cur) return;
+  const d = await api('/api/characters');
+  S.chars = d.characters || [];
+  const c = S.chars.find(x => x.slug === S.cur.slug);
+  if (c){
+    S.cur = c;
+    $('headState').textContent = `${c.asleep ? '休息中 · ' : ''}${c.phase} · 心情 ${c.state.mood} · 精力 ${c.state.energy}`;
+  }
+  renderList();
+  if ($('drawer').classList.contains('open')) renderTab();
+}
+
+/* ---------- 抽屉 ---------- */
+function toggleDrawer(){
+  $('drawer').classList.toggle('open');
+  if ($('drawer').classList.contains('open')) renderTab();
+}
+function toggleContacts(){ $('contacts').classList.toggle('hide'); }
+function switchTab(t, btn){
+  S.tab = t;
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderTab();
+}
+
+async function renderTab(){
+  const body = $('tabBody');
+  if (!S.cur){ body.innerHTML = '<div class="muted">选择角色后显示</div>'; return; }
+  const c = S.cur;
+  if (S.tab === 'state'){
+    body.innerHTML = `
+      <div class="kv"><span>名字</span><b>${esc(c.name)}</b></div>
+      ${c.series ? `<div class="kv"><span>来源</span><b>${esc(c.series)}</b></div>` : ''}
+      <div class="kv"><span>心情</span><b>${esc(c.state.mood)}</b></div>
+      <div class="kv"><span>精力</span><b>${c.state.energy}/100</b></div>
+      <div class="kv"><span>热情 / 好感</span><b>${c.state.enthusiasm} / ${c.state.affection}</b></div>
+      <div class="kv"><span>关系</span><b>${esc(c.bond || '—')}</b></div>
+      ${c.bond_gist ? `<div style="font-size:11.5px;color:var(--ink3);margin:-4px 0 8px;line-height:1.6">${esc(c.bond_gist)}</div>` : ''}
+      <div class="kv"><span>作息</span><b>${c.schedule.sleep} – ${c.schedule.wake}</b></div>
+      <div class="kv"><span>当前时段</span><b>${esc(c.phase)}</b></div>
+      <div class="kv"><span>主动频率</span><b>${c.sessions_per_day} 次/活跃日</b></div>
+      <div class="kv"><span>回复延迟</span><b>${c.reply_seconds}s</b></div>
+      ${c.schedule.derived ? '<div style="margin-top:10px"><span class="pill">作息按名字自动派生</span></div>' : ''}
+      ${(c.tags && c.tags.length) ? `<div style="margin-top:10px">${c.tags.map(t=>`<span class="pill">${esc(t)}</span>`).join(' ')}</div>` : ''}
+      ${(c.interests && c.interests.length) ? `<div style="margin-top:10px"><div class="sec-d" style="margin-bottom:5px">她的兴趣</div>${c.interests.map(t=>`<span class="pill">${esc(t)}</span>`).join(' ')}</div>` : ''}
+      <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--line2)">
+        <div style="font-size:12.5px;font-weight:600;margin-bottom:9px">手动调整</div>
+        <div class="srow"><span>热情</span>
+          <input type="range" min="0" max="100" value="${c.state.enthusiasm}" id="slEnth"
+                 oninput="$('enthV').textContent=this.value">
+          <b id="enthV">${c.state.enthusiasm}</b></div>
+        <div class="srow"><span>好感</span>
+          <input type="range" min="0" max="100" value="${c.state.affection}" id="slAff"
+                 oninput="$('affV').textContent=this.value">
+          <b id="affV">${c.state.affection}</b></div>
+        <button class="btn" style="margin-top:10px" onclick="saveTraits()">保存调整</button>
+        <div style="font-size:11px;color:var(--ink3);margin-top:7px;line-height:1.6" id="traitHint">
+          热情决定她多久主动找你一次；好感决定两件事——主动频率的倍率（0.7~1.6 倍），以及你们能聊到哪一层。
+        </div>
+      </div>
+    `;
+  } else if (S.tab === 'memo'){
+    const d = await api('/api/memories?char=' + encodeURIComponent(c.slug));
+    const ms = d.memories || [];
+    body.innerHTML = ms.length ? ms.map(m => `<div class="memo">${esc(m.text)}
+      <div class="s">${fmtTime(m.ts)}${m.version > 1 ? `<span class="pill">v${m.version}</span>` : ''}</div>
+    </div>`).join('') : '<div class="muted">还没有长期记忆<br><span style="font-size:11.5px">聊得久一点会有</span></div>';
+  } else if (S.tab === 'lore'){
+    const d = await api('/api/lore?char=' + encodeURIComponent(c.slug));
+    const es = d.entries || [];
+    const KINDS = d.kinds || {};
+    const head = `<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="flex:1;font-size:11.5px;color:var(--ink3)">${es.length} 条 · 命中才注入</span>
+        <button style="color:var(--brand);font-size:12px" onclick="openLore()">+ 添加</button>
+      </div>`;
+    body.innerHTML = head + (es.length ? es.map(e => `<div class="memo">
+        <div style="font-weight:500;margin-bottom:4px">${esc(e.title)}
+          <span class="pill">${esc(KINDS[e.kind] || e.kind)}</span>
+          ${e.always ? '<span class="pill ok">常驻</span>' : ''}</div>
+        <div style="color:var(--ink2)">${esc(e.content)}</div>
+        <div class="s">触发词：${(e.keywords && e.keywords.length) ? e.keywords.map(k => esc(k)).join(' / ') : '（仅语义匹配）'}</div>
+      </div>`).join('') : '<div class="muted">还没有设定条目<br><span style="font-size:11.5px">点右上「+ 添加」写她的往事</span></div>');
+  } else {
+    const d = await api('/api/facts?char=' + encodeURIComponent(c.slug));
+    const fs = d.facts || [];
+    body.innerHTML = fs.length ? fs.map(f => {
+      const cls = f.status === 'confirmed' ? 'ok' : (f.status === 'conflict' ? 'bad' : 'warn');
+      return `<div class="memo"><b>${esc(f.key)}</b>：${esc(f.value)}
+        <div class="s"><span class="pill ${cls}">${esc(f.status)}</span>
+        ${f.status === 'candidate' ? `<button style="color:var(--brand);font-size:11px;margin-left:auto" onclick="confirmFact(${f.id})">确认</button>` : ''}</div>
+      </div>`;
+    }).join('') : '<div class="muted">还没有抽取到关于「她自己」的事实<br><span style="font-size:11.5px">这些是候选，需要你确认才生效</span></div>';
+  }
+}
+
+async function confirmFact(id){
+  await post('/api/facts/confirm', {id});
+  renderTab();
+}
+
+async function saveTraits(){
+  if (!S.cur) return;
+  const d = await post('/api/characters/state', {
+    slug: S.cur.slug,
+    enthusiasm: Number($('slEnth').value),
+    affection: Number($('slAff').value),
+  });
+  if (d.character){
+    const c = d.character;
+    S.cur = c;
+    $('traitHint').innerHTML =
+      `已保存 · 主动约 ${c.sessions_per_day} 次/活跃日 · 回复延迟约 ${c.reply_seconds}s`;
+    $('headState').textContent =
+      `${c.asleep ? '休息中 · ' : ''}${c.phase} · 心情 ${c.state.mood} · 精力 ${c.state.energy}`;
+    await loadChars();
+  }
+}
+
+/* ---------- 表情包 ---------- */
+let spData = null, spSet = 'ALL', spView = [];
+
+async function toggleStickers(){
+  const p = $('spPanel');
+  if (p.classList.contains('on')){ p.classList.remove('on'); return; }
+  p.classList.add('on');
+  if (!spData){
+    $('spGrid').innerHTML = '<div class="sp-empty"><span class="spin"></span>读取中…</div>';
+    spData = await api('/api/stickers');
+    renderSpTabs();
+  }
+  renderStickers();
+}
+
+function renderSpTabs(){
+  const sets = (spData && spData.sets) || [];
+  const total = ((spData && spData.items) || []).length;
+  $('spTabs').innerHTML =
+    `<button class="${spSet === 'ALL' ? 'on' : ''}" onclick="pickSetIdx(-1)">全部 ${total}</button>` +
+    sets.map((s, i) =>
+      `<button class="${spSet === s.name ? 'on' : ''}" onclick="pickSetIdx(${i})">${esc(s.name)} ${s.count}</button>`
+    ).join('');
+}
+
+function pickSetIdx(i){
+  spSet = i < 0 ? 'ALL' : ((spData.sets[i] || {}).name || 'ALL');
+  renderSpTabs();
+  renderStickers();
+}
+
+function renderStickers(){
+  const g = $('spGrid');
+  if (!spData) return;
+  const q = ($('spQ').value || '').trim().toLowerCase();
+  let items = spData.items || [];
+  if (spSet !== 'ALL') items = items.filter(i => (i.source || '') === spSet);
+  if (q) items = items.filter(i =>
+    (i.desc || '').toLowerCase().includes(q) ||
+    (i.emotions || []).some(e => e.toLowerCase().includes(q)));
+  if (!items.length){
+    g.innerHTML = ((spData.items || []).length)
+      ? '<div class="sp-empty">没有匹配的表情包</div>'
+      : '<div class="sp-empty">还没有表情包<br><span style="font-size:11px">把图片放进 stickers/ 目录，再点设置里的「重新扫描」</span></div>';
+    spView = [];
+    return;
+  }
+  spView = items.slice(0, 400);
+  g.innerHTML = spView.map((i, idx) =>
+    `<img src="${i.url}" title="${esc(i.desc)}" loading="lazy" onclick="sendStickerIdx(${idx})">`
+  ).join('');
+}
+
+async function sendStickerIdx(idx){
+  const it = spView[idx];
+  if (!it || !S.cur) return;
+  $('spPanel').classList.remove('on');
+  addSticker('user', it.url);
+  await post('/api/stickers/send', {slug: S.cur.slug, file: it.file});
+}
+
+async function rescanStickers(){
+  const box = $('stkMsg');
+  if (box) box.innerHTML = '<div class="sec-d"><span class="spin"></span>扫描中…</div>';
+  const d = await post('/api/stickers/scan', {force: false});
+  spData = null;
+  const info = await api('/api/stickers');
+  spData = info;
+  if (box) box.innerHTML = `<div class="okmsg">已索引 ${d.count || 0} 张 · 目录 ${esc(info.dir || '')}</div>`;
+  renderSpTabs();
+  renderStickers();
+}
+
+/* ---------- 设定条目 ---------- */
+function openLore(){
+  if (!S.cur) return;
+  $('loreTitle').value = ''; $('loreKeys').value = ''; $('loreContent').value = '';
+  $('loreAlways').checked = false; $('loreMsg').innerHTML = '';
+  open_('mLore');
+  setTimeout(() => $('loreTitle').focus(), 60);
+}
+
+async function saveLore(){
+  const title = $('loreTitle').value.trim();
+  const content = $('loreContent').value.trim();
+  if (!title || !content){
+    $('loreMsg').innerHTML = '<div class="err">标题和内容都要填</div>';
+    return;
+  }
+  const d = await post('/api/lore/save', {
+    slug: S.cur.slug,
+    entry: {
+      title, content,
+      kind: $('loreKind').value,
+      keywords: $('loreKeys').value,
+      always: $('loreAlways').checked,
+    },
+  });
+  if (d.error){ $('loreMsg').innerHTML = `<div class="err">${esc(d.error)}</div>`; return; }
+  close_('mLore');
+  renderTab();
+}
+
+/* ---------- 设置 ---------- */
+async function openSettings(){
+  const d = await api('/api/settings');
+  $('cfgBase').value = d.llm.base_url || '';
+  $('cfgModel').value = d.llm.model || '';
+  $('cfgAnalysis').value = d.llm.analysis_model || '';
+  $('cfgKey').value = '';
+  $('cfgKey').placeholder = d.llm.api_key_hint ? `已设置（${d.llm.api_key_hint}）` : '填写 API Key';
+  $('cfgMsg').innerHTML = d.configured
+    ? '<div class="okmsg">当前：已配置</div>'
+    : '<div class="err">当前：未配置，聊天会返回提示语</div>';
+  open_('mSettings');
+}
+
+async function saveSettings(){
+  const body = {llm: {
+    base_url: $('cfgBase').value.trim(),
+    model: $('cfgModel').value.trim(),
+    analysis_model: $('cfgAnalysis').value.trim(),
+  }};
+  const k = $('cfgKey').value.trim();
+  if (k) body.llm.api_key = k;
+  const d = await post('/api/settings', body);
+  $('cfgMsg').innerHTML = d.configured
+    ? '<div class="okmsg">已保存，模型可用</div>'
+    : '<div class="err">已保存，但 API Key 还没填</div>';
+}
+
+async function testConn(){
+  const box = $('cfgMsg');
+  box.innerHTML = '<div class="sec-d"><span class="spin"></span>测试中…</div>';
+  const d = await post('/api/diagnostics/test', {});
+  box.innerHTML = d.ok
+    ? `<div class="okmsg">连接正常 · ${d.ms}ms · 回：${esc(d.reply)}</div>`
+    : `<div class="err">${esc(d.error || '连接失败')}</div>`;
+}
+
+function openDataFolder(){
+  post('/api/open-data', {}).then(d => {
+    if (!d.ok) alert('打开失败：' + (d.error || ''));
+  });
+}
+
+/* ---------- 添加角色（AI 蒸馏） ---------- */
+function openAdd(){
+  S.avatarB64 = null;
+  $('addName').value = ''; $('addSeries').value = ''; $('addNotes').value = '';
+  $('draftBox').style.display = 'none';
+  $('saveCharBtn').style.display = 'none';
+  $('addMsg').innerHTML = '';
+  const av = $('avPick');
+  av.innerHTML = '＋';
+  open_('mAdd');
+  setTimeout(() => $('addName').focus(), 60);
+}
+
+$('avFile').onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    S.avatarB64 = r.result;
+    const av = $('avPick');
+    av.innerHTML = `<img src="${r.result}">`;
+  };
+  r.readAsDataURL(f);
+};
+
+async function doGenerate(){
+  const name = $('addName').value.trim();
+  if (!name){ $('addMsg').innerHTML = '<div class="err">先填个名字</div>'; return; }
+  const btn = $('genBtn');
+  btn.disabled = true;
+  $('addMsg').innerHTML = '<div class="sec-d"><span class="spin"></span>正在生成人设，可能需要十几秒…</div>';
+  $('draftBox').style.display = 'none';
+  try{
+    const d = await post('/api/characters/generate', {
+      name,
+      series: $('addSeries').value.trim(),
+      notes: $('addNotes').value.trim(),
+    });
+    if (!d.ok){
+      $('addMsg').innerHTML = `<div class="err">${esc(d.error)}</div>`;
+      return;
+    }
+    const dr = d.draft;
+    $('addMsg').innerHTML = '';
+    $('draftBox').style.display = '';
+    $('draftSummary').value = dr.summary || '';
+    $('draftPersona').value = dr.persona_md || '';
+    $('draftInfo').innerHTML =
+      `${dr.persona_md.length} 字 · ${dr.interests.length} 个兴趣 · `
+      + `${(dr.lore || []).length} 条设定 · ${dr.used_search ? '已联网检索' : '模型知识蒸馏'}`
+      + (dr.series ? ` · 来源《${esc(dr.series)}》` : '');
+    $('saveCharBtn').style.display = '';
+    S.draft = dr;
+    $('draftPersona').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }catch(e){
+    $('addMsg').innerHTML = `<div class="err">${esc(e.message)}</div>`;
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+async function saveChar(){
+  const persona = $('draftPersona').value.trim();
+  if (persona.length < 200){
+    $('addMsg').innerHTML = `<div class="err">人设只有 ${persona.length} 字，至少 200 字</div>`;
+    return;
+  }
+  const d = await post('/api/characters/create', {
+    name: $('addName').value.trim(),
+    series: $('addSeries').value.trim(),
+    summary: $('draftSummary').value.trim(),
+    interests: (S.draft && S.draft.interests) || [],
+    persona_md: persona,
+    avatar_base64: S.avatarB64,
+  });
+  if (d.error){ $('addMsg').innerHTML = `<div class="err">${esc(d.error)}</div>`; return; }
+  close_('mAdd');
+  await loadChars();
+  selectChar(d.slug);
+}
+
+/* ---------- 导入角色卡 ---------- */
+function openImport(){
+  $('impMsg').innerHTML = '';
+  open_('mImport');
+}
+$('dropZone').onclick = () => $('fileInput').click();
+$('fileInput').onchange = e => { if (e.target.files[0]) doImport(e.target.files[0]); };
+['dragover','dragenter'].forEach(ev => $('dropZone').addEventListener(ev, e => {
+  e.preventDefault(); $('dropZone').style.borderColor = 'var(--brand)';
+}));
+['dragleave','drop'].forEach(ev => $('dropZone').addEventListener(ev, e => {
+  e.preventDefault(); $('dropZone').style.borderColor = 'var(--line)';
+}));
+$('dropZone').addEventListener('drop', e => {
+  if (e.dataTransfer.files[0]) doImport(e.dataTransfer.files[0]);
+});
+
+function toB64(buf){
+  const bytes = new Uint8Array(buf);
+  let bin = '';
+  const chunk = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunk){
+    bin += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+  }
+  return btoa(bin);
+}
+
+async function doImport(file){
+  $('impMsg').innerHTML = '<div class="sec-d"><span class="spin"></span>读取中…</div>';
+  try{
+    const buf = await file.arrayBuffer();
+    const d = await post('/api/characters/import', {
+      filename: file.name,
+      data_base64: toB64(buf),
+    });
+    if (d.error){ $('impMsg').innerHTML = `<div class="err">${esc(d.error)}</div>`; return; }
+    $('impMsg').innerHTML = `<div class="okmsg">已导入：${esc(d.character.name)}</div>`;
+    await loadChars();
+    setTimeout(() => { close_('mImport'); selectChar(d.slug); }, 500);
+  }catch(e){
+    $('impMsg').innerHTML = `<div class="err">${esc(e.message)}</div>`;
+  }
+}
+
+/* ---------- 输入框 ---------- */
+const inputEl = $('input');
+inputEl.addEventListener('input', () => {
+  inputEl.style.height = 'auto';
+  inputEl.style.height = Math.min(inputEl.scrollHeight, 140) + 'px';
+});
+inputEl.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); send(); }
+});
+
+/* 全局拖拽导入 */
+document.addEventListener('dragover', e => e.preventDefault());
+document.addEventListener('drop', e => {
+  e.preventDefault();
+  const f = e.dataTransfer.files[0];
+  if (f && /\.(json|png)$/i.test(f.name)){ openImport(); doImport(f); }
+});
+
+/* 点遮罩关闭 */
+document.querySelectorAll('.mask').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('on'); });
+});
+
+/* ---------- 启动 ---------- */
+(async function boot(){
+  await loadChars();
+  const last = localStorage.getItem('starlit-last');
+  if (S.chars.length){
+    const target = S.chars.find(c => c.slug === last) || S.chars[0];
+    await selectChar(target.slug);
+  }
+  if (!$('headAv').textContent || $('headAv').textContent === '?'){ /* keep */ }
+})();
+</script>
+</body>
+</html>

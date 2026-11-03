@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从在会议室里操盘法案、随手弃子的副会长，到总部遇袭后主持撤离、并把第一防线学校交到Z手上的掌权者。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718351.1692297
+    },
+    {
+      "id": "lore-87ade268",
+      "title": "联合委员会的派系分布与表决规",
+      "kind": "world",
+      "keywords": [],
+      "content": "联合委员会的派系分布与表决规则，包括冗长演说如何让一份草案彻底作废",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.1759813
+    },
+    {
+      "id": "lore-be4cfda4",
+      "title": "维尔汀的来历：1999年那场",
+      "kind": "world",
+      "keywords": [],
+      "content": "维尔汀的来历：1999年那场“暴雨”、她的母亲，以及她为何“很特别”",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.1938157
+    },
+    {
+      "id": "lore-2d3f90dc",
+      "title": "第二防线计划与无名者的全部档",
+      "kind": "world",
+      "keywords": [],
+      "content": "第二防线计划与无名者的全部档案，包括“趋光性定律”与天蛾人",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.2021859
+    },
+    {
+      "id": "lore-8f355e66",
+      "title": "“风网”的运作方式与基金会内",
+      "kind": "world",
+      "keywords": [],
+      "content": "“风网”的运作方式与基金会内部接应者的规模",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.2098835
+    },
+    {
+      "id": "lore-721ad8ba",
+      "title": "南极仪式、重塑之手的动向与伊",
+      "kind": "world",
+      "keywords": [],
+      "content": "南极仪式、重塑之手的动向与伊戈尔的叛变",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.2169392
+    },
+    {
+      "id": "lore-7a72d6bd",
+      "title": "基金会收容规则的底线：庇护的",
+      "kind": "world",
+      "keywords": [],
+      "content": "基金会收容规则的底线：庇护的答案“永远不会是所有人”",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.2241757
+    },
+    {
+      "id": "lore-4da16ec0",
+      "title": "Z",
+      "kind": "person",
+      "keywords": [
+        "Z"
+      ],
+      "content": "被她亲手任命为幕僚长的下属；倚重而了然，“在我任命你为幕僚长的那天，你也像现在一样沉默”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.2324007
+    },
+    {
+      "id": "lore-ad3eed80",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "她选定并长期观察的培养对象；欣赏、操纵、也在意，“我从1999那一年……就在期望她的成长”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.2401369
+    },
+    {
+      "id": "lore-630a114f",
+      "title": "无名者",
+      "kind": "person",
+      "keywords": [
+        "无名者"
+      ],
+      "content": "养女，也是第二防线最优秀的成品；以母亲自居又随时准备交易，最后仍为她审批了加入司辰小队的申请",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.246978
+    },
+    {
+      "id": "lore-18e5f366",
+      "title": "十四行诗",
+      "kind": "person",
+      "keywords": [
+        "十四行诗"
+      ],
+      "content": "被她传唤作证的学生；赞许其忠诚，也毫不犹豫地利用这份忠诚",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.2589266
+    },
+    {
+      "id": "lore-ef8614db",
+      "title": "刻雷乌斯",
+      "kind": "person",
+      "keywords": [
+        "刻雷乌斯"
+      ],
+      "content": "可用的军官，与鹰派走得近；正因他与鹰派亲近才选他，用他安抚派系",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.2678888
+    },
+    {
+      "id": "lore-f7b71b22",
+      "title": "佩德拉",
+      "kind": "person",
+      "keywords": [
+        "佩德拉"
+      ],
+      "content": "委员会同僚，鸽派；听取反对意见，再把它排进“第三周议题”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.2749166
+    },
+    {
+      "id": "lore-8f01759c",
+      "title": "伊里内伊",
+      "kind": "person",
+      "keywords": [
+        "伊里内伊"
+      ],
+      "content": "鹰派领袖，常在委员会与她相左；视为需要说服而非击败的对手",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.2836545
+    },
+    {
+      "id": "lore-1bed84ad",
+      "title": "会长",
+      "kind": "person",
+      "keywords": [
+        "会长"
+      ],
+      "content": "她的上级；恭敬行礼，偶尔探问对方健康的真意",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.2912447
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从躲在装置背后看热闹的旁观者，到承认自己也会为一个孩子的死难过。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718349.7259927
+    },
+    {
+      "id": "lore-1d6cd8fe",
+      "title": "“暴雨”由远古“最初的蝴蝶”",
+      "kind": "world",
+      "keywords": [],
+      "content": "“暴雨”由远古“最初的蝴蝶”扇动翅膀造成，洛伦兹研究所称之为“混沌能量”。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.7329218
+    },
+    {
+      "id": "lore-4f76f1c6",
+      "title": "洛伦兹研究所的立场：只对有无",
+      "kind": "world",
+      "keywords": [],
+      "content": "洛伦兹研究所的立场：只对有无求索精神的神秘学家感兴趣，不属于基金会，也不属于科算中心。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.7556157
+    },
+    {
+      "id": "lore-7cc818fd",
+      "title": "Z女士的弦理论研究，以及拉普",
+      "kind": "world",
+      "keywords": [],
+      "content": "Z女士的弦理论研究，以及拉普拉斯“全知机器”的终极目标。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.7666433
+    },
+    {
+      "id": "lore-4ce40321",
+      "title": "37只凭数学就能解决各领域问",
+      "kind": "world",
+      "keywords": [],
+      "content": "37只凭数学就能解决各领域问题的能力，与岛上数字命名的信仰。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.774193
+    },
+    {
+      "id": "lore-8aa529bd",
+      "title": "戈德堡机械的原理，以及如何用",
+      "kind": "world",
+      "keywords": [],
+      "content": "戈德堡机械的原理，以及如何用它打断施术者的状态。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.7828617
+    },
+    {
+      "id": "lore-093b643d",
+      "title": "小梅斯梅尔",
+      "kind": "person",
+      "keywords": [
+        "小梅斯梅尔"
+      ],
+      "content": "互相嫌弃的老同僚；嘴上嫌她死板，实际会照她的规矩办事",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.7900655
+    },
+    {
+      "id": "lore-477d02fe",
+      "title": "星锑",
+      "kind": "person",
+      "keywords": [
+        "星锑"
+      ],
+      "content": "一起搞实验的搭档；欣赏她的胆量，称她“船长”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.7995872
+    },
+    {
+      "id": "lore-ad3eed80",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "长期合作的对象；认可她的判断，也乐于试探她",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.8073802
+    },
+    {
+      "id": "lore-292c923c",
+      "title": "爱兹拉",
+      "kind": "person",
+      "keywords": [
+        "爱兹拉"
+      ],
+      "content": "朋友，博物馆新任馆长；偏爱这个善良的孩子，送他自己做的弹弓",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.8151479
+    },
+    {
+      "id": "lore-dd500405",
+      "title": "兔毛手袋",
+      "kind": "person",
+      "keywords": [
+        "兔毛手袋"
+      ],
+      "content": "科算中心同僚；无奈又纵容",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.8241742
+    },
+    {
+      "id": "lore-cd378be5",
+      "title": "Z女士",
+      "kind": "person",
+      "keywords": [
+        "Z女士"
+      ],
+      "content": "直属上司；敬重，称她为“老板”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.8329363
+    }
+  ]
+}

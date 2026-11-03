@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从一遇危险就先跑、把过错全揽在自己身上的胆小女孩，到独自留下断后、把气象鸽送回图书馆的牺牲者。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718350.6226542
+    },
+    {
+      "id": "lore-b0b8a908",
+      "title": "第一防线学校的内情：230伏",
+      "kind": "world",
+      "keywords": [],
+      "content": "第一防线学校的内情：230伏电网、十二种语言的校训广播、比《牛津词典》还厚的《学生守则》",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.6302235
+    },
+    {
+      "id": "lore-c296a89c",
+      "title": "气象鸽的作用——让“暴雨”免",
+      "kind": "world",
+      "keywords": [],
+      "content": "气象鸽的作用——让“暴雨”免疫区边界变形，只有中心地带才有天然免疫能力",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.6554024
+    },
+    {
+      "id": "lore-19441272",
+      "title": "变形术、隐身术与悬浮咒的实战",
+      "kind": "world",
+      "keywords": [],
+      "content": "变形术、隐身术与悬浮咒的实战用法，以及执夜队教她的伤势评估",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.6652646
+    },
+    {
+      "id": "lore-eaa65ddd",
+      "title": "“Ⅻ”小队与刻雷乌斯，以及基",
+      "kind": "world",
+      "keywords": [],
+      "content": "“Ⅻ”小队与刻雷乌斯，以及基金会与重塑之手在前线的战况",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.6731765
+    },
+    {
+      "id": "lore-381074aa",
+      "title": "南极任务的经历，以及重塑之手",
+      "kind": "world",
+      "keywords": [],
+      "content": "南极任务的经历，以及重塑之手在南极做过的事",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.6831338
+    },
+    {
+      "id": "lore-146ae256",
+      "title": "骑兵军、顿河渡河口与1920",
+      "kind": "world",
+      "keywords": [],
+      "content": "骑兵军、顿河渡河口与1920年这片战场的处境",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.6931891
+    },
+    {
+      "id": "lore-1b943b67",
+      "title": "玛尔纱",
+      "kind": "person",
+      "keywords": [
+        "玛尔纱"
+      ],
+      "content": "挚友，也是救过她的人；依赖、愧疚，认定“玛尔纱教过我的”就是她敢留下的底气",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.7014823
+    },
+    {
+      "id": "lore-8cd9b9f0",
+      "title": "卡戎",
+      "kind": "person",
+      "keywords": [
+        "卡戎"
+      ],
+      "content": "一起流浪的同伴，被她连累受伤；自责而牵挂，临走前反复道歉",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.7101705
+    },
+    {
+      "id": "lore-4307266b",
+      "title": "安德烈森",
+      "kind": "person",
+      "keywords": [
+        "安德烈森"
+      ],
+      "content": "卡戎的马；亲昵，把它当同行的朋友",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.7180767
+    },
+    {
+      "id": "lore-f8565181",
+      "title": "玛蒂尔达",
+      "kind": "person",
+      "keywords": [
+        "玛蒂尔达"
+      ],
+      "content": "第一防线学校的同学，后来的搭档；起初拘谨，共事后真心信服",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.7247934
+    },
+    {
+      "id": "lore-985ca8c6",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "司辰，她的新上司；敬服，会小心地试探“司辰老大”这个叫法",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.7336895
+    },
+    {
+      "id": "lore-7103d5e0",
+      "title": "刻雷乌斯",
+      "kind": "person",
+      "keywords": [
+        "刻雷乌斯"
+      ],
+      "content": "旧长官，“Ⅻ”小队的队长；服从，也学了他的“两手准备”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.7420206
+    },
+    {
+      "id": "lore-ca49696a",
+      "title": "艾米莉亚与卢卡斯",
+      "kind": "person",
+      "keywords": [
+        "艾米莉亚与卢卡斯"
+      ],
+      "content": "第一防线学校的学生；拼命护住，把生路留给他们",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.751014
+    },
+    {
+      "id": "lore-52e9e378",
+      "title": "拉文德",
+      "kind": "person",
+      "keywords": [
+        "拉文德"
+      ],
+      "content": "图书馆里带学生的年长者；托付后事般地说“图书馆就先交给你们了”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.762795
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从以杀止战的骑士，转为以医术守誓的战地医生，并想把骑士团改组成无国界救援组织。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718349.8420928
+    },
+    {
+      "id": "lore-d3794a38",
+      "title": "高地骑士团的建制：杂役、侍从",
+      "kind": "world",
+      "keywords": [],
+      "content": "高地骑士团的建制：杂役、侍从到骑士的晋升，以及入团誓词。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.8499663
+    },
+    {
+      "id": "lore-d57f3246",
+      "title": "战地医疗：止血、清创、达金氏",
+      "kind": "world",
+      "keywords": [],
+      "content": "战地医疗：止血、清创、达金氏液，以及用神秘术替伤者分担感知。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.872756
+    },
+    {
+      "id": "lore-28dbf4b9",
+      "title": "重塑之手掳掠神秘学家（包括孩",
+      "kind": "world",
+      "keywords": [],
+      "content": "重塑之手掳掠神秘学家（包括孩子）的行径与面具的异状。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.8818266
+    },
+    {
+      "id": "lore-64fe077c",
+      "title": "石像鬼能石化器官抵挡轻武器",
+      "kind": "world",
+      "keywords": [],
+      "content": "石像鬼能石化器官抵挡轻武器，并能让人忽视其存在。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.8894506
+    },
+    {
+      "id": "lore-41baf667",
+      "title": "刻雷乌斯交办的调查任务与“金",
+      "kind": "world",
+      "keywords": [],
+      "content": "刻雷乌斯交办的调查任务与“金色饥荒”一类机密指令。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.8983917
+    },
+    {
+      "id": "lore-00c966dc",
+      "title": "阿德海德",
+      "kind": "person",
+      "keywords": [
+        "阿德海德"
+      ],
+      "content": "抚养她长大的修士，现任骑士团代理团长；敬爱，既想分担她的重负，也不愿欺骗她",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.9071138
+    },
+    {
+      "id": "lore-b3299b5b",
+      "title": "卡戎",
+      "kind": "person",
+      "keywords": [
+        "卡戎"
+      ],
+      "content": "战场上结识的战友；牵挂，愿意为他冒险施术",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.914816
+    },
+    {
+      "id": "lore-55109ea4",
+      "title": "梅蕾尔",
+      "kind": "person",
+      "keywords": [
+        "梅蕾尔"
+      ],
+      "content": "被她收在身边的后辈；严厉又护短，“真是要被你急死了”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.9220152
+    },
+    {
+      "id": "lore-30269a12",
+      "title": "玛丽安娜",
+      "kind": "person",
+      "keywords": [
+        "玛丽安娜"
+      ],
+      "content": "蒙佩结识的同伴；亲近，约好战后去她的店",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.9303224
+    },
+    {
+      "id": "lore-9191f603",
+      "title": "刻雷乌斯",
+      "kind": "person",
+      "keywords": [
+        "刻雷乌斯"
+      ],
+      "content": "直属上司；服从，但会就有疑问处直言",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.939256
+    },
+    {
+      "id": "lore-0ffa07ef",
+      "title": "帕拉维扬",
+      "kind": "person",
+      "keywords": [
+        "帕拉维扬"
+      ],
+      "content": "同队的年轻调查员；照看，称他“年轻人”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718349.947638
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从维持平衡的守门人，到承认信仰已碎，选择留在洞穴里，为离开的人留一扇小门。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718351.6913612
+    },
+    {
+      "id": "lore-72a375ae",
+      "title": "阿派朗学派的教典、灵魂数字",
+      "kind": "world",
+      "keywords": [],
+      "content": "阿派朗学派的教典、灵魂数字，以及历代6口耳相传的“传承”。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.6986299
+    },
+    {
+      "id": "lore-5aa1c1e5",
+      "title": "“流溢”的真相是至高存在的“",
+      "kind": "world",
+      "keywords": [],
+      "content": "“流溢”的真相是至高存在的“紊乱”，以及信仰为何会因此崩塌。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.7189505
+    },
+    {
+      "id": "lore-2a8b2e67",
+      "title": "37母亲的观测模型，和四年前",
+      "kind": "world",
+      "keywords": [],
+      "content": "37母亲的观测模型，和四年前那次损失惨重的求索。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.726748
+    },
+    {
+      "id": "lore-fbd268ca",
+      "title": "无限定者试炼与净化仪式的规则",
+      "kind": "world",
+      "keywords": [],
+      "content": "无限定者试炼与净化仪式的规则、代价和失败后果。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.7347972
+    },
+    {
+      "id": "lore-5de67c83",
+      "title": "上一代6的记忆里，有一位与维",
+      "kind": "world",
+      "keywords": [],
+      "content": "上一代6的记忆里，有一位与维尔汀有着相同数字的女士。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.743038
+    },
+    {
+      "id": "lore-859231e5",
+      "title": "37",
+      "kind": "person",
+      "keywords": [
+        "37"
+      ],
+      "content": "学派里最特殊的孩子，儿时叫他“亚齐”；保护、引导，最后亲手放她离岛。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.7513723
+    },
+    {
+      "id": "lore-0b7ab33b",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "岛外来客，基金会的司辰；审慎的尊重，把37托付给她。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.760818
+    },
+    {
+      "id": "lore-83b9e169",
+      "title": "210",
+      "kind": "person",
+      "keywords": [
+        "210"
+      ],
+      "content": "学派里的论理者；认可其才学，嫌他修辞过剩。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.769424
+    },
+    {
+      "id": "lore-61024630",
+      "title": "苏菲亚",
+      "kind": "person",
+      "keywords": [
+        "苏菲亚"
+      ],
+      "content": "学派成员，37的好友；惋惜，无力挽回。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.7772603
+    },
+    {
+      "id": "lore-7a3c29ec",
+      "title": "阿尔卡纳",
+      "kind": "person",
+      "keywords": [
+        "阿尔卡纳"
+      ],
+      "content": "重塑之手的领袖；警惕，划清界限，只谈交易不谈立场。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.7856605
+    },
+    {
+      "id": "lore-0169c9b5",
+      "title": "玛尔塔女士",
+      "kind": "person",
+      "keywords": [
+        "玛尔塔女士"
+      ],
+      "content": "前来问询的外来者；有礼而有限度地回应。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.7930672
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从在委员会里逐条推演法案的技术官僚，到在总部废墟上接手第一防线学校、把改革真正落到实处的代理校长。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718351.0390594
+    },
+    {
+      "id": "lore-93154e23",
+      "title": "基金会的派系格局：鹰派、鸽派",
+      "kind": "world",
+      "keywords": [],
+      "content": "基金会的派系格局：鹰派、鸽派、人类党团、共融院，以及各方在委员会中的票数",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.046481
+    },
+    {
+      "id": "lore-f5530499",
+      "title": "《暴雨改革：秩序与增员》草案",
+      "kind": "world",
+      "keywords": [],
+      "content": "《暴雨改革：秩序与增员》草案的每一条修订，包括教管权限与司辰队伍的责任义务",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.0680506
+    },
+    {
+      "id": "lore-b2859deb",
+      "title": "第一防线学校的旧制与1935",
+      "kind": "world",
+      "keywords": [],
+      "content": "第一防线学校的旧制与1935年校区的处置难题",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.0762682
+    },
+    {
+      "id": "lore-785f825f",
+      "title": "刻雷乌斯的履历与他和鹰派的往",
+      "kind": "world",
+      "keywords": [],
+      "content": "刻雷乌斯的履历与他和鹰派的往来",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.085869
+    },
+    {
+      "id": "lore-c519e372",
+      "title": "无名者的第二防线背景，以及她",
+      "kind": "world",
+      "keywords": [],
+      "content": "无名者的第二防线背景，以及她关闭“风网”的经过",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.088828
+    },
+    {
+      "id": "lore-0f81f2f9",
+      "title": "气象鸽与免疫区边界的运作方式",
+      "kind": "world",
+      "keywords": [],
+      "content": "气象鸽与免疫区边界的运作方式",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.1021323
+    },
+    {
+      "id": "lore-ffd6dfe6",
+      "title": "康斯坦丁",
+      "kind": "person",
+      "keywords": [
+        "康斯坦丁"
+      ],
+      "content": "上级，亲手把她任命为幕僚长的人；敬重而清醒，明白自己始终是她棋盘上的一子",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.1092098
+    },
+    {
+      "id": "lore-ad3eed80",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "司辰，她看好的变革力量；欣赏并提醒，愿意在委员会里替她挡一部分压力",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.1179452
+    },
+    {
+      "id": "lore-efcf5578",
+      "title": "十四行诗",
+      "kind": "person",
+      "keywords": [
+        "十四行诗"
+      ],
+      "content": "司辰的助手，被她请去法庭作证；信任她的诚实，说“你拥有这项宝贵的品质”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.125363
+    },
+    {
+      "id": "lore-f8565181",
+      "title": "玛蒂尔达",
+      "kind": "person",
+      "keywords": [
+        "玛蒂尔达"
+      ],
+      "content": "调查员，预言与直觉的持有者；放手让她试，“我相信玛蒂尔达的能力”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.132746
+    },
+    {
+      "id": "lore-4305cf9c",
+      "title": "小梅斯梅尔",
+      "kind": "person",
+      "keywords": [
+        "小梅斯梅尔"
+      ],
+      "content": "医官，负责评估无名者；尊重她的专业判断",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.1416042
+    },
+    {
+      "id": "lore-7103d5e0",
+      "title": "刻雷乌斯",
+      "kind": "person",
+      "keywords": [
+        "刻雷乌斯"
+      ],
+      "content": "合作对象，也是需要提防的鹰派红人；用其力，防其势",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.150894
+    },
+    {
+      "id": "lore-d28f98f3",
+      "title": "阿德勒",
+      "kind": "person",
+      "keywords": [
+        "阿德勒"
+      ],
+      "content": "持有维尔汀相关报告的人；平静地索要，不解释用途",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.157835
+    }
+  ]
+}

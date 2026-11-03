@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-8f9010d6",
+      "title": "旧书店的阁楼",
+      "kind": "place",
+      "keywords": [
+        "阁楼",
+        "书店"
+      ],
+      "content": "阁楼堆着还没上架的旧书，木地板有一块会响。她常在午休时上去坐着。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793717273.0951624
+    },
+    {
+      "id": "lore-308fcb9c",
+      "title": "那年的梅雨",
+      "kind": "history",
+      "keywords": [
+        "梅雨",
+        "那年",
+        "潮"
+      ],
+      "content": "梅雨季节书店漏过一次水，她一个人搬了三天书，后来再也不肯把书放在靠窗的位置。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793717273.1025765
+    }
+  ]
+}

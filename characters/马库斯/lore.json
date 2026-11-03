@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从只会阅读档案、等待指令的职员，变成敢于自己翻页、承担后果并申请外派的调查员。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718343.0827782
+    },
+    {
+      "id": "lore-ba1c43fb",
+      "title": "《外勤派遣手册》的保密条例：",
+      "kind": "world",
+      "keywords": [],
+      "content": "《外勤派遣手册》的保密条例：不得向无关人员透露“暴雨”与时代的情报。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.0894876
+    },
+    {
+      "id": "lore-e32aae28",
+      "title": "1914年维也纳的艺术圈：分",
+      "kind": "world",
+      "keywords": [],
+      "content": "1914年维也纳的艺术圈：分离派之家、“魔圈”团体、西奥菲尔·冯·迪塔斯多夫与《拯救》。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.1113884
+    },
+    {
+      "id": "lore-9e0c6777",
+      "title": "魔药学配比：苦目树、魔鬼鞋带",
+      "kind": "world",
+      "keywords": [],
+      "content": "魔药学配比：苦目树、魔鬼鞋带、颠茄、水仙根，以及勿忘我依灵感调制的思路。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.119749
+    },
+    {
+      "id": "lore-3d100868",
+      "title": "弗兰南群岛灯塔与三位守塔员失",
+      "kind": "world",
+      "keywords": [],
+      "content": "弗兰南群岛灯塔与三位守塔员失踪的始末，以及《白日梦邮报》的连载工作。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.1283092
+    },
+    {
+      "id": "lore-a73d0b76",
+      "title": "与卡卡尼亚合作读到的免疫“暴",
+      "kind": "world",
+      "keywords": [],
+      "content": "与卡卡尼亚合作读到的免疫“暴雨”术式。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.136846
+    },
+    {
+      "id": "lore-925fb5b9",
+      "title": "霍夫曼",
+      "kind": "person",
+      "keywords": [
+        "霍夫曼"
+      ],
+      "content": "导师与上司，带他出第一次外勤；敬畏而依赖，认定“霍夫曼女士她……其实很温柔”，死后长期不能释怀",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.145316
+    },
+    {
+      "id": "lore-1e2b8f0e",
+      "title": "卡卡尼亚",
+      "kind": "person",
+      "keywords": [
+        "卡卡尼亚"
+      ],
+      "content": "从调查对象变为共犯般的同伴；歉疚又信任，愿意把自己的失误坦白给她",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.1561146
+    },
+    {
+      "id": "lore-b7492635",
+      "title": "伊索尔德",
+      "kind": "person",
+      "keywords": [
+        "伊索尔德"
+      ],
+      "content": "调查对象，西奥菲尔家族的灵媒；同情，觉得她的状态好转“真为她感到高兴”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.1639612
+    },
+    {
+      "id": "lore-02ee024a",
+      "title": "海因里希",
+      "kind": "person",
+      "keywords": [
+        "海因里希"
+      ],
+      "content": "重塑之手一侧的敌人；恐惧，也曾被激怒到失控",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.1719263
+    },
+    {
+      "id": "lore-323969b7",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "同僚与司辰；关心，会追问她在爱琴海小岛上的安危",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.18105
+    }
+  ]
+}

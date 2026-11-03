@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从只想争第一、把同学当对手的转校生，变成愿意为掩护同伴而重伤昏迷的调查员。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718349.9557686
+    },
+    {
+      "id": "lore-c0807a01",
+      "title": "布翁尼家的水晶占卜，以及占卜",
+      "kind": "world",
+      "keywords": [],
+      "content": "布翁尼家的水晶占卜，以及占卜所依据的“灵知”与预兆解读。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.9636264
+    },
+    {
+      "id": "lore-e37b7650",
+      "title": "暴雨气象稳定鸽、校验器与四座",
+      "kind": "world",
+      "keywords": [],
+      "content": "暴雨气象稳定鸽、校验器与四座瞭望塔的补充免疫区。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.9880047
+    },
+    {
+      "id": "lore-285cc850",
+      "title": "第一防线学校的规章、禁闭室与",
+      "kind": "world",
+      "keywords": [],
+      "content": "第一防线学校的规章、禁闭室与“暴雨”保密要求。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718349.9959676
+    },
+    {
+      "id": "lore-0aaa0876",
+      "title": "维尔汀成为司辰之前的机密年表",
+      "kind": "world",
+      "keywords": [],
+      "content": "维尔汀成为司辰之前的机密年表与那份未提交的笔录。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.0051792
+    },
+    {
+      "id": "lore-f9637532",
+      "title": "阿派朗学派、信仰数字的神秘学",
+      "kind": "world",
+      "keywords": [],
+      "content": "阿派朗学派、信仰数字的神秘学家团体与那座岛上的命名习惯。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.0137322
+    },
+    {
+      "id": "lore-e7020258",
+      "title": "十四行诗",
+      "kind": "person",
+      "keywords": [
+        "十四行诗"
+      ],
+      "content": "同学与长期的竞争对象；在意到不敢承认，一边较劲一边替她占卜",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.023583
+    },
+    {
+      "id": "lore-0b7ab33b",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "同学，越狱事件的核心；嘴上不服，实际关心她的安危",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.0324965
+    },
+    {
+      "id": "lore-55109ea4",
+      "title": "梅蕾尔",
+      "kind": "person",
+      "keywords": [
+        "梅蕾尔"
+      ],
+      "content": "临时助手；摆架子使唤，出事时挡在她前面",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.0403132
+    },
+    {
+      "id": "lore-d282df40",
+      "title": "苏芙比",
+      "kind": "person",
+      "keywords": [
+        "苏芙比"
+      ],
+      "content": "被任命为“第一助理”的后辈；居高临下地教，最后承认她做得不错",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.0491982
+    },
+    {
+      "id": "lore-b581490b",
+      "title": "小梅斯梅尔",
+      "kind": "person",
+      "keywords": [
+        "小梅斯梅尔"
+      ],
+      "content": "同学；竞争与提防",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.0576255
+    },
+    {
+      "id": "lore-c76595c6",
+      "title": "母亲",
+      "kind": "person",
+      "keywords": [
+        "母亲"
+      ],
+      "content": "布翁尼家的占卜师；想得到认可，也想超越她",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.067181
+    }
+  ]
+}

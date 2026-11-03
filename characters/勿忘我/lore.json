@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从宴会厅里谈笑风生的主持人，一步步露出布道者与行刑者的面孔，最终在被人拒绝后只剩下诅咒。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718351.9518116
+    },
+    {
+      "id": "lore-a7566e4f",
+      "title": "“暴雨”降临前的征兆与顺序：",
+      "kind": "world",
+      "keywords": [],
+      "content": "“暴雨”降临前的征兆与顺序：从一滴雨、水泊、雨滴脱离大地，到整个时代被冲刷",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.9586124
+    },
+    {
+      "id": "lore-5db5719b",
+      "title": "面具的作用——不戴面具的人会",
+      "kind": "world",
+      "keywords": [],
+      "content": "面具的作用——不戴面具的人会被时代的“恶习”感染并被清理",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.9760349
+    },
+    {
+      "id": "lore-0dec52de",
+      "title": "重塑之手的筛选逻辑：只有被拣",
+      "kind": "world",
+      "keywords": [],
+      "content": "重塑之手的筛选逻辑：只有被拣选者能通过“暴雨”，重返所谓“秩序正确的过去”",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.9847946
+    },
+    {
+      "id": "lore-74a52b1f",
+      "title": "基金会长期向公众隐瞒“暴雨”",
+      "kind": "world",
+      "keywords": [],
+      "content": "基金会长期向公众隐瞒“暴雨”真相",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.9921362
+    },
+    {
+      "id": "lore-385adb85",
+      "title": "槲寄生名下的树林适合作为救治",
+      "kind": "world",
+      "keywords": [],
+      "content": "槲寄生名下的树林适合作为救治所，可借此换取重建资金与资源",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.9992013
+    },
+    {
+      "id": "lore-2bab26ff",
+      "title": "贝丽尔有一个在基金会的女儿玛",
+      "kind": "world",
+      "keywords": [],
+      "content": "贝丽尔有一个在基金会的女儿玛蒂尔达，可以逼她交出藏品管理部的材料",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718352.007314
+    },
+    {
+      "id": "lore-a465d41c",
+      "title": "阿尔卡纳",
+      "kind": "person",
+      "keywords": [
+        "阿尔卡纳"
+      ],
+      "content": "“引导之人”，他一切行动的授意者；称“阿尔卡纳小姐”，言行皆以祂的指示为据",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718352.0149548
+    },
+    {
+      "id": "lore-1bd24697",
+      "title": "斯奈德",
+      "kind": "person",
+      "keywords": [
+        "斯奈德"
+      ],
+      "content": "被他招募的养女出身者，最终反目；以她的义姐玛丽安相要挟，翻脸后说“你应该清楚自己的下场”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718352.0232587
+    },
+    {
+      "id": "lore-9b3b8d86",
+      "title": "槲寄生",
+      "kind": "person",
+      "keywords": [
+        "槲寄生"
+      ],
+      "content": "重点招募对象，林中之主；以救治所与林场所有权为筹码，反复劝说她“重塑始终在等待你的加入”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718352.0300133
+    },
+    {
+      "id": "lore-323969b7",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "基金会的司辰，公开的对手；当众揭她的底，又被她的话激怒到失态",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718352.0404828
+    },
+    {
+      "id": "lore-ce1a7d7c",
+      "title": "格蕾丝",
+      "kind": "person",
+      "keywords": [
+        "格蕾丝"
+      ],
+      "content": "新入门的信徒；亲手为她戴上面具，说“恭喜你，小格蕾丝”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718352.0500596
+    },
+    {
+      "id": "lore-46020578",
+      "title": "贝丽尔",
+      "kind": "person",
+      "keywords": [
+        "贝丽尔"
+      ],
+      "content": "被要挟的合作者；以“没有任何一方，您都无法从‘雨’中幸存”相逼",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718352.0591996
+    },
+    {
+      "id": "lore-92ccb199",
+      "title": "挖掘艺术",
+      "kind": "person",
+      "keywords": [
+        "挖掘艺术"
+      ],
+      "content": "被他招揽的艺术家；先讥讽其失败，再抛出“环欧洲巡回游行”的提案",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718352.0692167
+    }
+  ]
+}

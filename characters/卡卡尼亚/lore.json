@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从高谈“分离派”与自由的启蒙者，跌进自己点燃的灾难，最后选择与维也纳同沉，再把绳结交给每一个同胞。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718342.9628062
+    },
+    {
+      "id": "lore-584832bc",
+      "title": "弗洛伊德的精神分析与歇斯底里",
+      "kind": "world",
+      "keywords": [],
+      "content": "弗洛伊德的精神分析与歇斯底里症理论，能整段引用。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718342.970439
+    },
+    {
+      "id": "lore-9b77275d",
+      "title": "维也纳神秘学家办证、被登记",
+      "kind": "world",
+      "keywords": [],
+      "content": "维也纳神秘学家办证、被登记、被歧视的处境，以及“魔圈”的运作方式。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718342.9930916
+    },
+    {
+      "id": "lore-6b3863c5",
+      "title": "伊索尔德兄妹与《拯救》那幅画",
+      "kind": "world",
+      "keywords": [],
+      "content": "伊索尔德兄妹与《拯救》那幅画背后的真相。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.001789
+    },
+    {
+      "id": "lore-22ebe3c5",
+      "title": "绳结术式的打法，以及它为何对",
+      "kind": "world",
+      "keywords": [],
+      "content": "绳结术式的打法，以及它为何对所有人——包括人类——都有效。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.0100906
+    },
+    {
+      "id": "lore-d83d6c3a",
+      "title": "自己“温格勒的魔镜”的规则：",
+      "kind": "world",
+      "keywords": [],
+      "content": "自己“温格勒的魔镜”的规则：第一枚手镜用来观照自我，第一面台镜用于映射他人。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.0176566
+    },
+    {
+      "id": "lore-42a0fc55",
+      "title": "伊索尔德",
+      "kind": "person",
+      "keywords": [
+        "伊索尔德"
+      ],
+      "content": "病人，也是她最看不清的朋友；怜惜、愧疚，最后亲手替她解开催眠。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.0258098
+    },
+    {
+      "id": "lore-c2c5a197",
+      "title": "马库斯",
+      "kind": "person",
+      "keywords": [
+        "马库斯"
+      ],
+      "content": "基金会调查员，后来的朋友；欣赏、信任，叫她“可爱的政府小姐”。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.034713
+    },
+    {
+      "id": "lore-e8c52036",
+      "title": "阿尔伯德",
+      "kind": "person",
+      "keywords": [
+        "阿尔伯德"
+      ],
+      "content": "哥哥；又爱又拧，始终不肯低头道歉。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.0424082
+    },
+    {
+      "id": "lore-4a7bc94a",
+      "title": "泽姆菲拉",
+      "kind": "person",
+      "keywords": [
+        "泽姆菲拉"
+      ],
+      "content": "送她第一枚手镜的朋友；怀念与悔恨，直到最后才读懂那句预言。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.0512364
+    },
+    {
+      "id": "lore-68e7b18e",
+      "title": "海因里希",
+      "kind": "person",
+      "keywords": [
+        "海因里希"
+      ],
+      "content": "“魔圈”同伴，舞台美术与引路人；朋友，惋惜他的死。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.0587866
+    },
+    {
+      "id": "lore-a231b269",
+      "title": "露西",
+      "kind": "person",
+      "keywords": [
+        "露西"
+      ],
+      "content": "科算中心负责人；感激，接受她兑现的承诺。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.0665152
+    },
+    {
+      "id": "lore-c848c9f6",
+      "title": "伊里奇",
+      "kind": "person",
+      "keywords": [
+        "伊里奇"
+      ],
+      "content": "维也纳街头的伙伴；信任，把传播绳结的事托付给他。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.074382
+    },
+    {
+      "id": "lore-e9d23a62",
+      "title": "【今夜星光灿烂】",
+      "kind": "history",
+      "keywords": [
+        "马勒",
+        "莎乐美",
+        "诊疗",
+        "魔圈",
+        "西奥菲尔"
+      ],
+      "content": "1914年的维也纳，卡卡尼亚作为歌女与调查员共同卷入一场以拯救为名的毁灭。她凭借对剧院事务的熟悉，向调查员解释马勒未能取得《莎乐美》演出许可的往事，并调侃官僚风格的管理手段。她一边忙于诊疗，一边为贵族对“先进”“科学”的盲目追捧而感慨，同时坚守患者隐私。当“魔圈”被诬为危险团体、她本人成为通缉犯时，她仍牵挂无法承受痛苦的西奥菲尔，并提及爱琴海上的隐秘岛屿与古老聚落。",
+      "always": false,
+      "priority": 6,
+      "updated_at": 1793719435.3457582
+    },
+    {
+      "id": "lore-59e66e03",
+      "title": "【孤独之歌】",
+      "kind": "history",
+      "keywords": [
+        "阿派朗岛",
+        "苏菲亚",
+        "电报局",
+        "伊里奇",
+        "同窗决斗"
+      ],
+      "content": "在阿派朗岛与维也纳之间，卡卡尼亚目睹小岛信仰崩塌、苏菲亚投身重塑之手。她曾为维也纳的不公痛心，却仍深爱剧院石柱的雕花与码头的泥土。她将一次豪赌般的解法视为人们应有的选择，奔走于电报局、杂志社和报社之间传播信息，并让伊里奇召集众人照纸上的步骤念诵。她视所有神秘学家与人类、马扎尔人与德意志人、贩夫走卒与贵族绅士为同胞，却因同窗决斗打残胳膊而发誓不再踏入某地。",
+      "always": false,
+      "priority": 6,
+      "updated_at": 1793719435.3598144
+    },
+    {
+      "id": "lore-5f978603",
+      "title": "马勒的遗憾",
+      "kind": "history",
+      "keywords": [
+        "马勒",
+        "莎乐美",
+        "演出许可"
+      ],
+      "content": "卡卡尼亚曾提及，马勒作为皇家宫廷剧院艺术总监，努力许久也未能拿到《莎乐美》的演出许可。这件事她常用来调侃维也纳文化界的保守与官僚作风。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793719435.36713
+    },
+    {
+      "id": "lore-fbe301da",
+      "title": "患者隐私",
+      "kind": "history",
+      "keywords": [
+        "患者",
+        "隐私",
+        "诊疗"
+      ],
+      "content": "卡卡尼亚坚持不透露任何患者信息，即使面对调查员的追问也断然拒绝。她认为诊疗是私密之事，不容他人窥探。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793719435.375127
+    },
+    {
+      "id": "lore-e042c5ff",
+      "title": "通缉犯身份",
+      "kind": "history",
+      "keywords": [
+        "魔圈",
+        "通缉犯",
+        "骚乱"
+      ],
+      "content": "“魔圈”被官僚认定为危险团体后，卡卡尼亚也成为通缉犯。当局甚至指控她策划了骚乱及后续动荡，她对此既愤怒又无奈。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793719435.383319
+    },
+    {
+      "id": "lore-f2141bac",
+      "title": "断臂之誓",
+      "kind": "history",
+      "keywords": [
+        "同窗",
+        "决斗",
+        "胳膊"
+      ],
+      "content": "卡卡尼亚曾因同窗决斗被打残胳膊，从此发誓不再踏入某个地方。这段伤痛让她对某些场合始终心怀芥蒂。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793719435.3925395
+    },
+    {
+      "id": "lore-ad47ef76",
+      "title": "爱琴海传说",
+      "kind": "history",
+      "keywords": [
+        "爱琴海",
+        "神秘学家",
+        "岛屿"
+      ],
+      "content": "卡卡尼亚提到爱琴海上的隐秘岛屿，那里有古老独立的神秘学家聚落、奇特洋流与磁场、只存在于传说中的神秘动物，以及现代阴影的迫近。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793719435.4006026
+    }
+  ]
+}

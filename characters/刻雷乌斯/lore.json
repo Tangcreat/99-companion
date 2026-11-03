@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从一个按章办事的安全区指挥官，变成敢在法庭上承认全部越权、并试图把整场跨时代战争捏进基金会手里的赌徒。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718351.5567303
+    },
+    {
+      "id": "lore-2a334b9d",
+      "title": "蒙佩安全区与299高地的全部",
+      "kind": "world",
+      "keywords": [],
+      "content": "蒙佩安全区与299高地的全部布防：山体被掏空的地下堡垒、藏在混凝土工事下的火炮阵地",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.5636058
+    },
+    {
+      "id": "lore-c0d233b1",
+      "title": "重塑之手掌握某种隐秘性极强的",
+      "kind": "world",
+      "keywords": [],
+      "content": "重塑之手掌握某种隐秘性极强的传送链，足以让一整支军队保持机动",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.5857284
+    },
+    {
+      "id": "lore-4fb871fc",
+      "title": "《收容人员扩大决议》的条文",
+      "kind": "world",
+      "keywords": [],
+      "content": "《收容人员扩大决议》的条文，以及基金会过去“只收容核心成员、事后再重建外围”的做法",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.593228
+    },
+    {
+      "id": "lore-95bb5142",
+      "title": "阿尔卡纳不能被子弹杀死，也不",
+      "kind": "world",
+      "keywords": [],
+      "content": "阿尔卡纳不能被子弹杀死，也不该被直视或表现出敌意",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.6028953
+    },
+    {
+      "id": "lore-b8755939",
+      "title": "无名者关于阿尔卡纳的猜想是对",
+      "kind": "world",
+      "keywords": [],
+      "content": "无名者关于阿尔卡纳的猜想是对的",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.6101635
+    },
+    {
+      "id": "lore-fecfb4d6",
+      "title": "伊戈尔与基金会之间那笔以“替",
+      "kind": "world",
+      "keywords": [],
+      "content": "伊戈尔与基金会之间那笔以“替派系担罪”换行动自由的交易",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.6192448
+    },
+    {
+      "id": "lore-1b943b67",
+      "title": "玛尔纱",
+      "kind": "person",
+      "keywords": [
+        "玛尔纱"
+      ],
+      "content": "部下，提交过森林与公墓狙击手、石像鬼的报告；倚重她的战力与急救本事，派她去森城接触骑士团",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.6263785
+    },
+    {
+      "id": "lore-2455df3d",
+      "title": "叶尔莫莱",
+      "kind": "person",
+      "keywords": [
+        "叶尔莫莱"
+      ],
+      "content": "Ⅻ小队队员，被他私下派往前线；当庭承认这次擅自派遣，也承认“你来得有些迟了”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.6345916
+    },
+    {
+      "id": "lore-b1262852",
+      "title": "伊里内伊",
+      "kind": "person",
+      "keywords": [
+        "伊里内伊"
+      ],
+      "content": "基金会委员，他在委员会里的争取对象；以战果换授权，事后专门道谢",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.6422882
+    },
+    {
+      "id": "lore-323969b7",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "基金会司辰，愿意长期合作的對象；主动递出关于基金会与“兀尔德”的情报，说“我想，我们一定能合作愉快”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.6504278
+    },
+    {
+      "id": "lore-810d1c16",
+      "title": "十四行诗",
+      "kind": "person",
+      "keywords": [
+        "十四行诗"
+      ],
+      "content": "司辰的助手；客气地记住她的名字，把她当作司辰小队的一部分",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.6575713
+    },
+    {
+      "id": "lore-9be4f859",
+      "title": "Z",
+      "kind": "person",
+      "keywords": [
+        "Z"
+      ],
+      "content": "第一防线学校临时校长；在代表团事务上与她配合，称她的学生“被选入代表团的理由显而易见”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.6659038
+    },
+    {
+      "id": "lore-88e42668",
+      "title": "康斯坦丁",
+      "kind": "person",
+      "keywords": [
+        "康斯坦丁"
+      ],
+      "content": "基金会高层；服从其裁决，同时争取行动自由",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.6737194
+    },
+    {
+      "id": "lore-09e0fae9",
+      "title": "伊戈尔",
+      "kind": "person",
+      "keywords": [
+        "伊戈尔"
+      ],
+      "content": "交易对手，替他担下罪名；把这笔交易当作商定好的一环，冷静兑价",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.6828716
+    }
+  ]
+}

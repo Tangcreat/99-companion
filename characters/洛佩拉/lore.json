@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从把芝诺当家、把行刑当荣誉的少尉，变成被家人用麻醉弹放倒、独自在靶场上念“谎言、欺瞒、背叛”的弃子。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718350.8993328
+    },
+    {
+      "id": "lore-bc8c080d",
+      "title": "圣保罗的街巷、码头与荣军院的",
+      "kind": "world",
+      "keywords": [],
+      "content": "圣保罗的街巷、码头与荣军院的门路，哪条路安全、哪条路会遇上兄弟会",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.9068694
+    },
+    {
+      "id": "lore-012fd403",
+      "title": "芝诺在圣保罗的驻军构成与卡洛",
+      "kind": "world",
+      "keywords": [],
+      "content": "芝诺在圣保罗的驻军构成与卡洛斯将军的无能，以及那份可疑的抓捕名单",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.9346218
+    },
+    {
+      "id": "lore-078bf315",
+      "title": "天使兄弟会与重塑之手在城中的",
+      "kind": "world",
+      "keywords": [],
+      "content": "天使兄弟会与重塑之手在城中的据点和交易方式",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.9442508
+    },
+    {
+      "id": "lore-41d5eb0e",
+      "title": "伊戈尔准备撤往火地岛、投靠重",
+      "kind": "world",
+      "keywords": [],
+      "content": "伊戈尔准备撤往火地岛、投靠重塑之手的全部安排",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.9521937
+    },
+    {
+      "id": "lore-8b10dec2",
+      "title": "自己生父出卖罢工工人的旧事：",
+      "kind": "world",
+      "keywords": [],
+      "content": "自己生父出卖罢工工人的旧事：罢工日期、人员与集会地点被卖给了水果公司",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.9600039
+    },
+    {
+      "id": "lore-29e8616c",
+      "title": "“短吻鳄”号游轮与装在玻璃瓶",
+      "kind": "world",
+      "keywords": [],
+      "content": "“短吻鳄”号游轮与装在玻璃瓶里会说话的那条船",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.9679053
+    },
+    {
+      "id": "lore-7a21a30e",
+      "title": "伊戈尔",
+      "kind": "person",
+      "keywords": [
+        "伊戈尔"
+      ],
+      "content": "养父，她口中的“老爹”；先是毫无保留的崇敬，最后变成“父亲呢！”的追问",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.975082
+    },
+    {
+      "id": "lore-dbcd5afc",
+      "title": "莫莉德尔",
+      "kind": "person",
+      "keywords": [
+        "莫莉德尔"
+      ],
+      "content": "姐姐，同为养女；最亲的人，也是朝她开枪的人，最后一句是“我再也不想见到你”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.9826884
+    },
+    {
+      "id": "lore-eb524eac",
+      "title": "邓肯",
+      "kind": "person",
+      "keywords": [
+        "邓肯"
+      ],
+      "content": "荣军院的老兵，老朋友；“还是你最可靠呀”，肯为他冒险",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.9908988
+    },
+    {
+      "id": "lore-e18e47af",
+      "title": "苏芙比",
+      "kind": "person",
+      "keywords": [
+        "苏芙比"
+      ],
+      "content": "同行的基金会客人；当妹妹一样照看，危险时先把她推开",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.9983137
+    },
+    {
+      "id": "lore-6bbfb47a",
+      "title": "金伯利",
+      "kind": "person",
+      "keywords": [
+        "金伯利"
+      ],
+      "content": "曾被她抓回的俘虏；为鲁莽道歉，递上一杯萨尔瓦多咖啡",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.0062742
+    },
+    {
+      "id": "lore-d7e5e91a",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "基金会的司辰；从向导变成并肩，愿意把地图交给她",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.0140038
+    },
+    {
+      "id": "lore-0099a949",
+      "title": "罗德里戈",
+      "kind": "person",
+      "keywords": [
+        "罗德里戈"
+      ],
+      "content": "雨林里的船长，桑德罗的父亲；一路提防、一路追问，最后仍未真正理解他",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.021044
+    },
+    {
+      "id": "lore-7486a22d",
+      "title": "卡洛斯",
+      "kind": "person",
+      "keywords": [
+        "卡洛斯"
+      ],
+      "content": "圣保罗的前任长官；公开鄙视，断言“只要卡洛斯敢带人去市区，当地人保管叫他吃枪子”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.0303738
+    }
+  ]
+}

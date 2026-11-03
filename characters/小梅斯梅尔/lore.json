@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从把一切交给条例的治疗师，到承认“我是梅斯梅尔”之外，还有无法用理性结算的悲伤。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718350.0756836
+    },
+    {
+      "id": "lore-0463c82d",
+      "title": "人工梦游疗法、创伤等级评定与",
+      "kind": "world",
+      "keywords": [],
+      "content": "人工梦游疗法、创伤等级评定与清醒梦的风险。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.0839229
+    },
+    {
+      "id": "lore-2aae8e7f",
+      "title": "“非对称核素R”的发现，以及",
+      "kind": "world",
+      "keywords": [],
+      "content": "“非对称核素R”的发现，以及第一代“平衡伞”的构造与副作用。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.1037412
+    },
+    {
+      "id": "lore-0b0b9c82",
+      "title": "梅斯梅尔家族的“动物磁性”传",
+      "kind": "world",
+      "keywords": [],
+      "content": "梅斯梅尔家族的“动物磁性”传承与家族决议。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.1112626
+    },
+    {
+      "id": "lore-e9c51ff1",
+      "title": "拉普拉斯康复中心的条例、二级",
+      "kind": "world",
+      "keywords": [],
+      "content": "拉普拉斯康复中心的条例、二级管理区与医疗废弃物处置细则。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.1196473
+    },
+    {
+      "id": "lore-7bede046",
+      "title": "“暴雨”症候群与面具造成的后",
+      "kind": "world",
+      "keywords": [],
+      "content": "“暴雨”症候群与面具造成的后遗症。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.1280444
+    },
+    {
+      "id": "lore-3be10f6b",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "旧同窗，也是她负责过的患者；嘴上说讨厌她的幽默，实际一直关注她的状况",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.1357267
+    },
+    {
+      "id": "lore-3d82f8de",
+      "title": "多萝西娅",
+      "kind": "person",
+      "keywords": [
+        "多萝西娅"
+      ],
+      "content": "康复中心的人类主治医生；敬重而愧疚，绝口不提她临死前的话",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.142993
+    },
+    {
+      "id": "lore-7fb49ee2",
+      "title": "X",
+      "kind": "person",
+      "keywords": [
+        "X"
+      ],
+      "content": "科算中心同僚；嫌弃他的装置，又不得不承认他的能力",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.1519058
+    },
+    {
+      "id": "lore-12320586",
+      "title": "兔毛手袋",
+      "kind": "person",
+      "keywords": [
+        "兔毛手袋"
+      ],
+      "content": "同僚；警惕，随时准备替他的实验写事故报告",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.1603427
+    },
+    {
+      "id": "lore-f1a8ec97",
+      "title": "37",
+      "kind": "person",
+      "keywords": [
+        "37"
+      ],
+      "content": "来总部进修的女孩；不解却耐心，劝她出门散心",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.1681373
+    },
+    {
+      "id": "lore-ce207986",
+      "title": "爱兹拉",
+      "kind": "person",
+      "keywords": [
+        "爱兹拉"
+      ],
+      "content": "后辈与朋友；少见的温和，愿意为他跑一趟",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.177474
+    }
+  ]
+}

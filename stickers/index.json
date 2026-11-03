@@ -1,0 +1,86 @@
+[
+ {
+  "file": "示例表情包/困倦_打哈欠.png",
+  "desc": "困倦 困倦_打哈欠",
+  "emotions": [
+   "困倦"
+  ],
+  "raw_emotion": "困倦",
+  "tags": [
+   "stickers",
+   "示例表情包"
+  ],
+  "source": "示例表情包",
+  "size": 3841
+ },
+ {
+  "file": "示例表情包/安慰_倾听.png",
+  "desc": "安慰 安慰_倾听",
+  "emotions": [
+   "安慰"
+  ],
+  "raw_emotion": "安慰",
+  "tags": [
+   "stickers",
+   "示例表情包"
+  ],
+  "source": "示例表情包",
+  "size": 3825
+ },
+ {
+  "file": "示例表情包/害羞_脸红.png",
+  "desc": "害羞 害羞_脸红",
+  "emotions": [
+   "害羞"
+  ],
+  "raw_emotion": "害羞",
+  "tags": [
+   "stickers",
+   "示例表情包"
+  ],
+  "source": "示例表情包",
+  "size": 3912
+ },
+ {
+  "file": "示例表情包/开心_微笑.png",
+  "desc": "开心 开心_微笑",
+  "emotions": [
+   "开心"
+  ],
+  "raw_emotion": "开心",
+  "tags": [
+   "stickers",
+   "示例表情包"
+  ],
+  "source": "示例表情包",
+  "size": 3905
+ },
+ {
+  "file": "示例表情包/无语_汗.png",
+  "desc": "无语 无语_汗",
+  "emotions": [
+   "无语"
+  ],
+  "raw_emotion": "无语",
+  "tags": [
+   "stickers",
+   "示例表情包"
+  ],
+  "source": "示例表情包",
+  "size": 3544
+ },
+ {
+  "file": "示例表情包/疑惑_问号.png",
+  "desc": "疑惑 疑惑_问号",
+  "emotions": [
+   "疑惑"
+  ],
+  "raw_emotion": "疑惑",
+  "tags": [
+   "stickers",
+   "示例表情包"
+  ],
+  "source": "示例表情包",
+  "size": 3677
+ }
+]

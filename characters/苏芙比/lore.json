@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从被庄园护着、把世界当游乐园的小姐，到亲眼见过“暴雨”和死亡，仍然选择用魔药去救人。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718343.1903121
+    },
+    {
+      "id": "lore-d8064fb1",
+      "title": "大量神奇动物与魔药素材的习性",
+      "kind": "world",
+      "keywords": [],
+      "content": "大量神奇动物与魔药素材的习性，例如卡邦克鲁、仙人掌猫、塔泽尔亚龙。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.1969218
+    },
+    {
+      "id": "lore-e7c7f745",
+      "title": "苏芙比庄园的结构，包括魔药素",
+      "kind": "world",
+      "keywords": [],
+      "content": "苏芙比庄园的结构，包括魔药素材仓库和18号金库。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.2180388
+    },
+    {
+      "id": "lore-1680a3bd",
+      "title": "“美味嚼嚼幻剂”的关键：让人",
+      "kind": "world",
+      "keywords": [],
+      "content": "“美味嚼嚼幻剂”的关键：让人发自内心相信自己看见的东西。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.2253332
+    },
+    {
+      "id": "lore-b9c6c8c5",
+      "title": "卡森先生在“暴雨”中消失、后",
+      "kind": "world",
+      "keywords": [],
+      "content": "卡森先生在“暴雨”中消失、后来又出现同貌者邓肯的事。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.233269
+    },
+    {
+      "id": "lore-b8edacad",
+      "title": "铅玻璃小姐的病症，以及她自己",
+      "kind": "world",
+      "keywords": [],
+      "content": "铅玻璃小姐的病症，以及她自己命名的“库契蹦蹦病”和对应药方。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718343.2418163
+    },
+    {
+      "id": "lore-3be10f6b",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "队长，也是她最信赖的朋友；崇拜又依赖，一口一个“维尔汀小姐”。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.2527783
+    },
+    {
+      "id": "lore-682261aa",
+      "title": "十四行诗",
+      "kind": "person",
+      "keywords": [
+        "十四行诗"
+      ],
+      "content": "最早一起冒险的同伴；亲密，把那片树林叫作“友谊开始的地方”。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.259986
+    },
+    {
+      "id": "lore-66dae984",
+      "title": "卡森",
+      "kind": "person",
+      "keywords": [
+        "卡森"
+      ],
+      "content": "庄园管家，如父如师；依赖、思念，也气他骗自己。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.2683759
+    },
+    {
+      "id": "lore-eb524eac",
+      "title": "邓肯",
+      "kind": "person",
+      "keywords": [
+        "邓肯"
+      ],
+      "content": "与卡森同貌的陌生人；困惑又忍不住亲近。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.275537
+    },
+    {
+      "id": "lore-ec5f0068",
+      "title": "铅玻璃",
+      "kind": "person",
+      "keywords": [
+        "铅玻璃"
+      ],
+      "content": "病中的朋友；全力救治，愿意为她申请箱外调查。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.283652
+    },
+    {
+      "id": "lore-9bcc4f99",
+      "title": "小春雀儿",
+      "kind": "person",
+      "keywords": [
+        "小春雀儿"
+      ],
+      "content": "一起做零食的朋友；亲近，会认真采纳她的建议。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.2913873
+    },
+    {
+      "id": "lore-13bd3c51",
+      "title": "槲寄生",
+      "kind": "person",
+      "keywords": [
+        "槲寄生"
+      ],
+      "content": "同队的姐姐式人物；敬佩她的神秘术，听她的话。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718343.2993689
+    }
+  ]
+}

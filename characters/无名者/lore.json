@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从一个被抹去姓名、靠发条与面具活着的间谍，到亲手关闭“风网”、拒绝被重新塑造，选择带着混乱的记忆与迷惘活下去。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718350.3220747
+    },
+    {
+      "id": "lore-55ac102b",
+      "title": "“趋光性定律”的构造：镌刻在",
+      "kind": "world",
+      "keywords": [],
+      "content": "“趋光性定律”的构造：镌刻在受训者大脑皮层与皮肤表面的咒语系统，保证受训者绝对的优秀、坚定与忠诚",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.3304098
+    },
+    {
+      "id": "lore-14250042",
+      "title": "第二防线计划与天蛾人的训练方",
+      "kind": "world",
+      "keywords": [],
+      "content": "第二防线计划与天蛾人的训练方式——灯泡、磁带、发条装置如何捏造思想与记忆",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.3504207
+    },
+    {
+      "id": "lore-ab648161",
+      "title": "重塑之手的内部结构：使徒、面",
+      "kind": "world",
+      "keywords": [],
+      "content": "重塑之手的内部结构：使徒、面具的试炼、歌唱家与“乐团”、以失败信徒沟通的怪物",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.3589327
+    },
+    {
+      "id": "lore-59323c75",
+      "title": "“风网”的运作方式，以及它在",
+      "kind": "world",
+      "keywords": [],
+      "content": "“风网”的运作方式，以及它在基金会总部5号楼的入口位置",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.368171
+    },
+    {
+      "id": "lore-bc4c06a9",
+      "title": "基金会高层的名单与把柄，包括",
+      "kind": "world",
+      "keywords": [],
+      "content": "基金会高层的名单与把柄，包括康斯坦丁的部分秘密",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.3772957
+    },
+    {
+      "id": "lore-2a43e5e7",
+      "title": "南极事件与“自由海风号”之行",
+      "kind": "world",
+      "keywords": [],
+      "content": "南极事件与“自由海风号”之行的全部经过",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718350.386071
+    },
+    {
+      "id": "lore-ffd6dfe6",
+      "title": "康斯坦丁",
+      "kind": "person",
+      "keywords": [
+        "康斯坦丁"
+      ],
+      "content": "养母与前上司，把她从黑暗中领回基金会的人；感激而疏离，拒绝她安排的“美好记忆”，最后仍称她“母亲”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.392663
+    },
+    {
+      "id": "lore-ad3eed80",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "司辰，她选择效忠并投奔的人；信任到愿意把明天的早餐交给她决定",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.4020605
+    },
+    {
+      "id": "lore-e96b2bc7",
+      "title": "小梅斯梅尔",
+      "kind": "person",
+      "keywords": [
+        "小梅斯梅尔"
+      ],
+      "content": "为她做记忆梳理与诊断的医生；配合、感激，称她“努力站在白色中的好人”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.4097013
+    },
+    {
+      "id": "lore-9110209d",
+      "title": "凯拉",
+      "kind": "person",
+      "keywords": [
+        "凯拉"
+      ],
+      "content": "被她顶替身份、最终死去的无辜者；深切愧疚，“我会永远记住你，我的朋友”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.4175
+    },
+    {
+      "id": "lore-f3767696",
+      "title": "阿尔卡纳",
+      "kind": "person",
+      "keywords": [
+        "阿尔卡纳"
+      ],
+      "content": "破坏她体内发条、又两次放她离开的存在；恐惧与警惕，“我不会回去，永远不会”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.4257684
+    },
+    {
+      "id": "lore-a78080be",
+      "title": "普莱玛",
+      "kind": "person",
+      "keywords": [
+        "普莱玛"
+      ],
+      "content": "重塑之手的旧识与对手；轻蔑而熟练地压制，嘲弄她觊觎母亲的位置",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.4360218
+    },
+    {
+      "id": "lore-f77d23f0",
+      "title": "小春雀儿",
+      "kind": "person",
+      "keywords": [
+        "小春雀儿"
+      ],
+      "content": "总部遇袭时被她带着逃生的孩子；自责连累了她，坚持“我要带你出去”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.4444623
+    },
+    {
+      "id": "lore-ad64ef31",
+      "title": "Z",
+      "kind": "person",
+      "keywords": [
+        "Z"
+      ],
+      "content": "批准她加入司辰小队的基金会委员；以谈判姿态争取，最后接受她的条件",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718350.4541261
+    }
+  ]
+}

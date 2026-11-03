@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "从只属于船长的旁观智者，变成愿意为一整船人、也为基金会出手的成员。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718351.4387193
+    },
+    {
+      "id": "lore-87978074",
+      "title": "毕达哥拉斯学派的戒律、希帕索",
+      "kind": "world",
+      "keywords": [],
+      "content": "毕达哥拉斯学派的戒律、希帕索斯与根号二的典故、谷神星的发现经过（5TH-10）。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.4447472
+    },
+    {
+      "id": "lore-a70dabf8",
+      "title": "炼金术典籍：《翠玉录》拉丁文",
+      "kind": "world",
+      "keywords": [],
+      "content": "炼金术典籍：《翠玉录》拉丁文抄本、扎比尔《百十二书》、瓦伦丁《论古人的伟大石头》（5TH-19）。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.4661055
+    },
+    {
+      "id": "lore-790dbf0f",
+      "title": "神秘术登记许可制度与基金会的",
+      "kind": "world",
+      "keywords": [],
+      "content": "神秘术登记许可制度与基金会的经费、预算流程（BBT-04、BBT-06）。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.4740727
+    },
+    {
+      "id": "lore-be7f984d",
+      "title": "1929年芝加哥的时代背景",
+      "kind": "world",
+      "keywords": [],
+      "content": "1929年芝加哥的时代背景，以及“暴雨症候”如何扭曲与食物相关的知觉（2ND-09）。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.4821463
+    },
+    {
+      "id": "lore-25929537",
+      "title": "阿那克西曼德的“无限定者”概",
+      "kind": "world",
+      "keywords": [],
+      "content": "阿那克西曼德的“无限定者”概念，以及阿派朗学派对它的实际用法（7TH-07）。",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.4898372
+    },
+    {
+      "id": "lore-1517ecd8",
+      "title": "星锑",
+      "kind": "person",
+      "keywords": [
+        "星锑"
+      ],
+      "content": "船长、学生，也是最好的朋友；纵容她的胡闹，同时默默收拾残局。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.4994483
+    },
+    {
+      "id": "lore-0b7ab33b",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "司辰，队里的决策者；敬重，主动提供情报与判断。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.507727
+    },
+    {
+      "id": "lore-b0742efe",
+      "title": "十四行诗",
+      "kind": "person",
+      "keywords": [
+        "十四行诗"
+      ],
+      "content": "同队的调查员；礼貌配合，偶尔提醒她别太紧绷。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.5158207
+    },
+    {
+      "id": "lore-9b3b8d86",
+      "title": "槲寄生",
+      "kind": "person",
+      "keywords": [
+        "槲寄生"
+      ],
+      "content": "同住的同伴；欣赏她的植物学识，交换消息。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.5232315
+    },
+    {
+      "id": "lore-e18e47af",
+      "title": "苏芙比",
+      "kind": "person",
+      "keywords": [
+        "苏芙比"
+      ],
+      "content": "后辈；温和照看，替她解释场面。",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.5313973
+    }
+  ]
+}

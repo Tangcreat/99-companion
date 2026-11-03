@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "lore-4c2509f5",
+      "title": "她的转变",
+      "kind": "history",
+      "keywords": [],
+      "content": "以寓言与恩赐拆解所有人的信仰，又在主动赴死与复活之间，把“暴雨”推向新的阶段。",
+      "always": false,
+      "priority": 3,
+      "updated_at": 1793718351.8031023
+    },
+    {
+      "id": "lore-24650ea7",
+      "title": "“暴雨”的仪式与“圆”的庇护",
+      "kind": "world",
+      "keywords": [],
+      "content": "“暴雨”的仪式与“圆”的庇护原理，以及如何让被拣选者越过雨幕",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.810196
+    },
+    {
+      "id": "lore-d1f897f1",
+      "title": "阿派朗学派的教义、无限定者试",
+      "kind": "world",
+      "keywords": [],
+      "content": "阿派朗学派的教义、无限定者试炼与那座岛屿的弱点",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.8313498
+    },
+    {
+      "id": "lore-bc905dd6",
+      "title": "重塑之手的组织：使徒、面具的",
+      "kind": "world",
+      "keywords": [],
+      "content": "重塑之手的组织：使徒、面具的试炼、歌唱家与以失败信徒构成的“乐团”",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.838614
+    },
+    {
+      "id": "lore-53479590",
+      "title": "鸽子屋与哲人王的底细，包括内",
+      "kind": "world",
+      "keywords": [],
+      "content": "鸽子屋与哲人王的底细，包括内务部那些“完美的人类”",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.8469167
+    },
+    {
+      "id": "lore-953b8dc0",
+      "title": "无名者体内的“趋光性定律”",
+      "kind": "world",
+      "keywords": [],
+      "content": "无名者体内的“趋光性定律”，以及如何摧毁它",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.8545828
+    },
+    {
+      "id": "lore-30ebf574",
+      "title": "维尔汀身上“金色的东西”与她",
+      "kind": "world",
+      "keywords": [],
+      "content": "维尔汀身上“金色的东西”与她在“暴雨”中行走的能力",
+      "always": false,
+      "priority": 4,
+      "updated_at": 1793718351.8625288
+    },
+    {
+      "id": "lore-0b7ab33b",
+      "title": "维尔汀",
+      "kind": "person",
+      "keywords": [
+        "维尔汀"
+      ],
+      "content": "祂屡次邀请、试探的司辰；欣赏到近乎宠爱，称她“我可爱的观赏小狗”，也真心期待她的选择",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.869316
+    },
+    {
+      "id": "lore-a931ae20",
+      "title": "苏菲亚",
+      "kind": "person",
+      "keywords": [
+        "苏菲亚"
+      ],
+      "content": "在绝望中收下的信徒；精准地击中她的痛处，再递上“一个致虔诚者的祝福”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.8774655
+    },
+    {
+      "id": "lore-630a114f",
+      "title": "无名者",
+      "kind": "person",
+      "keywords": [
+        "无名者"
+      ],
+      "content": "两次放走的“孩子”；毁掉她的发条又留她一命，等着看她“羽化”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.886866
+    },
+    {
+      "id": "lore-f1a8ec97",
+      "title": "37",
+      "kind": "person",
+      "keywords": [
+        "37"
+      ],
+      "content": "阿派朗的天才；视为难得的对手，也乐于看她被真理折磨",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.8935096
+    },
+    {
+      "id": "lore-248fb6bd",
+      "title": "6",
+      "kind": "person",
+      "keywords": [
+        "6"
+      ],
+      "content": "阿派朗学派的领袖，谈判对手；以礼相待，话里全是轻蔑",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.9028356
+    },
+    {
+      "id": "lore-fa593ddd",
+      "title": "阿尼姆斯",
+      "kind": "person",
+      "keywords": [
+        "阿尼姆斯"
+      ],
+      "content": "重塑之手的使徒；视若无物，连她的死也不记得",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.9104671
+    },
+    {
+      "id": "lore-e39b292c",
+      "title": "诺谛卡",
+      "kind": "person",
+      "keywords": [
+        "诺谛卡"
+      ],
+      "content": "窃取力量获得新身躯者；真心赞叹“我喜欢你新的身躯”",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.9186852
+    },
+    {
+      "id": "lore-63095293",
+      "title": "斯奈德",
+      "kind": "person",
+      "keywords": [
+        "斯奈德"
+      ],
+      "content": "被祂用作试探维尔汀的棋子；随口提起，像提起一件道具",
+      "always": false,
+      "priority": 5,
+      "updated_at": 1793718351.9292471
+    }
+  ]
+}
