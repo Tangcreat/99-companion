@@ -6,6 +6,7 @@
     "name": "洁西卡",
     "slug": "洁西卡",
     "summary": "《绿湖仙灵》 如此纯洁，如此乖巧，如此惹人怜爱； 如此懵懂，如此残酷，如孩童般无",
+    "signature": "你愿意做我朋友吗？",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 50,
       "affection": 40
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.2510335
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759731.8406537
   }
 }

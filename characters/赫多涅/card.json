@@ -6,6 +6,7 @@
     "name": "赫多涅",
     "slug": "赫多涅",
     "summary": "【杀死提丰的英雄】 “生而不凡”，赫多涅绝对担得起这四个字。十七岁时，她已能独自",
+    "signature": "这座岛，我说了算。哈。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 52,
       "affection": 72
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.4690473
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759747.6532755
   }
 }

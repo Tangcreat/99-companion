@@ -6,6 +6,7 @@
     "name": "德雷克",
     "slug": "德雷克",
     "summary": "【叛逆”的骑士】 “叛逆”似乎是德雷克身上最为醒目的标签，但那并不意味着德雷克会",
+    "signature": "规矩先过我这关。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 64,
       "affection": 54
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.3518138
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759725.501023
   }
 }

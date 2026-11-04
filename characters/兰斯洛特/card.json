@@ -6,6 +6,7 @@
     "name": "兰斯洛特",
     "slug": "兰斯洛特",
     "summary": "",
+    "signature": "试炼尚未完成，我还不能停下。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 55,
       "affection": 65
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.6976998
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759714.797944
   }
 }

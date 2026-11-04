@@ -6,6 +6,7 @@
     "name": "阿尔卡纳",
     "slug": "阿尔卡纳",
     "summary": "重塑之手的引领者，被信徒以“祂”相称、能左右“暴雨”与时代走向的存在。",
+    "signature": "圆画好了，谁来站在外面？",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 69,
       "affection": 59
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718351.8002965
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759749.7468104
   }
 }

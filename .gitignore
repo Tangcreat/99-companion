@@ -5,7 +5,9 @@ config.json
 .env.*
 
 # ---------- 运行数据：聊天记录与记忆属于个人隐私 ----------
-data/
+data/*
+!data/world.json
+!data/story.json
 *.db
 *.db-wal
 *.db-shm
@@ -33,3 +35,22 @@ desktop.ini
 # 若将来要转为公开仓库，必须先移除这两部分，让别人用
 #   python tools/import_1999.py
 # 在本地自行生成。
+
+# 角色备份与抓图中间产物
+_removed/
+_avatar_candidates/
+_avatar_preview.png
+_avatar20.png
+
+# ---------- Android ----------
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+*.apk
+# 这些目录由 tools/sync_android.py 从根目录生成，不进版本库
+android/app/src/main/python/
+android/app/src/main/assets/
+
+# 角色目录里的运行时占位文件（每次保存都会重写，含时间戳）
+characters/*/state.json

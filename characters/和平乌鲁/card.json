@@ -6,6 +6,7 @@
     "name": "和平乌鲁",
     "slug": "和平乌鲁",
     "summary": "神秘学家艺术品，展出时间未知，参展时长未知，诞生自1月12日夏。参展于尚未具名之",
+    "signature": "火还亮着，就还有人记得。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 70,
       "affection": 40
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.8104706
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759716.9939141
   }
 }

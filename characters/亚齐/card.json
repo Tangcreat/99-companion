@@ -6,6 +6,7 @@
     "name": "亚齐",
     "slug": "亚齐",
     "summary": "",
+    "signature": "角落的位置，总得有人坐。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 58,
       "affection": 68
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.7217367
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759712.7582088
   }
 }

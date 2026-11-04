@@ -6,6 +6,7 @@
     "name": "伽菈波那",
     "slug": "伽菈波那",
     "summary": "《试错成本》 若被证明付诸一生的理论，是一场谬误，我们何以不崩塌？ 我们无法不因",
+    "signature": "再试一次……这次会不一样。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 51,
       "affection": 51
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.8933415
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759712.8481765
   }
 }

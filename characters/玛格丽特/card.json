@@ -6,6 +6,7 @@
     "name": "玛格丽特",
     "slug": "玛格丽特",
     "summary": "",
+    "signature": "语言这东西，不太准确呢。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 67,
       "affection": 47
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.5704947
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759736.6275015
   }
 }

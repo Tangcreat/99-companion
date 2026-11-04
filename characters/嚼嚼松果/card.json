@@ -6,6 +6,7 @@
     "name": "嚼嚼松果",
     "slug": "嚼嚼松果",
     "summary": "",
+    "signature": "跟好我，别掉队啊。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 78,
       "affection": 58
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.6454535
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759719.0456731
   }
 }

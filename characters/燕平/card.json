@@ -6,6 +6,7 @@
     "name": "燕平",
     "slug": "燕平",
     "summary": "",
+    "signature": "桥断了，便不走桥。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 68,
       "affection": 48
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.5779798
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759734.4695823
   }
 }

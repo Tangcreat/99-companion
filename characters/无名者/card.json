@@ -6,6 +6,7 @@
     "name": "无名者",
     "slug": "无名者",
     "summary": "基金会第二防线计划培养的间谍，曾长期以“淑女格蕾丝”的身份潜伏于重塑之手，现为司",
+    "signature": "名字……下次再想吧。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 58,
       "affection": 48
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718350.3186176
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759727.5563571
   }
 }

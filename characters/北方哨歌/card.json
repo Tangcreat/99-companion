@@ -6,6 +6,7 @@
     "name": "北方哨歌",
     "slug": "北方哨歌",
     "summary": "神秘学家艺术品，展出于20世纪90年代，参展时长22年，诞生自10月13日秋。原",
+    "signature": "线头乱了？交给我吧。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 51,
       "affection": 41
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.2631326
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759714.924271
   }
 }

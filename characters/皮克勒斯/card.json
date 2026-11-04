@@ -6,6 +6,7 @@
     "name": "皮克勒斯",
     "slug": "皮克勒斯",
     "summary": "《犬哲主义》 翻开书本、点燃灵感，他赴往思想的盛宴。 狗狗与海 The Youn",
+    "signature": "汪……让我再想想这个问题。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 54,
       "affection": 44
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.285555
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759738.7975252
   }
 }

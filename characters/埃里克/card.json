@@ -6,6 +6,7 @@
     "name": "埃里克",
     "slug": "埃里克",
     "summary": "神秘学家艺术品，展出于20世纪80年代，参展时长12年。诞生自5月14日春。展出",
+    "signature": "哼，别想撬开我的嘴……",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 74,
       "affection": 54
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.6177423
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759721.5389123
   }
 }

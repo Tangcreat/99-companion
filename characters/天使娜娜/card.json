@@ -6,6 +6,7 @@
     "name": "天使娜娜",
     "slug": "天使娜娜",
     "summary": "",
+    "signature": "丢的东西，我自己找回来。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 62,
       "affection": 52
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.3391452
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759721.6200085
   }
 }

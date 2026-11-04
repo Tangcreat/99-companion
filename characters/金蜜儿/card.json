@@ -6,6 +6,7 @@
     "name": "金蜜儿",
     "slug": "金蜜儿",
     "summary": "神秘学家艺术品，展出于20世纪90年代，参展时长20年，诞生自7月22日夏。参展",
+    "signature": "这次我不会再消失了，我保证。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 68,
       "affection": 58
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.3774452
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759747.7361093
   }
 }

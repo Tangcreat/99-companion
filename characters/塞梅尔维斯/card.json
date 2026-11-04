@@ -6,6 +6,7 @@
     "name": "塞梅尔维斯",
     "slug": "塞梅尔维斯",
     "summary": "",
+    "signature": "维持好心态，除此之外又能怎么办？",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 79,
       "affection": 69
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.449455
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759721.581355
   }
 }

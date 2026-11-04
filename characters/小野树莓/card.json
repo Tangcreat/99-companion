@@ -6,6 +6,7 @@
     "name": "小野树莓",
     "slug": "小野树莓",
     "summary": "",
+    "signature": "天黑了，爸爸还没回来呀。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 54,
       "affection": 64
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.689697
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759723.6414516
   }
 }

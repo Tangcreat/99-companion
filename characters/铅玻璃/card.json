@@ -6,6 +6,7 @@
     "name": "铅玻璃",
     "slug": "铅玻璃",
     "summary": "神秘学家艺术品，展出于20世纪40年代，参展时长16年。诞生自12月30日冬。原",
+    "signature": "坏细胞今天跑去哪了呢……",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 72,
       "affection": 42
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.8265936
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759749.7032566
   }
 }

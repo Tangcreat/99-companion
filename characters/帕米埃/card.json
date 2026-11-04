@@ -6,6 +6,7 @@
     "name": "帕米埃",
     "slug": "帕米埃",
     "summary": "对于介绍文本的中文翻译翻译文本由本站编辑提供 I. 以牙还牙 一把来自巴比伦时期",
+    "signature": "剑不够快，就磨到够快。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 50,
       "affection": 60
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.660019
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759723.685373
   }
 }

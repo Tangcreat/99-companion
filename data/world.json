@@ -1,0 +1,235 @@
+{
+ "entries": [
+  {
+   "title": "暴雨",
+   "kind": "world",
+   "keywords": [
+    "暴雨"
+   ],
+   "content": "使时代被回溯的异常现象，雨滴从地面升向天空。第一场发生于 1999-12-31。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "回溯",
+   "kind": "world",
+   "keywords": [
+    "回溯"
+   ],
+   "content": "被“暴雨”触及的人与物沿时间轴退回过去，或彻底消失。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "暴雨症候",
+   "kind": "world",
+   "keywords": [
+    "暴雨症候 / 时代病",
+    "暴雨症候",
+    "时代病"
+   ],
+   "content": "“暴雨”前蔓延的常识异变，患者不自知。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "神秘学家",
+   "kind": "world",
+   "keywords": [
+    "神秘学家"
+   ],
+   "content": "因天赋被世界遗忘的种族，能使用神秘术。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "神秘术",
+   "kind": "world",
+   "keywords": [
+    "神秘术"
+   ],
+   "content": "神秘学家操纵世界的方式，形式因人而异。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "灵知",
+   "kind": "world",
+   "keywords": [
+    "灵知"
+   ],
+   "content": "无法被独立验证的认识方式，神秘学的根基。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "司辰",
+   "kind": "world",
+   "keywords": [
+    "司辰"
+   ],
+   "content": "基金会职位，记录“时代”的诞生与消失。维尔汀是现任。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "箱子",
+   "kind": "world",
+   "keywords": [
+    "箱子"
+   ],
+   "content": "维尔汀的手提箱，能隔绝“暴雨”。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "纺车",
+   "kind": "world",
+   "keywords": [
+    "纺车"
+   ],
+   "content": "箱内湖面上的装置，转动可召唤熟悉的身影。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "圣洛夫基金会",
+   "kind": "world",
+   "keywords": [
+    "圣洛夫基金会",
+    "基金会",
+    "圣洛夫"
+   ],
+   "content": "收容、管理神秘学家的机构，隶属人类和平安全理事会。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "联合委员会",
+   "kind": "world",
+   "keywords": [
+    "联合委员会",
+    "委员会"
+   ],
+   "content": "基金会的决策核心，分鸽派与鹰派。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "第一防线学校",
+   "kind": "world",
+   "keywords": [
+    "第一防线学校",
+    "第一防线"
+   ],
+   "content": "基金会收容、教育神秘学家孤儿的学校。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "拉普拉斯科算中心",
+   "kind": "world",
+   "keywords": [
+    "拉普拉斯科算中心",
+    "拉普拉斯",
+    "科算中心"
+   ],
+   "content": "基金会的研究机构，研究“暴雨”与混沌能量。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "芝诺军备学院",
+   "kind": "world",
+   "keywords": [
+    "芝诺军备学院",
+    "芝诺"
+   ],
+   "content": "军事系统，下辖骑兵军、飞行女巫等。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "重塑之手",
+   "kind": "world",
+   "keywords": [
+    "重塑之手"
+   ],
+   "content": "神秘学组织，主张回到神秘学家不受歧视的时代，主动引发“暴雨”。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "阿尔卡纳",
+   "kind": "world",
+   "keywords": [
+    "阿尔卡纳"
+   ],
+   "content": "重塑之手的领袖，“引导之人”。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "最初的圆",
+   "kind": "world",
+   "keywords": [
+    "最初的圆"
+   ],
+   "content": "重塑之手抵御“暴雨”的咒语。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "平衡伞",
+   "kind": "world",
+   "keywords": [
+    "平衡伞"
+   ],
+   "content": "能撑出一小片不受“暴雨”影响的地面。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "阿派朗岛",
+   "kind": "world",
+   "keywords": [
+    "阿派朗岛",
+    "阿派朗"
+   ],
+   "content": "时间之外的岛，岛民称“暴雨”为“流溢”。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "非对称免疫蛋白 G",
+   "kind": "world",
+   "keywords": [
+    "非对称免疫蛋白 G",
+    "免疫蛋白"
+   ],
+   "content": "维尔汀体内的抗体，基金会人体实验的成果。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "兀尔德",
+   "kind": "world",
+   "keywords": [
+    "兀尔德"
+   ],
+   "content": "在每個被回溯的时代都留下署名的投稿人，第八章的追查目标。",
+   "always": false,
+   "priority": 4
+  },
+  {
+   "title": "风网",
+   "kind": "world",
+   "keywords": [
+    "风网"
+   ],
+   "content": "重塑之手用来输送增援的巨型通道，第十三章被关闭。",
+   "always": false,
+   "priority": 4
+  }
+ ]
+}

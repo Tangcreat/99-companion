@@ -6,6 +6,7 @@
     "name": "可燃点",
     "slug": "可燃点",
     "summary": "神秘学家艺术品，展出于20世纪90年代，参展时长14年，诞生自1月10日夏。展出",
+    "signature": "嘿！火焰也是会累的吗？",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 56,
       "affection": 76
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.495269
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759716.913419
   }
 }

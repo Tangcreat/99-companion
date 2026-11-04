@@ -6,6 +6,7 @@
     "name": "勿忘我",
     "slug": "勿忘我",
     "summary": "重塑之手在1929年芝加哥的招募者，地下俱乐部“瓦尔登湖”的演说者与主持。",
+    "signature": "请安静，节目就要开始了。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 70,
       "affection": 60
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718351.9480898
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759714.90298
   }
 }

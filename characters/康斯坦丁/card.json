@@ -6,6 +6,7 @@
     "name": "康斯坦丁",
     "slug": "康斯坦丁",
     "summary": "圣洛夫基金会联合委员会副会长，主管法案、派系与人事的老练政客。",
+    "signature": "茶凉之前，把棋下完。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 64,
       "affection": 54
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718351.165756
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759723.725621
   }
 }

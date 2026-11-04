@@ -6,6 +6,7 @@
     "name": "Z",
     "slug": "z",
     "summary": "圣洛夫基金会联合委员会委员，科学家出身，曾任第一防线学校幕僚长，后在废墟上出任代",
+    "signature": "不要因为紧张而自乱阵脚。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 63,
       "affection": 53
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718351.0358837
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759711.0487168
   }
 }

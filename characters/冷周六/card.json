@@ -6,6 +6,7 @@
     "name": "冷周六",
     "slug": "冷周六",
     "summary": "神秘学家艺术品，展出于20世纪80年代，参展时长19年，诞生自12月23日冬。初",
+    "signature": "九种想法，总有一种适合此刻吧。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 58,
       "affection": 78
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.51014
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759714.8628285
   }
 }

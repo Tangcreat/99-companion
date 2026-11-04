@@ -6,6 +6,7 @@
     "name": "贾纳丹",
     "slug": "贾纳丹",
     "summary": "",
+    "signature": "趁我还没改主意，滚开。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 72,
       "affection": 52
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.604328
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759747.6336179
   }
 }

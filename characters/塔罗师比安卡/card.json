@@ -6,6 +6,7 @@
     "name": "塔罗师比安卡",
     "slug": "塔罗师比安卡",
     "summary": "",
+    "signature": "牌面说，你该付钱了哦。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 63,
       "affection": 73
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.7592807
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759721.5624228
   }
 }

@@ -6,6 +6,7 @@
     "name": "贝托尔特",
     "slug": "贝托尔特",
     "summary": "",
+    "signature": "签字吧，我还能拿什么拒绝呢。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 59,
       "affection": 79
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.5172129
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759747.5901062
   }
 }

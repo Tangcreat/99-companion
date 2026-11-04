@@ -6,6 +6,7 @@
     "name": "灰调蓝",
     "slug": "灰调蓝",
     "summary": "神秘学家艺术品，展出于20世纪30年代，参展时长20年，诞生自12月19日冬。原",
+    "signature": "下一颗宝石，下一段路。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 59,
       "affection": 49
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.317856
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759734.44714
   }
 }

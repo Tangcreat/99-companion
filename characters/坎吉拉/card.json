@@ -6,6 +6,7 @@
     "name": "坎吉拉",
     "slug": "坎吉拉",
     "summary": "神秘学家艺术品，活跃于20世纪60年代，参展时长16年，诞生自4月8日春。原参展",
+    "signature": "嘿，这买卖……划算得很！",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 67,
       "affection": 77
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.7880585
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759719.1077304
   }
 }

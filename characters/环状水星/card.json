@@ -6,6 +6,7 @@
     "name": "环状水星",
     "slug": "环状水星",
     "summary": "神秘学家艺术品，展出于20世纪末，参展时长16年，诞生自2月18日冬。原展出于新",
+    "signature": "该走就走，该停就停吧。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 75,
       "affection": 65
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.4222522
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759736.6687536
   }
 }

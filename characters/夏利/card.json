@@ -6,6 +6,7 @@
     "name": "夏利",
     "slug": "夏利",
     "summary": "一道铁令，一次僭越，她与她的剧团迈入逃亡。 哀哀叫的蓝羽鸟儿震动双翅，蜃楼中的风",
+    "signature": "戏还在演……我们从未真正逃亡。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 69,
       "affection": 79
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.8036835
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759721.6012948
   }
 }

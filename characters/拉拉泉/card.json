@@ -6,6 +6,7 @@
     "name": "拉拉泉",
     "slug": "拉拉泉",
     "summary": "神秘学家艺术品，展出于19世纪50年代，参展时长未知。诞生自1月29日冬。参展于",
+    "signature": "没人看着我，正好。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 76,
       "affection": 46
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.8569634
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759725.5611863
   }
 }

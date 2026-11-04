@@ -6,6 +6,7 @@
     "name": "玛蒂尔达",
     "slug": "玛蒂尔达",
     "summary": "布翁尼家的水晶占卜师，第一防线学校纪律辅员、基金会三级调查员，秩序协助小组组长。",
+    "signature": "第一名，迟早是我布翁尼的。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 55,
       "affection": 45
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718349.9525542
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759736.6498046
   }
 }

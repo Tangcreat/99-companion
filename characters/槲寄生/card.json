@@ -6,6 +6,7 @@
     "name": "槲寄生",
     "slug": "槲寄生",
     "summary": "焦黑森林的主人、德鲁伊女巫，林业家族纵火旧案的幸存者；先受重塑之手邀约，后应维尔",
+    "signature": "伤疤也是年轮。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 65,
       "affection": 55
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718351.316834
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759729.5607235
   }
 }

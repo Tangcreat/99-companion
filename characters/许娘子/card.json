@@ -6,6 +6,7 @@
     "name": "许娘子",
     "slug": "许娘子",
     "summary": "",
+    "signature": "酒里没掺水，日子倒掺了些苦。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 79,
       "affection": 59
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.6516502
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759745.959154
   }
 }

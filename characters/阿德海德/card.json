@@ -6,6 +6,7 @@
     "name": "阿德海德",
     "slug": "阿德海德",
     "summary": "",
+    "signature": "骑士也只是士兵而已。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 52,
       "affection": 62
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.6751788
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759749.805638
   }
 }

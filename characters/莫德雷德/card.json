@@ -6,6 +6,7 @@
     "name": "莫德雷德",
     "slug": "莫德雷德",
     "summary": "",
+    "signature": "剑选中了我，那又如何呢？",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 60,
       "affection": 40
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.5236347
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759743.4661114
   }
 }

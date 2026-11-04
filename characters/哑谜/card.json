@@ -6,6 +6,7 @@
     "name": "哑谜",
     "slug": "哑谜",
     "summary": "",
+    "signature": "念慢点。又没人追你。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 61,
       "affection": 51
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.3308082
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759718.9829059
   }
 }

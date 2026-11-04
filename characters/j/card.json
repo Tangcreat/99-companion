@@ -6,6 +6,7 @@
     "name": "J",
     "slug": "j",
     "summary": "",
+    "signature": "咱觉得这不对。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 77,
       "affection": 67
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.4350586
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759710.988869
   }
 }

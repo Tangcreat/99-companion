@@ -6,6 +6,7 @@
     "name": "芭卡洛儿",
     "slug": "芭卡洛儿",
     "summary": "神秘学家艺术品，展出于20世纪90年代，参展时长17年，诞生自11月13日秋。原",
+    "signature": "听，这一段旋律像不像海浪呢？",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 66,
       "affection": 56
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.3637164
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759741.3685284
   }
 }

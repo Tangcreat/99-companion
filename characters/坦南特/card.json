@@ -6,6 +6,7 @@
     "name": "坦南特",
     "slug": "坦南特",
     "summary": "《欺诈的艺术》 太阳会给人以安全的暗示，也会赋予“钻石”更为美丽的光华，此时，正",
+    "signature": "真假掺半，才最像真的。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 71,
       "affection": 41
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.8187578
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759719.1299407
   }
 }

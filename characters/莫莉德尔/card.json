@@ -6,6 +6,7 @@
     "name": "莫莉德尔",
     "slug": "莫莉德尔",
     "summary": "伊戈尔的副官兼养女，前芝诺中尉，狮鹫军的实际执行者。",
+    "signature": "集合点见，每一个人。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 59,
       "affection": 49
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718350.4591112
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759743.5158544
   }
 }

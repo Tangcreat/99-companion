@@ -6,6 +6,7 @@
     "name": "纳西索斯",
     "slug": "纳西索斯",
     "summary": "【骄傲的宁芙】 泉水宁芙，神话中格外优雅的一族。他们鲜少成为传说的主角，也并未掌",
+    "signature": "湖面之下，涟漪是我自己的呀！",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 55,
       "affection": 75
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.4892235
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759741.2775776
   }
 }

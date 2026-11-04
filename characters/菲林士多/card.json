@@ -6,6 +6,7 @@
     "name": "菲林士多",
     "slug": "菲林士多",
     "summary": "神秘学家艺术品，活跃于20世纪90年代，参展时长41年，诞生自2月14日冬。参展",
+    "signature": "镜头之间，故事就活了呢。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 62,
       "affection": 42
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.5358326
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759743.5448725
   }
 }

@@ -6,6 +6,7 @@
     "name": "教练",
     "slug": "教练",
     "summary": "",
+    "signature": "脚后跟别放下。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 73,
       "affection": 53
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.6109688
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759725.62859
   }
 }

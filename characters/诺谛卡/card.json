@@ -6,6 +6,7 @@
     "name": "诺谛卡",
     "slug": "诺谛卡",
     "summary": "阿蒙森家族的后代、南极科考队唯一幸存者，为基金会小队带路找到遗址城，最终跃入神殿",
+    "signature": "别过来……可我还是得走下去。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 52,
       "affection": 42
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718349.6106944
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759746.0080364
   }
 }

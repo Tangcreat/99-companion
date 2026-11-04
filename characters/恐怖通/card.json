@@ -6,6 +6,7 @@
     "name": "恐怖通",
     "slug": "恐怖通",
     "summary": "神秘学家艺术品，展出于20世纪90年代，参展时长21年，诞生自1月3日冬。参展于",
+    "signature": "别急，让线索自己开口。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 66,
       "affection": 76
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.7816517
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759725.5196173
   }
 }

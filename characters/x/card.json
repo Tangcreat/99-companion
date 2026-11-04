@@ -6,6 +6,7 @@
     "name": "X",
     "slug": "x",
     "summary": "拉普拉斯科算中心的机械科学家，实际身份是洛伦兹研究所成员，也替人递送情报与物资。",
+    "signature": "凡事重在过程。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 53,
       "affection": 43
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718349.722513
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759711.0286963
   }
 }

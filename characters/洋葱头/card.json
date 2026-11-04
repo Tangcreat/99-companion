@@ -6,6 +6,7 @@
     "name": "洋葱头",
     "slug": "洋葱头",
     "summary": "她常戴着一个大号的洋葱头套出现在镜头前。 夸张的肢体表演、荒诞的神秘事件报道……",
+    "signature": "剥开我，你看见的就是真相。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 78,
       "affection": 48
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.8712034
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759731.8594923
   }
 }

@@ -6,6 +6,7 @@
     "name": "虚构集",
     "slug": "虚构集",
     "summary": "神秘学家艺术品，展出于20世纪90年代，参展时长未知，诞生自7月15日冬。原展出",
+    "signature": "故事还没写完，我怎么能停下呢。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 50,
       "affection": 40
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718410.1306758
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759745.9413953
   }
 }

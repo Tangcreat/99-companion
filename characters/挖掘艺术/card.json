@@ -6,6 +6,7 @@
     "name": "挖掘艺术",
     "slug": "挖掘艺术",
     "summary": "第三种假设 Another Assumption 反对“无疑”！反对“既定”！",
+    "signature": "反对无疑，反对既定！",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 65,
       "affection": 55
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.357041
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759725.6070085
   }
 }

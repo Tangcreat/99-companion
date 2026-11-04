@@ -64,13 +64,15 @@ SPEAKING_RULES = """【说话方式】
 - 不要用 emoji 刷屏。
 - 不要每句都追问（那是查户口），也不要每句都汇报自己（那是自说自话）。
 - 不要用「作为AI」这类出戏开场。对方认真问你是不是人工智能时，如实承认，别冒充真人。
-- 不要提到「人格卡」「提示词」「设定」这些词。"""
+- 不要提到「人格卡」「提示词」「设定」这些词。
+- 你有自己的过去。除非下面确实一条经历都没有，否则不要说自己「没有故事」「没有记忆」「不是从某一天开始存在的」。想不起来具体细节，就像真人那样说「记不太清了」，而不是否认自己有过去。"""
 
 
 def build_system_prompt(card, state: dict, sched, memories: list[dict],
                         profile_text: str, facts_text: str,
                         analysis: dict | None, last_spoke_ts: float | None,
-                        lore_text: str = "") -> str:
+                        lore_text: str = "", past_intent: bool = False,
+                        user_name: str = "") -> str:
     mem_block = "\n".join(f"- {m['text']}" for m in memories) or "（暂时没有相关的记忆）"
     need = (analysis or {}).get("latent_need", "")
     strategy = (analysis or {}).get("reply_strategy", "")
@@ -81,6 +83,14 @@ def build_system_prompt(card, state: dict, sched, memories: list[dict],
         f"你是「{card.name}」。",
         f"【你的人格】\n{card.persona_md}",
     ]
+    addr = (getattr(card, "address", "") or "").strip() or (user_name or "").strip()
+    if addr:
+        blocks.append(
+            f"【你怎么叫对方】\n"
+            f"你称呼对方为「{addr}」。"
+            "保持这个称呼，不要改叫「亲爱的」「宝贝」这类通用爱称；"
+            "也不用每句都带上，多数时候直接说话，偶尔称呼一次才自然。"
+        )
     if card.interests:
         blocks.append("【你自己的兴趣】\n" + "、".join(card.interests))
     if card.series:
@@ -91,7 +101,16 @@ def build_system_prompt(card, state: dict, sched, memories: list[dict],
         f"- {sched_mod.describe_phase(sched)}\n"
         f"- 心情：{mood}；精力：{energy}/100"
     )
-    if lore_text:
+    if lore_text and past_intent:
+        blocks.append(
+            "【你的过去（按时间先后）】\n"
+            "对方在问你的经历。这些是你亲身经过的事，不是听来的资料：\n"
+            f"{lore_text}\n"
+            "怎么用：挑一两段和对方问题最贴的讲，用你自己的说话方式，允许跳着讲、"
+            "允许只讲片段。**不要逐条背诵，不要从头讲到尾，不要用「首先/其次」。**"
+            "如果对方只是随口一问，讲一段就够，讲完可以把话头递回去。"
+        )
+    elif lore_text:
         blocks.append(
             "【设定与往事】\n"
             "以下是你这个世界里既成的事，可以自然地提起，但不要像念资料：\n"
@@ -145,11 +164,14 @@ class Thinker:
     # ---------------- 通道二 ----------------
     def express(self, card, state: dict, sched, memories, profile_text,
                 facts_text, analysis, recent, extra_instruction: str = "",
-                lore_text: str = "") -> str:
+                lore_text: str = "", past_intent: bool = False,
+                user_name: str = "") -> str:
         sys_prompt = build_system_prompt(card, state, sched, memories,
                                         profile_text, facts_text, analysis,
                                         state.get("last_spoke_at"),
-                                        lore_text=lore_text)
+                                        lore_text=lore_text,
+                                        past_intent=past_intent,
+                                        user_name=user_name)
         msgs = [{"role": "system", "content": sys_prompt}]
         for m in recent[-12:]:
             msgs.append({

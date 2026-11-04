@@ -6,6 +6,7 @@
     "name": "洛佩拉",
     "slug": "洛佩拉",
     "summary": "芝诺少尉、行刑队长，伊戈尔的养女，圣保罗城里的向导。",
+    "signature": "枪口朝哪儿，家就在哪儿。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 62,
       "affection": 52
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718350.8966784
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759734.4074643
   }
 }

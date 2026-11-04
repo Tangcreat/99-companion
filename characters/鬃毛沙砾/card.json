@@ -6,6 +6,7 @@
     "name": "鬃毛沙砾",
     "slug": "鬃毛沙砾",
     "summary": "《死而后生》 踏遍悬崖的蹄足，惊起飞鸟的喉舌……化为养分，供养新的生命。 毁灭先",
+    "signature": "寒风吹不倒我，哈……你呢？",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 53,
       "affection": 73
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.4762306
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759751.795274
   }
 }

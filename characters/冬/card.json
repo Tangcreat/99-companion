@@ -6,6 +6,7 @@
     "name": "冬",
     "slug": "冬",
     "summary": "《诗雪纷飞》 纸卷和羽笔用尽之后，他将诗篇作于荒茫的西伯利亚雪原。来往山间的牡鹿",
+    "signature": "请别回头……韵脚会乱。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 74,
       "affection": 44
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.8404284
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759714.839999
   }
 }

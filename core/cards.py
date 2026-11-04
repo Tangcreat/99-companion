@@ -43,6 +43,8 @@ class InternalCard:
     slug: str
     persona_md: str
     summary: str = ""
+    signature: str = ""          # 个性签名：她想让别人看到的一句话
+    address: str = ""            # 她对聊天人的固定称呼（如「司辰」「阁下」）
     series: str = ""
     aliases: list[str] = field(default_factory=list)
     interests: list[str] = field(default_factory=list)
@@ -207,6 +209,8 @@ def parse_card_dict(obj: dict, raw_name_hint: str = "",
         slug=slug,
         persona_md=persona,
         summary=(d.get("summary") or "").strip(),
+        signature=(d.get("signature") or "").strip(),
+        address=(d.get("address") or "").strip(),
         series=(series or "").strip(),
         aliases=_as_list(d.get("aliases")),
         interests=interests,
@@ -280,7 +284,9 @@ class CardStore:
             "spec_version": "1.0",
             "data": {
                 "id": card.id, "name": card.name, "slug": card.slug,
-                "summary": card.summary, "series": card.series,
+                "summary": card.summary, "signature": card.signature,
+                "address": card.address,
+                "series": card.series,
                 "aliases": card.aliases, "interests": card.interests,
                 "tags": card.tags, "accent": card.accent,
                 "first_mes": card.first_mes, "mes_example": card.mes_example,

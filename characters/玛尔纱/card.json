@@ -6,6 +6,7 @@
     "name": "玛尔纱",
     "slug": "玛尔纱",
     "summary": "高地骑士团出身的骑士，现任圣洛夫基金会战地医生、“Ⅻ”小队队医。",
+    "signature": "别怕，我是医生。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 54,
       "affection": 44
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718349.8359647
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759736.6089702
   }
 }

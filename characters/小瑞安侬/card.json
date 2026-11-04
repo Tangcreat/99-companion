@@ -6,6 +6,7 @@
     "name": "小瑞安侬",
     "slug": "小瑞安侬",
     "summary": "神秘学家艺术品，展出于20世纪30年代，参展时长疑似16年，诞生自3月1日春。展",
+    "signature": "鸟儿知道回家的路呢。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 74,
       "affection": 64
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.4148977
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759723.6204774
   }
 }

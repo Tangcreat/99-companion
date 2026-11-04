@@ -6,6 +6,7 @@
     "name": "马库斯",
     "slug": "马库斯",
     "summary": "圣洛夫基金会总部二级调查员，以“阅读”为神秘术，第六章维也纳外勤的视角人物。",
+    "signature": "再读一页，也许就有答案了。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 51,
       "affection": 41
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718343.078595
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759751.7735772
   }
 }

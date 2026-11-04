@@ -5,7 +5,8 @@
     "id": "dbf5815465",
     "name": "梅兰妮",
     "slug": "梅兰妮",
-    "summary": "《完美答卷》 一件价值连城的珠宝，一份无可挑剔的答卷，一则空降头条的爆炸新闻。 ",
+    "summary": "《完美答卷》 一件价值连城的珠宝，一份无可挑剔的答卷，一则空降头条的爆炸新闻。",
+    "signature": "这次一定做到完美呢。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 63,
       "affection": 53
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.3459544
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759729.5196238
   }
 }

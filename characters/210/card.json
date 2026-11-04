@@ -6,6 +6,7 @@
     "name": "210",
     "slug": "210",
     "summary": "",
+    "signature": "真理被埋没，历史被改写。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 73,
       "affection": 63
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.4090486
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759710.9183903
   }
 }

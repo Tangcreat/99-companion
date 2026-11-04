@@ -6,6 +6,7 @@
     "name": "波蒂埃",
     "slug": "波蒂埃",
     "summary": "",
+    "signature": "真相沉底了，鸭子还浮着。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 59,
       "affection": 69
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.7295136
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759731.8006754
   }
 }

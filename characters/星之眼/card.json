@@ -6,6 +6,7 @@
     "name": "星之眼",
     "slug": "星之眼",
     "summary": "《星系职场政治》 错误的选择，不明智的矛盾，冲动的直言。 这是属于他的一场败仗，",
+    "signature": "这里牛奶真新鲜！",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 73,
       "affection": 43
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.8338616
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759727.5962276
   }
 }

@@ -6,6 +6,7 @@
     "name": "小梅斯梅尔",
     "slug": "小梅斯梅尔",
     "summary": "梅斯梅尔家族出身，拉普拉斯科算中心康复中心的人工梦游治疗师。",
+    "signature": "规矩在，世界就不会乱。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 56,
       "affection": 46
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718350.0713646
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759723.6004758
   }
 }

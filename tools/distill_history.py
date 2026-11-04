@@ -180,14 +180,50 @@ def distill(llm: LLM, name: str, material: str) -> dict:
     return json.loads(s)
 
 
+def persona_material(slug: str) -> str:
+    """从 persona.md 里抽出档案/身份段落，作为蒸馏的兜底材料。"""
+    p = os.path.join(CHAR_DIR, slug, "persona.md")
+    if not os.path.exists(p):
+        return ""
+    try:
+        text = open(p, encoding="utf-8").read()
+    except Exception:
+        return ""
+    # 优先取「档案」「身份」「来历」这几节
+    keep = []
+    cur_hit = False
+    for line in text.splitlines():
+        if line.startswith("#"):
+            cur_hit = any(k in line for k in ("档案", "身份", "来历", "经历", "生平"))
+            if cur_hit:
+                keep.append(line)
+            continue
+        if cur_hit and line.strip():
+            keep.append(line.strip())
+    body = "\n".join(keep).strip()
+    if len(body) < 40:
+        body = text.strip()[:900]
+    return f"【角色档案】\n{body[:1200]}" if body else ""
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="")
+    ap.add_argument("--all", action="store_true",
+                    help="处理 characters/ 下全部角色（已蒸馏的自动跳过）")
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
 
-    names = [x.strip() for x in args.only.split(",")] if args.only else TOP20
+    if args.only:
+        names = [x.strip() for x in args.only.split(",") if x.strip()]
+    elif args.all:
+        names = sorted(d for d in os.listdir(CHAR_DIR)
+                       if os.path.isdir(os.path.join(CHAR_DIR, d)))
+        names = [n for n in names if os.path.exists(
+            os.path.join(CHAR_DIR, n, "card.json"))]
+    else:
+        names = TOP20
 
     if args.dry:
         print(f"计划处理 {len(names)} 位：")
@@ -240,7 +276,11 @@ def main():
         by_ch = collect_lines(name, alias_map.get(name))
         material, used = build_input(name, by_ch, chapters)
         if not material:
-            print(f"[{idx}/{len(names)}] 跳过 {name}：无台词材料")
+            # 小配角没有台词记录，用 persona.md 的档案部分兜底，
+            # 至少让她有一条能讲出来的来历，而不是空的。
+            material = persona_material(slug)
+        if not material:
+            print(f"[{idx}/{len(names)}] 跳过 {name}：无任何材料")
             skip += 1
             continue
 

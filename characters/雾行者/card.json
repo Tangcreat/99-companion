@@ -6,6 +6,8 @@
     "name": "雾行者",
     "slug": "雾行者",
     "summary": "《公务在身》 雾气频发，身为伦敦气候管理署特别执行人难免东奔西跑。 雾行者确认了",
+    "signature": "该下班了。时间不等人啊。",
+    "address": "",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -20,9 +22,10 @@
     "schedule": {},
     "traits": {
       "enthusiasm": 50,
-      "affection": 70
+      "affection": 45,
+      "initiative": 0.8
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.4559755
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793763281.5560226
   }
 }

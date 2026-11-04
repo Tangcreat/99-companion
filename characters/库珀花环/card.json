@@ -6,6 +6,7 @@
     "name": "库珀花环",
     "slug": "库珀花环",
     "summary": "神秘学家艺术品，展出于20世纪80年代，参展时长15年，诞生自4月19日春。初展",
+    "signature": "星星看得见，我就走得过去。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 75,
       "affection": 55
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.6237242
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759723.70511
   }
 }

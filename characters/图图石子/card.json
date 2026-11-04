@@ -6,6 +6,7 @@
     "name": "图图石子",
     "slug": "图图石子",
     "summary": "神秘学家艺术品，展出于20世纪90年代，参展时长16年，诞生自9月28日春。原展",
+    "signature": "明年，我也能划独木舟啦。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 68,
       "affection": 78
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.796292
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759719.087493
   }
 }

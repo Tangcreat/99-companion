@@ -6,6 +6,7 @@
     "name": "伊戈尔",
     "slug": "伊戈尔",
     "summary": "出身顿河哥萨克的芝诺将领，叛出芝诺后自立“狮鹫军”并任总指挥。",
+    "signature": "我的孩子们，会越过暴雨。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 55,
       "affection": 50
     },
-    "source_spec": "distilled",
-    "imported_at": 1793717705.5210173
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759712.778741
   }
 }

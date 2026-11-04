@@ -6,6 +6,7 @@
     "name": "阿德琳",
     "slug": "阿德琳",
     "summary": "",
+    "signature": "又失败了……再试一次吧。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 53,
       "affection": 63
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.6815293
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759749.827186
   }
 }

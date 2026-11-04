@@ -6,6 +6,7 @@
     "name": "兔毛手袋",
     "slug": "兔毛手袋",
     "summary": "神秘学家艺术品，活跃于20世纪90年代末，参展时长18年。诞生日11月24日冬。",
+    "signature": "先别拦我，试了再说哈！",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 64,
       "affection": 44
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.5490594
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759712.888913
   }
 }

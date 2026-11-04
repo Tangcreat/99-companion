@@ -6,6 +6,7 @@
     "name": "6",
     "slug": "6",
     "summary": "阿派朗学派的现任领袖，完美的数字6，主持公民大会、守护通往圣地的门。",
+    "signature": "争辩到此为止。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 68,
       "affection": 58
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718351.6869185
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759710.9497306
   }
 }

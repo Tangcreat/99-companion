@@ -6,6 +6,7 @@
     "name": "苏芙比",
     "slug": "苏芙比",
     "summary": "威斯敏斯特的贵族庄园小姐，自学成才的魔药炼金术士，在维尔汀小队里负责配药和做饭。",
+    "signature": "第三十九次，这次准成，好耶！",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [
@@ -27,7 +28,7 @@
       "enthusiasm": 52,
       "affection": 42
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718343.1871548
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759743.386102
   }
 }

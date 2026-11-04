@@ -6,6 +6,7 @@
     "name": "奠基石",
     "slug": "奠基石",
     "summary": "【在冷硬年代生长的】 战后生活对于东欧人民来说并不好过，奠基石的童年就是在一栋灰",
+    "signature": "给冰冷的楼，画一扇暖窗吧。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 56,
       "affection": 46
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.2984025
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759721.6443725
   }
 }

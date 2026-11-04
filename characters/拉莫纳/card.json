@@ -6,6 +6,7 @@
     "name": "拉莫纳",
     "slug": "拉莫纳",
     "summary": "神秘学家艺术品，展出于20世纪初，参展时长17年，诞生自4月13日春。参展于墨西",
+    "signature": "告别的事，我熟。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 57,
       "affection": 77
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.5037062
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759725.5840566
   }
 }

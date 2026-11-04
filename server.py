@@ -5,19 +5,27 @@
 from __future__ import annotations
 
 import base64
+import io
 import json
 import mimetypes
 import os
 import random
 import re
+import socket
 import sys
 import time
 import traceback
+import zipfile
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs, unquote
 
-if getattr(sys, "frozen", False):
+_env_base = os.environ.get("STARLIT_DATA_ROOT")
+if _env_base and os.path.isdir(_env_base):
+    # Android / 外部指定：数据目录由调用方给出
+    BASE = _env_base
+    RES = BASE
+elif getattr(sys, "frozen", False):
     # PyInstaller：可写数据放 exe 旁边，只读资源在 _MEIPASS
     BASE = os.path.dirname(sys.executable)
     RES = getattr(sys, "_MEIPASS", BASE)
@@ -43,6 +51,7 @@ from core.think import Thinker
 WEB_DIR = os.path.join(RES, "web")
 CHAR_DIR = os.path.join(HERE, "characters")
 DATA_DIR = os.path.join(HERE, "data")
+UPLOAD_DIR = os.path.join(DATA_DIR, "uploads")   # 聊天里发的图片
 STICKER_DIR = os.path.join(HERE, "stickers")
 CONFIG_PATH = os.path.join(HERE, "config.json")
 
@@ -199,6 +208,52 @@ class App:
                     print(f"[stickers] 已索引 {n} 张表情包 -> {st_dir}")
         except Exception as e:
             print(f"[stickers] 初始化失败：{e}")
+        try:
+            self.migrate_traits()
+        except Exception as e:
+            print(f"[migrate] 跳过：{e}")
+
+    def migrate_traits(self):
+        """把角色卡里调好的初始参数同步进状态表。
+
+        char_state 只在首次创建时读 card.traits，之后就不再看卡了。
+        所以老版本升级上来的人，参数永远停在旧默认值——除非显式迁移一次。
+        """
+        marker = os.path.join(DATA_DIR, ".traits_version")
+        try:
+            cur = int(open(marker, encoding="utf-8").read().strip())
+        except Exception:
+            cur = 0
+        if cur >= 2:
+            return
+        n = 0
+        for card in self.cards.list():
+            t = card.traits or {}
+            if not t:
+                continue
+            try:
+                ent = max(0, min(100, int(t.get("enthusiasm", 60))))
+                aff = max(0, min(100, int(t.get("affection", 50))))
+                ini = float(t.get("initiative", 1.0) or 1.0)
+            except (TypeError, ValueError):
+                continue
+            row = self.store.q1("SELECT char_id FROM char_state WHERE char_id=?", (card.id,))
+            if row:
+                self.store.x(
+                    "UPDATE char_state SET enthusiasm=?,affection=?,initiative=? WHERE char_id=?",
+                    (ent, aff, ini, card.id))
+            else:
+                self.store.x(
+                    "INSERT INTO char_state(char_id,enthusiasm,affection,initiative) VALUES(?,?,?,?)",
+                    (card.id, ent, aff, ini))
+            n += 1
+        try:
+            os.makedirs(DATA_DIR, exist_ok=True)
+            with open(marker, "w", encoding="utf-8") as f:
+                f.write("2")
+        except Exception:
+            pass
+        print(f"[migrate] 已按角色卡重置 {n} 个角色的初始参数")
 
     def reload_llm(self):
         self.cfg = load_config()
@@ -237,6 +292,8 @@ class App:
             "name": card.name,
             "series": card.series,
             "summary": card.summary,
+            "signature": card.signature,
+            "address": card.address,
             "tags": card.tags,
             "interests": card.interests,
             "accent": card.accent,
@@ -259,16 +316,39 @@ class App:
                 st.get("enthusiasm", 60), st.get("affection", 50), self.rng), 1),
         }
 
+    def my_name(self) -> str:
+        """对方希望被怎么称呼。没设过就是「老师」。"""
+        mp = os.path.join(DATA_DIR, "me.json")
+        if os.path.exists(mp):
+            try:
+                nm = (json.load(open(mp, encoding="utf-8")).get("name") or "").strip()
+                if nm:
+                    return nm
+            except Exception:
+                pass
+        return "老师"
+
     # ---------------- 聊天主流程 ----------------
-    def chat(self, slug: str, text: str) -> dict:
+    def chat(self, slug: str, text: str, extra_instruction: str = "",
+             store_user: bool = True) -> dict:
         card = self.cards.load(slug)
         st = self.char_state(card)
         sch = sched_mod.build(card.name, card.schedule)
         session_id = self.store.session(card.id)
 
-        # 1. 落用户消息
-        uid, uts = self.store.add_message(card.id, session_id, "user", text)
-        self.store.update_state(card.id, last_user_at=uts, cold_streak=0)
+        # 1. 落用户消息（发图片时已经落过一条，不再重复）
+        if store_user:
+            uid, uts = self.store.add_message(card.id, session_id, "user", text)
+            self.store.update_state(card.id, last_user_at=uts, cold_streak=0)
+        else:
+            # 发图片时用户消息已经落过了，这里只是接着生成回复。
+            # 但要拿到那条消息的 id——下面的记忆抽取要用它当来源，否则会 UnboundLocalError。
+            self.store.update_state(card.id, last_user_at=time.time(), cold_streak=0)
+            row = self.store.q1(
+                "SELECT id, ts FROM messages WHERE char_id=? AND role='user' "
+                "ORDER BY id DESC LIMIT 1", (card.id,))
+            uid = row["id"] if row else 0
+            uts = row["ts"] if row else time.time()
 
         recent = self.store.recent_messages(card.id, 12)
         analysis = {}
@@ -285,8 +365,21 @@ class App:
         hits = self.mem.recall(card.id, text, top_k)
 
         # 3b. 检索设定集（往年的故事经历，只注入命中的）
-        lore_hits = self.lore.retrieve(card.slug, text)
-        lore_text = lore_mod.format_for_prompt(lore_hits)
+        past_intent = lore_mod.is_past_intent(text)
+        if past_intent:
+            # 问「讲讲你的故事」时走时间线：她的经历是完整一条线，
+            # 不该等用户碰巧说出「阿派朗岛」才被想起来。
+            timeline = self.lore.retrieve_timeline(card.slug)
+            lore_text = lore_mod.format_timeline(timeline)
+            lore_hits = timeline
+        else:
+            lore_hits = self.lore.retrieve(card.slug, text)
+            lore_text = lore_mod.format_for_prompt(lore_hits)
+
+        # 3c. 共用世界观：只在真的提到相关词时才补一条
+        world_hits = lore_mod.format_world(self.lore.retrieve_world(text))
+        if world_hits:
+            lore_text = (world_hits + ("\n" + lore_text if lore_text else "")).strip()
 
         # 4. 生成回复
         if not self.llm.configured:
@@ -299,11 +392,13 @@ class App:
                     f"可以用很短的、带困意的语气回一句，理由可以说「{sch.label}」，"
                     "然后表示要接着睡。不要长篇大论。"
                 )
+            hints = [h for h in (sleep_hint, extra_instruction) if h]
             reply = self.thinker.express(
                 card, st, sch, hits,
                 self.mem.profile_text(), self.mem.confirmed_facts_text(card.id),
-                analysis, recent, extra_instruction=sleep_hint,
-                lore_text=lore_text,
+                analysis, recent, extra_instruction="\n".join(hints),
+                lore_text=lore_text, past_intent=past_intent,
+                user_name=self.my_name(),
             )
         if not reply:
             reply = "……"
@@ -373,6 +468,112 @@ class App:
         }
 
 
+    # ---------------- 备份 / 诊断 ----------------
+    def make_backup(self) -> bytes:
+        """打包角色与数据。不含 config.json（里面有 API Key）。"""
+        try:
+            self.store.conn().execute("PRAGMA wal_checkpoint(TRUNCATE)")
+        except Exception:
+            pass
+        buf = io.BytesIO()
+        stamp = time.strftime("%Y%m%d-%H%M%S")
+        skip = {"companion.db-wal", "companion.db-shm", "browser-profile",
+                "sync-temp", "sticker_thumbs"}
+        with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:
+            z.writestr("README-备份说明.txt",
+                       f"99陪伴 数据备份\n导出于 {stamp}\n\n"
+                       "包含：characters/（角色卡与设定集）、data/（聊天记录、记忆、我的资料）\n"
+                       "不含：config.json（含 API Key）\n\n"
+                       "恢复：把这两个目录覆盖回程序目录即可。\n")
+            for root, dirs, files in os.walk(CHAR_DIR):
+                for fn in files:
+                    full = os.path.join(root, fn)
+                    arc = os.path.join("characters", os.path.relpath(full, CHAR_DIR))
+                    try:
+                        z.write(full, arc)
+                    except Exception:
+                        pass
+            if os.path.isdir(DATA_DIR):
+                for fn in os.listdir(DATA_DIR):
+                    if fn in skip:
+                        continue
+                    full = os.path.join(DATA_DIR, fn)
+                    if os.path.isfile(full):
+                        try:
+                            z.write(full, os.path.join("data", fn))
+                        except Exception:
+                            pass
+        return buf.getvalue()
+
+    def diagnostics(self) -> dict:
+        db_size = 0
+        integrity = "unknown"
+        counts = {}
+        dbp = os.path.join(DATA_DIR, "companion.db")
+        if os.path.exists(dbp):
+            db_size = os.path.getsize(dbp)
+            try:
+                row = self.store.q1("PRAGMA integrity_check")
+                integrity = (row[0] if row else "unknown")
+                for t in ("messages", "memories", "sessions", "char_state", "self_facts"):
+                    r = self.store.q1(f"SELECT COUNT(*) FROM {t}")
+                    counts[t] = r[0] if r else 0
+            except Exception as e:
+                integrity = f"error: {e}"
+
+        cards = self.cards.list()
+        with_lore = 0
+        for c in cards:
+            try:
+                if self.lore.load(c.slug):
+                    with_lore += 1
+            except Exception:
+                pass
+
+        return {
+            "model": {
+                "configured": self.llm.configured,
+                "base_url": self.llm.base,
+                "model": self.llm.model,
+                "analysis_model": self.llm.analysis_model,
+            },
+            "db": {
+                "path": dbp, "size": db_size, "size_h": f"{db_size/1048576:.1f} MB",
+                "integrity": integrity, "counts": counts,
+            },
+            "characters": {
+                "total": len(cards),
+                "featured": sum(1 for c in cards if c.name in FEATURED_RANK),
+                "with_lore": with_lore,
+            },
+            "stickers": {"count": len(self.stickers.load()), "dir": self.stickers.root},
+            "server": {
+                "port": int(os.environ.get("STARLIT_PORT") or 8787),
+                "host": os.environ.get("STARLIT_HOST") or "127.0.0.1",
+                "lan": lan_ip(),
+                "version": "1.0",
+            },
+        }
+
+    # ---------------- 聊天外观 ----------------
+    def load_appearance(self) -> dict:
+        p = os.path.join(DATA_DIR, "appearance.json")
+        if os.path.exists(p):
+            try:
+                with open(p, encoding="utf-8") as f:
+                    d = json.load(f)
+                return d if isinstance(d, dict) else {}
+            except Exception:
+                return {}
+        return {}
+
+    def save_appearance(self, slug: str, bubble: str, bg: str):
+        a = self.load_appearance()
+        a[slug] = {"bubble": bubble, "bg": bg}
+        os.makedirs(DATA_DIR, exist_ok=True)
+        with open(os.path.join(DATA_DIR, "appearance.json"), "w", encoding="utf-8") as f:
+            json.dump(a, f, ensure_ascii=False, indent=1)
+
     # ---------------- 群聊 ----------------
     def group_chat(self, gid: str, text: str) -> dict:
         g = self.groups.get(gid)
@@ -404,7 +605,13 @@ class App:
             st = self.char_state(card)
             sch = sched_mod.build(card.name, card.schedule)
             hits = self.mem.recall(card.id, text, 4)
-            lore_hits = self.lore.retrieve(slug, text, 700)
+            past_intent = lore_mod.is_past_intent(text)
+            if past_intent:
+                lore_hits = self.lore.retrieve_timeline(slug, budget=1200, limit=3)
+                lore_text = lore_mod.format_timeline(lore_hits)
+            else:
+                lore_hits = self.lore.retrieve(slug, text, 700)
+                lore_text = lore_mod.format_for_prompt(lore_hits)
             analysis = {}
             if i == 0 and self.llm.configured:
                 analysis = self.thinker.analyze(recent, card.name)
@@ -421,7 +628,8 @@ class App:
                     card, st, sch, hits,
                     self.mem.profile_text(), self.mem.confirmed_facts_text(card.id),
                     analysis, recent, extra_instruction=extra,
-                    lore_text=lore_mod.format_for_prompt(lore_hits),
+                    lore_text=lore_text, past_intent=past_intent,
+                    user_name=self.my_name(),
                 )
             if not reply:
                 continue
@@ -484,12 +692,39 @@ class Handler(BaseHTTPRequestHandler):
                 return self.api_get(path, qs)
             if path.startswith("/stickers/"):
                 return self.sticker_file(path)
+            if path.startswith("/uploads/"):
+                return self.upload_file(path)
             return self.static(path)
+        except cards_mod.CardError as e:
+            # 角色被删掉、或者 URL 里的名字不对：这是客户端问题，不是服务端崩了
+            return self._err(str(e), 404)
         except Exception as e:
             traceback.print_exc()
             return self._err(f"服务端错误：{e}", 500)
 
     def api_get(self, path: str, qs: dict):
+        if path == "/api/backup":
+            data = APP.make_backup()
+            stamp = time.strftime("%Y%m%d-%H%M%S")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/zip")
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("Content-Disposition",
+                             f'attachment; filename="99peiban-backup-{stamp}.zip"')
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            try:
+                self.wfile.write(data)
+            except (BrokenPipeError, ConnectionResetError):
+                pass
+            return
+
+        if path == "/api/appearance":
+            return self._json({"appearance": APP.load_appearance()})
+
+        if path == "/api/diagnostics":
+            return self._json(APP.diagnostics())
+
         if path == "/api/groups":
             out = []
             for g in APP.groups.load():
@@ -550,8 +785,95 @@ class Handler(BaseHTTPRequestHandler):
                 if meta.get("type") == "sticker":
                     item["type"] = "sticker"
                     item["url"] = APP.stickers.url_of(r["text"])
+                elif meta.get("type") == "image":
+                    item["type"] = "image"
+                    item["url"] = meta.get("url") or ""
                 out.append(item)
             return self._json({"messages": out})
+
+        if path == "/api/story":
+            # 列表只给元信息；带 code 才回正文（一章 1500 字，一次全下没必要）
+            sp = os.path.join(DATA_DIR, "story.json")
+            if not os.path.exists(sp):
+                return self._json({"chapters": []})
+            try:
+                data = json.load(open(sp, encoding="utf-8"))
+            except Exception:
+                return self._json({"chapters": []})
+            chapters = data.get("chapters") or []
+            code = (qs.get("code") or [""])[0]
+            if code:
+                one = next((c for c in chapters if c.get("code") == code), None)
+                return self._json({"chapter": one or {}})
+            brief = [{"code": c.get("code"), "title": c.get("title"),
+                      "year": c.get("year"), "chars": c.get("chars")}
+                     for c in chapters]
+            return self._json({"chapters": brief})
+
+        if path == "/api/messages/search":
+            slug = (qs.get("char") or [""])[0]
+            q = (qs.get("q") or [""])[0].strip()
+            card = APP.cards.load(slug)
+            if not q:
+                return self._json({"hits": []})
+            rows = APP.store.q(
+                "SELECT role,text,ts FROM messages WHERE char_id=? AND text LIKE ? "
+                "ORDER BY id DESC LIMIT 60",
+                (card.id, f"%{q}%"),
+            )
+            hits = [{"role": r["role"], "text": r["text"], "ts": r["ts"]} for r in rows]
+            return self._json({"hits": hits, "count": len(hits)})
+
+        if path == "/api/memory/center":
+            slug = (qs.get("char") or [""])[0]
+            card = APP.cards.load(slug)
+            mems = [dict(x) for x in APP.mem.all_active(card.id, 200)]
+            groups: dict[str, list] = {}
+            for m in mems:
+                k = m.get("kind") or "其他"
+                groups.setdefault(k, []).append({
+                    "id": m.get("id"), "text": m.get("text"),
+                    "ts": m.get("ts"), "version": m.get("version", 1),
+                })
+            facts = APP.store.q(
+                "SELECT id,key,value,status FROM self_facts WHERE char_id=? "
+                "ORDER BY updated_at DESC LIMIT 60", (card.id,))
+            lore = APP.lore.load(card.slug)
+            return self._json({
+                "memories": groups,
+                "mem_total": len(mems),
+                "facts": [dict(r) for r in facts],
+                "lore_count": len(lore),
+                "history_count": len([e for e in lore if e.get("kind") == "history"]),
+            })
+
+        if path == "/api/stats":
+            slug = (qs.get("char") or [""])[0]
+            card = APP.cards.load(slug)
+            row = APP.store.q(
+                "SELECT COUNT(*) n, MIN(ts) first, MAX(ts) last FROM messages WHERE char_id=?",
+                (card.id,),
+            )
+            n = row[0]["n"] if row else 0
+            first = row[0]["first"] if row else None
+            last = row[0]["last"] if row else None
+            mine = APP.store.q(
+                "SELECT COUNT(*) n FROM messages WHERE char_id=? AND role='user'", (card.id,)
+            )
+            st = APP.char_state(card)
+            days = 0
+            if first:
+                days = max(1, int((time.time() - first) / 86400) + 1)
+            return self._json({
+                "days": days,
+                "total": n,
+                "mine": mine[0]["n"] if mine else 0,
+                "first_at": first,
+                "last_at": last,
+                "affection": st.get("affection", 50),
+                "enthusiasm": st.get("enthusiasm", 60),
+                "bond": traits_mod.bond_stage(st.get("affection", 50))["name"],
+            })
 
         if path == "/api/stickers":
             items = []
@@ -578,7 +900,8 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/memories":
             slug = (qs.get("char") or [""])[0]
             card = APP.cards.load(slug)
-            return self._json({"memories": APP.mem.all_active(card.id, 200)})
+            rows = [dict(x) for x in APP.mem.all_active(card.id, 200)]
+            return self._json({"memories": rows})
 
         if path == "/api/facts":
             slug = (qs.get("char") or [""])[0]
@@ -591,6 +914,26 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/profile":
             slug = (qs.get("char") or [""])[0]
             return self._json({"profile": APP.mem.profile_text(100)})
+
+        if path == "/api/me":
+            mp = os.path.join(DATA_DIR, "me.json")
+            nm = "老师"
+            if os.path.exists(mp):
+                try:
+                    nm = json.load(open(mp, encoding="utf-8")).get("name") or nm
+                except Exception:
+                    pass
+            return self._json({
+                "name": nm,
+                "avatar": "/api/me/avatar" if os.path.exists(os.path.join(DATA_DIR, "me.png")) else "",
+            })
+
+        if path == "/api/me/avatar":
+            p = os.path.join(DATA_DIR, "me.png")
+            if os.path.exists(p):
+                with open(p, "rb") as f:
+                    return self._send(200, f.read(), "image/png")
+            return self._send(404, b"", "image/png")
 
         m = re.match(r"^/api/avatar/([\w\u4e00-\u9fff-]+)$", path)
         if m:
@@ -615,9 +958,26 @@ class Handler(BaseHTTPRequestHandler):
         except OSError:
             self._send(404, b"", ctype)
 
+    def upload_file(self, path: str):
+        """聊天图片。只认 basename，杜绝 ../../ 穿越。"""
+        name = os.path.basename(unquote(path)[len("/uploads/"):])
+        if not name or name.startswith("."):
+            return self._send(404, b"not found", "text/plain; charset=utf-8")
+        full = os.path.join(UPLOAD_DIR, name)
+        if not os.path.exists(full):
+            return self._send(404, b"not found", "text/plain; charset=utf-8")
+        ctype = mimetypes.guess_type(full)[0] or "application/octet-stream"
+        try:
+            with open(full, "rb") as f:
+                self._send(200, f.read(), ctype)
+        except OSError:
+            self._send(404, b"", ctype)
+
     def static(self, path: str):
         if path in ("/", ""):
             path = "/index.html"
+        elif path in ("/mobile", "/mobile/"):
+            path = "/mobile.html"
         rel = path.lstrip("/").replace("..", "")
         full = os.path.join(WEB_DIR, rel)
         if not os.path.exists(full) or os.path.isdir(full):
@@ -707,6 +1067,14 @@ class Handler(BaseHTTPRequestHandler):
                         APP.lore.upsert(card.slug, e)
                     except Exception:
                         pass
+                # 没给签名就先用简介的首句顶上，之后可以随时改
+                if not card.signature:
+                    sig = str(d.get("signature") or "").strip()
+                    if not sig:
+                        sig = (card.summary or "").split("，")[0].strip()
+                    if sig:
+                        card.signature = re.sub(r"\s+", " ", sig)[:24]
+                        APP.cards.save(card)
                 return self._json({"ok": True, "slug": card.slug,
                                    "character": APP.card_payload(card)})
 
@@ -721,6 +1089,43 @@ class Handler(BaseHTTPRequestHandler):
                         pass
                 return self._json({"ok": True, "slug": card.slug,
                                    "character": APP.card_payload(card)})
+
+            if path == "/api/chat/image":
+                # 对方发来一张图片：存盘、落一条图片消息，再让她"看见"并回一句
+                slug = body.get("slug") or ""
+                card = APP.cards.load(slug)
+                raw = base64.b64decode(body.get("data_base64") or "")
+                if not raw:
+                    return self._err("图片为空")
+                png = cards_mod.normalize_avatar(raw)      # 复用：缩放 + 转 PNG
+                os.makedirs(UPLOAD_DIR, exist_ok=True)
+                name = f"img-{int(time.time() * 1000)}-{random.randint(100, 999)}.png"
+                with open(os.path.join(UPLOAD_DIR, name), "wb") as f:
+                    f.write(png)
+                url = f"/uploads/{name}"
+                sid = APP.store.session(card.id)
+                _mid, ts = APP.store.add_message(
+                    card.id, sid, "user", "[图片]",
+                    json.dumps({"type": "image", "url": url}, ensure_ascii=False))
+                # 让她知道收到一张图。重点：她看不到画面内容，必须明说，
+                # 否则模型会凭空调色（实测会说"一只很普通的猫"）。
+                image_hint = (
+                    "对方刚给你发了一张图片。你只能知道「收到了一张图」这件事，"
+                    "**看不到图片里画的是什么**。\n"
+                    "所以不要描述画面内容、不要说「我看到……」、不要猜这是什么。\n"
+                    "可以自然地反应一下（凑近看、问拍的什么、让对方讲讲），"
+                    "一到两句就够，别解释你为什么看不见。"
+                )
+                reply = (APP.chat(slug, "[图片]", extra_instruction=image_hint,
+                                  store_user=False)
+                         if APP.llm.configured else None)
+                return self._json({"ok": True, "url": url, "ts": ts,
+                                   "reply": reply})
+
+            if path == "/api/messages/clear":
+                card = APP.cards.load(body.get("slug") or "")
+                APP.store.x("DELETE FROM messages WHERE char_id=?", (card.id,))
+                return self._json({"ok": True})
 
             if path == "/api/chat":
                 slug = body.get("slug") or ""
@@ -766,7 +1171,7 @@ class Handler(BaseHTTPRequestHandler):
                 if not APP.stickers.resolve(rel):
                     return self._err("表情包不存在")
                 sid = APP.store.session(card.id)
-                self.store.add_message(card.id, sid, "user", rel,
+                APP.store.add_message(card.id, sid, "user", rel,
                                        json.dumps({"type": "sticker"}, ensure_ascii=False))
                 return self._json({"ok": True, "url": APP.stickers.url_of(rel)})
 
@@ -780,6 +1185,56 @@ class Handler(BaseHTTPRequestHandler):
                     return self._json({"ok": True})
                 except Exception as e:
                     return self._json({"ok": False, "error": str(e)}, 200)
+
+            if path == "/api/avatar/upload":
+                slug = body.get("slug") or ""
+                raw = base64.b64decode(body.get("data_base64") or "")
+                card = APP.cards.load(slug)
+                png = cards_mod.normalize_avatar(raw)
+                with open(os.path.join(APP.cards.dir_of(card.slug), "avatar.png"), "wb") as f:
+                    f.write(png)
+                return self._json({"ok": True, "url": f"/api/avatar/{card.slug}?t={int(time.time())}"})
+
+            if path == "/api/appearance/save":
+                slug = body.get("slug") or ""
+                bubble = str(body.get("bubble") or "")[:9]
+                bg = str(body.get("bg") or "")[:9]
+                ok = re.match(r"^#[0-9a-fA-F]{6}$", bubble) and re.match(r"^#[0-9a-fA-F]{6}$", bg)
+                if not slug or not ok:
+                    return self._err("参数不合法")
+                APP.save_appearance(slug, bubble, bg)
+                return self._json({"ok": True})
+
+            if path == "/api/me":
+                nm = (body.get("name") or "").strip()[:20]
+                if not nm:
+                    return self._err("昵称不能为空")
+                os.makedirs(DATA_DIR, exist_ok=True)
+                with open(os.path.join(DATA_DIR, "me.json"), "w", encoding="utf-8") as f:
+                    json.dump({"name": nm}, f, ensure_ascii=False)
+                return self._json({"ok": True, "name": nm})
+
+            if path == "/api/me/avatar":
+                raw = body.get("data_base64")
+                if raw:
+                    png = cards_mod.normalize_avatar(base64.b64decode(raw))
+                    with open(os.path.join(DATA_DIR, "me.png"), "wb") as f:
+                        f.write(png)
+                    return self._json({"ok": True, "url": f"/api/me/avatar?t={int(time.time())}"})
+                if body.get("reset"):
+                    p = os.path.join(DATA_DIR, "me.png")
+                    if os.path.exists(p):
+                        os.remove(p)
+                    return self._json({"ok": True, "url": ""})
+                return self._err("缺少图片数据")
+
+            if path == "/api/characters/signature":
+                card = APP.cards.load(body.get("slug") or "")
+                sig = str(body.get("signature") or "").strip()
+                sig = re.sub(r"\s+", " ", sig)[:40]
+                card.signature = sig
+                APP.cards.save(card)
+                return self._json({"ok": True, "signature": card.signature})
 
             if path == "/api/characters/state":
                 card = APP.cards.load(body.get("slug") or "")
@@ -817,14 +1272,32 @@ class Handler(BaseHTTPRequestHandler):
         return self.do_POST()
 
 
+def lan_ip() -> str:
+    """取本机在局域网里的 IPv4，供手机访问。"""
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        return "127.0.0.1"
+
+
 def main():
     port = int(os.environ.get("STARLIT_PORT") or 8787)
-    srv = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    host = os.environ.get("STARLIT_HOST") or "127.0.0.1"
+    srv = ThreadingHTTPServer((host, port), Handler)
+    ip = lan_ip()
     print("=" * 56)
-    print("  星伴克隆 · Starlit Clone")
-    print(f"  http://127.0.0.1:{port}")
+    print("  99陪伴")
+    print(f"  电脑： http://127.0.0.1:{port}")
+    if host == "0.0.0.0":
+        print(f"  手机： http://{ip}:{port}/mobile")
+        print("        （同一 Wi-Fi 下用手机浏览器打开，可添加到主屏幕）")
+    else:
+        print(f"  手机： 需以 STARLIT_HOST=0.0.0.0 启动才能从手机访问")
     print(f"  角色目录: {CHAR_DIR}")
-    print(f"  数据文件: {os.path.join(DATA_DIR, 'companion.db')}")
     print("=" * 56)
     try:
         srv.serve_forever()
@@ -834,3 +1307,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def start_server(port: int = 8787, host: str = "127.0.0.1"):
+    """给 Android（Chaquopy）等外部环境调用的入口，不打印横幅、不阻塞主线程。"""
+    srv = ThreadingHTTPServer((host, int(port)), Handler)
+    srv.serve_forever()

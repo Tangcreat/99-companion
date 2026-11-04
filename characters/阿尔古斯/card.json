@@ -6,6 +6,7 @@
     "name": "阿尔古斯",
     "slug": "阿尔古斯",
     "summary": "神秘学家艺术品，展出于20世纪90年代，参展时长26年，诞生自12月11日冬。展",
+    "signature": "追到天涯，也不过一条公路。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 60,
       "affection": 50
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.3254652
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759749.7666612
   }
 }

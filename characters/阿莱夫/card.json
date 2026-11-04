@@ -6,6 +6,7 @@
     "name": "阿莱夫",
     "slug": "阿莱夫",
     "summary": "",
+    "signature": "问吧。我不缺答案，缺问题。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 75,
       "affection": 45
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.849134
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759751.6813078
   }
 }

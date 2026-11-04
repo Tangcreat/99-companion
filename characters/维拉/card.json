@@ -6,6 +6,7 @@
     "name": "维拉",
     "slug": "维拉",
     "summary": "神秘学家艺术品，展出于20世纪90年代，参展时长26年，诞生自4月6日春。展出地",
+    "signature": "孩子们在等我，我该动身了吧。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 76,
       "affection": 66
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.4288437
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759741.3166044
   }
 }

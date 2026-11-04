@@ -6,6 +6,7 @@
     "name": "命名日",
     "slug": "命名日",
     "summary": "神秘学家艺术品，展出于20世纪80年代，参展时长23年，诞生自1月6日冬。初展于",
+    "signature": "旧东西记得回家的路。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 62,
       "affection": 72
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.7517133
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759716.9745119
   }
 }

@@ -6,6 +6,7 @@
     "name": "小春雀儿",
     "slug": "小春雀儿",
     "summary": "《第一次飞行》 调整领结，整理绶带，镜子内，小小的女孩深呼吸。雄鹰徽章闪闪发亮，",
+    "signature": "再来一次，军礼会敬对的。",
     "series": "重返未来：1999",
     "aliases": [],
     "interests": [],
@@ -22,7 +23,7 @@
       "enthusiasm": 67,
       "affection": 57
     },
-    "source_spec": "distilled",
-    "imported_at": 1793718415.3703306
+    "source_spec": "starlit_clone_v1",
+    "imported_at": 1793759723.5794437
   }
 }
