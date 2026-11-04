@@ -19,6 +19,9 @@ import time
 import urllib.request
 
 APP_NAME = "99陪伴"
+APP_VERSION = "1.6"
+# 桌面版没有 Android 的 BuildConfig，版本号从这里进诊断页
+os.environ.setdefault("STARLIT_APP_VERSION", APP_VERSION)
 PORT = int(os.environ.get("STARLIT_PORT") or 8787)
 
 
@@ -59,7 +62,11 @@ def open_window():
     url = f"http://127.0.0.1:{PORT}/"
     exe = find_browser()
     if exe:
-        profile = os.path.join(base_dir(), "data", "browser-profile")
+        # 放到系统的应用数据目录，不要放 data/。
+        # 放 data/ 的后果：Edge 会往里写几十 MB 缓存（component_crx_cache、
+        # onnx 模型），一旦把整个文件夹打包分发，压缩包会凭空胖一倍。
+        root = os.environ.get("LOCALAPPDATA") or os.path.expanduser("~")
+        profile = os.path.join(root, "99peiban", "browser-profile")
         os.makedirs(profile, exist_ok=True)
         try:
             subprocess.Popen([

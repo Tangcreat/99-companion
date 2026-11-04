@@ -33,11 +33,9 @@ def main():
     # 1) Python 后端
     clean_copy(os.path.join(ROOT, "core"), os.path.join(PY_DIR, "core"),
                skip=("__pycache__", "*.pyc"))
-    for fn in ("server.py",):
+    for fn in ("server.py", "android_entry.py"):
         shutil.copyfile(os.path.join(ROOT, fn), os.path.join(PY_DIR, fn))
-    if not os.path.exists(os.path.join(PY_DIR, "android_entry.py")):
-        print("警告：android_entry.py 不见了，请从模板恢复")
-    print(f"  后端: core/ + server.py -> {PY_DIR}")
+    print(f"  后端: core/ + server.py + android_entry.py -> {PY_DIR}")
 
     # 2) 前端与数据（首次启动会复制到 filesDir）
     clean_copy(os.path.join(ROOT, "web"), os.path.join(ASSETS, "web"))

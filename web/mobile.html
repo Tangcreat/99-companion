@@ -1594,8 +1594,15 @@ async function openDiag(){
 
   const m = d.model || {}, db = d.db || {}, c = d.characters || {}, sk = d.stickers || {}, sv = d.server || {};
   const cnt = db.counts || {};
+  const ck = d.clock || {};
   box.innerHTML =
-    card('模型', !!m.configured, m.configured ? '配置完整，可以发起对话' : '还没配置 API Key', [
+    card('时间', true, ck.spoken || '—', [
+      ['本机时间', ck.now || '—'],
+      ['时区', ck.tz || '—'],
+      ['来源', ck.source === 'device' ? '由手机传入' : '系统默认'],
+      ['版本', ck.app_version || '开发版'],
+    ])
+    + card('模型', !!m.configured, m.configured ? '配置完整，可以发起对话' : '还没配置 API Key', [
       ['Base URL', m.base_url || '—'],
       ['模型', m.model || '—'],
       ['分析模型', m.analysis_model || '同主模型'],
@@ -2035,6 +2042,11 @@ document.addEventListener('click', e => {
   await loadAll();
   loadMe();
   loadLooks();
+  // 版本号写进「我的」副标题，一眼就能确认装的是不是新版
+  api('/api/diagnostics').then(d => {
+    const v = ((d || {}).clock || {}).app_version;
+    if (v) $('meVersion').textContent = '手机版 v' + v + ' · 本地直连';
+  }).catch(() => {});
   const last = localStorage.getItem('m-last');
   if (S.chars.length){
     const t = S.chars.find(c => c.slug === last) || S.chars[0];

@@ -16,6 +16,8 @@ import random
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 
+from . import clock
+
 DEFAULT_SLEEP_RANGE = (23 * 60, 23 * 60 + 160)   # 23:00 ~ 01:40
 DEFAULT_WAKE_RANGE = (7 * 60, 7 * 60 + 200)      # 07:00 ~ 10:20
 
@@ -60,7 +62,7 @@ class Schedule:
         return t >= start or t < end          # 跨午夜
 
     def is_asleep(self, now: datetime | None = None) -> bool:
-        now = now or datetime.now()
+        now = now or clock.now()
         t = now.hour * 60 + now.minute
         if self._in_window(t, self.sleep_min, self.wake_min):
             return True
@@ -70,7 +72,7 @@ class Schedule:
         return False
 
     def next_wake(self, now: datetime | None = None) -> datetime:
-        now = now or datetime.now()
+        now = now or clock.now()
         t = now.hour * 60 + now.minute
         delta = (self.wake_min - t) % 1440 or 1440
         return (now + timedelta(minutes=delta)).replace(second=0, microsecond=0)
@@ -121,13 +123,26 @@ def build(name: str, cfg: dict | None = None) -> Schedule:
 
 
 def describe_phase(sch: Schedule, now: datetime | None = None) -> str:
-    """给提示词用的自然语言时间状态。"""
-    now = now or datetime.now()
+    """给提示词用的自然语言时间状态。
+
+    注意：午睡和夜间睡眠必须分开说。之前两者都返回「现在是深夜」，
+    结果大中午找她说话，模型看到「深夜」就答「现在是凌晨一点」——
+    这是被实测抓到的真故障，不是模型幻觉。
+    """
+    now = now or clock.now()
+    t = now.hour * 60 + now.minute
+
     if sch.is_asleep(now):
-        return f"现在是深夜/休息时间，你已经睡下了（通常 {sch.wake} 左右起）"
-    mins_to_sleep = (sch.sleep_min - (now.hour * 60 + now.minute)) % 1440
+        if sch.nap and sch._in_window(t, sch.nap[0], sch.nap[1]):
+            return (f"你在午睡（平时 {_min_to_hhmm(sch.nap[0])}~{_min_to_hhmm(sch.nap[1])}），"
+                    f"刚被消息吵醒，人还有点懵")
+        return f"你已经在睡了（平时 {sch.wake} 左右起），这条消息把你吵醒了"
+
+    mins_to_sleep = (sch.sleep_min - t) % 1440
     if mins_to_sleep <= 45:
         return f"快到你的睡觉时间了（{sch.sleep} 睡）"
+    if now.hour < 5:
+        return "凌晨，你还没睡"
     if now.hour < 11:
         return "早上，你刚起来不久"
     if now.hour < 14:

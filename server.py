@@ -37,6 +37,7 @@ HERE = BASE
 sys.path.insert(0, HERE)
 
 from core import cards as cards_mod
+from core import clock
 from core import groups as groups_mod
 from core import lore as lore_mod
 from core import persona_builder
@@ -46,11 +47,13 @@ from core import traits as traits_mod
 from core.db import Store
 from core.llm import LLM, LLMError
 from core.memory import Memory
+from core import think as think_mod
 from core.think import Thinker
 
 WEB_DIR = os.path.join(RES, "web")
 CHAR_DIR = os.path.join(HERE, "characters")
 DATA_DIR = os.path.join(HERE, "data")
+APP_VERSION = os.environ.get("STARLIT_APP_VERSION") or ""
 UPLOAD_DIR = os.path.join(DATA_DIR, "uploads")   # 聊天里发的图片
 STICKER_DIR = os.path.join(HERE, "stickers")
 CONFIG_PATH = os.path.join(HERE, "config.json")
@@ -530,7 +533,17 @@ class App:
             except Exception:
                 pass
 
+        now = clock.now()
         return {
+            "clock": {
+                "now": now.strftime("%Y-%m-%d %H:%M:%S"),
+                "spoken": think_mod.format_time_context(None, now).rstrip("。"),
+                "tz": clock.tz_name(),
+                "tz_offset_min": clock.offset_minutes(),
+                "source": clock.source(),
+                "epoch": int(now.timestamp()),
+                "app_version": APP_VERSION,
+            },
             "model": {
                 "configured": self.llm.configured,
                 "base_url": self.llm.base,

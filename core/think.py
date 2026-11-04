@@ -12,6 +12,7 @@ import json
 import random
 from datetime import datetime
 
+from . import clock
 from . import schedule as sched_mod
 from . import traits as traits_mod
 from .llm import LLM
@@ -37,10 +38,35 @@ ANALYZE_SYSTEM = """你是对话分析器。只输出一个 JSON 对象，不要
 不要复述用户原话，不要输出 JSON 以外的任何字符。"""
 
 
+_PERIODS = (
+    (5, "凌晨"), (9, "早上"), (11, "上午"), (13, "中午"),
+    (18, "下午"), (23, "晚上"), (24, "深夜"),
+)
+
+
+def _period_of(hour: int) -> str:
+    for end, word in _PERIODS:
+        if hour < end:
+            return word
+    return "深夜"
+
+
 def format_time_context(last_spoke_ts: float | None, now: datetime | None = None) -> str:
-    """只给 role/text 的话，模型分不清「昨晚 23:59」和「今天 15:48」。"""
-    now = now or datetime.now()
-    parts = [f"现在是 {now.strftime('%Y-%m-%d %H:%M')}（{'一二三四五六日'[now.weekday()]}）"]
+    """只给 role/text 的话，模型分不清「昨晚 23:59」和「今天 15:48」。
+
+    表述上刻意用中文口语（「下午 3 点 20 分」）而不是「15:20」：
+    24 小时制要模型自己换算，实测出现过把 13 点说成 1 点、把中午说成凌晨的情况。
+    """
+    now = now or clock.now()
+    h, m = now.hour, now.minute
+    h12 = h % 12 or 12
+    mm = "" if m == 0 else f" {m} 分"
+    clock_str = f"{_period_of(h)} {h12} 点{mm}"
+    parts = [
+        f"现在是 {now.year} 年 {now.month} 月 {now.day} 日"
+        f" 星期{'一二三四五六日'[now.weekday()]}，{clock_str}"
+        f"（24 小时制 {h:02d}:{m:02d}）"
+    ]
     if last_spoke_ts:
         gap = now.timestamp() - last_spoke_ts
         if gap < 60:
@@ -50,7 +76,7 @@ def format_time_context(last_spoke_ts: float | None, now: datetime | None = None
         elif gap < 86400:
             parts.append(f"距上次说话 {int(gap // 3600)} 小时")
         else:
-            parts.append(f"距上次说话 {int(gap // 86400)} 天（上次是 {datetime.fromtimestamp(last_spoke_ts).strftime('%m-%d %H:%M')}）")
+            parts.append(f"距上次说话 {int(gap // 86400)} 天（上次是 {clock.from_ts(last_spoke_ts).strftime('%m-%d %H:%M')}）")
     return "；".join(parts) + "。"
 
 
@@ -64,6 +90,7 @@ SPEAKING_RULES = """【说话方式】
 - 不要用 emoji 刷屏。
 - 不要每句都追问（那是查户口），也不要每句都汇报自己（那是自说自话）。
 - 不要用「作为AI」这类出戏开场。对方认真问你是不是人工智能时，如实承认，别冒充真人。
+- 对方问你几点、几号、星期几，就按【此刻的状态】里那一条如实答，别推算、别换算、别含糊其辞。
 - 不要提到「人格卡」「提示词」「设定」这些词。
 - 你有自己的过去。除非下面确实一条经历都没有，否则不要说自己「没有故事」「没有记忆」「不是从某一天开始存在的」。想不起来具体细节，就像真人那样说「记不太清了」，而不是否认自己有过去。"""
 
