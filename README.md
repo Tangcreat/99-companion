@@ -1,8 +1,20 @@
 # 99陪伴
 
+## 下载
+
+不装环境直接用的安装包在 Releases：
+
+| 包 | 适用 | 说明 |
+|---|---|---|
+| [99peiban-Android-v1.5.apk](https://github.com/Tangcreat/99-companion/releases/download/v1.5/99peiban-Android-v1.5.apk) | 安卓 7.0+ / arm64 | 27MB，独立运行，数据在手机里 |
+| [99peiban-Desktop-v1.5.zip](https://github.com/Tangcreat/99-companion/releases/download/v1.5/99peiban-Desktop-v1.5.zip) | Windows 10/11 | 36MB，解压双击 exe |
+
+**都不含 API Key**，第一次启动要在设置里填自己的（DeepSeek / OpenAI / 本地 Ollama 都行）。
+安装包不进 git 仓库（`.gitignore` 挡了 `*.apk` 与 `dist/`），只作为 Release 附件。
+
 一个本地优先的 AI 角色陪伴应用骨架。架构参照「星伴 Starlit」逆向分析结果重建，**代码全部自研，不含其任何素材**。
 
-- 角色**全部由你导入**，程序内置零个角色
+- 内置 122 位角色（20 位重点），也可以导入自己的 Tavern 卡
 - 数据只存本机 SQLite，不需要账号
 - 模型可换：任何 OpenAI 兼容端点（DeepSeek / OpenAI / Moonshot / 本地 Ollama）
 

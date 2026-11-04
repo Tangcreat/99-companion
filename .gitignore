@@ -54,3 +54,8 @@ android/app/src/main/assets/
 
 # 角色目录里的运行时占位文件（每次保存都会重写，含时间戳）
 characters/*/state.json
+
+# 临时脚本输出
+_*.json
+_*.html
+_*.js
