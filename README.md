@@ -6,8 +6,8 @@
 
 | 包 | 适用 | 说明 |
 |---|---|---|
-| [99peiban-Android-v1.5.apk](https://github.com/Tangcreat/99-companion/releases/download/v1.7/99peiban-Android-v1.7.apk) | 安卓 7.0+ / arm64 | 27.4MB，独立运行，数据在手机里 |
-| [99peiban-Desktop-v1.5.zip](https://github.com/Tangcreat/99-companion/releases/download/v1.7/99peiban-Desktop-v1.7.zip) | Windows 10/11 | 36MB，解压双击 peiban.exe |
+| [99peiban-Android-v1.7.apk](https://github.com/Tangcreat/99-companion/releases/download/v1.7/99peiban-Android-v1.7.apk) | 安卓 7.0+ / arm64 | 27.4MB，独立运行，数据在手机里 |
+| [99peiban-Desktop-v1.7.zip](https://github.com/Tangcreat/99-companion/releases/download/v1.7/99peiban-Desktop-v1.7.zip) | Windows 10/11 | 36MB，解压双击 peiban.exe |
 
 **都不含 API Key**，第一次启动要在设置里填自己的（DeepSeek / OpenAI / 本地 Ollama 都行）。
 安装包不进 git 仓库（`.gitignore` 挡了 `*.apk` 与 `dist/`），只作为 Release 附件。
