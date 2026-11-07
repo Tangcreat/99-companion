@@ -11,6 +11,8 @@
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/static-icon.png">
 <title>99陪伴</title>
+<link rel="stylesheet" href="/character-drafts.css">
+<link rel="stylesheet" href="/sticker-panel.css">
 <style>
 :root{
   --brand:#2f7cf6; --brand-d:#1f66d8; --brand-l:#eaf1ff;
@@ -324,7 +326,7 @@ input{font:inherit;color:inherit}
 @keyframes sp{to{transform:rotate(360deg)}}
 </style>
 </head>
-<body>
+<body data-character-client="mobile">
 <h2 class="sr">99陪伴 手机版</h2>
 
 <div class="app">
@@ -438,9 +440,15 @@ input{font:inherit;color:inherit}
   </nav>
 
   <!-- ============ 表情面板 ============ -->
-  <div class="stkpanel" id="stkpanel">
-    <div class="stkhead" id="stkhead"></div>
-    <div class="stkgrid" id="stkgrid"></div>
+  <div class="stkpanel" id="stkpanel" data-sticker-panel data-sticker-client="mobile">
+    <div class="sk-top">
+      <div class="sk-tabs" id="skTabs"></div>
+      <div class="sk-tools"><button class="sk-tool-btn" id="skManage" type="button">管理</button><input class="sk-search" id="skSearch" placeholder="搜索表情"><button class="sk-close" id="skClose" type="button" aria-label="关闭">×</button></div>
+    </div>
+    <div class="sk-admin" id="skAdmin" hidden><span class="sk-admin-note">点 × 删除，点 + 添加图片</span><button class="sk-admin-btn" id="skCreateSet" type="button">+分类</button><button class="sk-admin-btn" id="skDeleteSet" type="button">删分类</button><button class="sk-admin-btn" id="skUpload" type="button">+添加</button></div>
+    <div class="sk-grid" id="skGrid"></div>
+    <div class="sk-status" id="skStatus"></div>
+    <input type="file" id="skFile" accept="image/*" multiple hidden>
   </div>
 
   <!-- ============ 表情（unicode）面板 ============ -->
@@ -603,20 +611,54 @@ input{font:inherit;color:inherit}
     <div class="sheetbody" id="charSheetBody"></div>
   </div>
 
-  <!-- ============ 添加角色 ============ -->
-  <div class="sheet" id="addSheet">
+  <!-- ============ 添加角色：草稿 → 编辑/试聊 → 显式提交 ============ -->
+  <div class="sheet cd-sheet" id="addSheet" data-character-modal>
     <div class="sheethead">
-      <h2 id="addTitle">添加角色</h2>
-      <button class="closebtn" onclick="closeAdd()">
-        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-      </button>
+      <div class="cd-heading"><h2>添加角色</h2><p class="cd-subtitle">先检查人设和聊感，确认后再让她正式入住</p></div>
+      <button class="closebtn" id="cdClose" type="button" aria-label="关闭"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
-    <div class="sheetbody" id="addbody"></div>
+    <div class="sheetbody cd-content">
+      <div class="cd-avatar-row"><div class="cd-preview" id="cdPreview">?</div><div><button class="cd-btn small" id="cdPickAvatar" type="button">选择头像</button><p class="cd-avatar-note">只使用本地图片，可拖动缩放并裁成 256×256；正式添加前必须选择。</p></div></div>
+      <label class="cd-field"><span>角色名</span><input class="cd-input" id="cdName" maxlength="24" placeholder="例如：天童爱丽丝"></label>
+      <div class="cd-source-grid"><button class="cd-btn" id="cdImport" type="button">导入 JSON 角色卡</button><button class="cd-btn" id="cdGenerate" type="button">联网生成草稿</button></div>
+      <div class="cd-preset-row"><select class="cd-input" id="cdPreset" aria-label="角色卡预设"><option value="">选择角色卡预设…</option></select><button class="cd-btn" id="cdPresetDownload" type="button">下载所选 JSON</button></div>
+      <p class="cd-hint">支持星伴、chara_card_v1 / v2 及常见 description / personality / scenario 字段。可先下载模板或预设，修改后导入；也可直接点「使用预设」。</p>
+      <button class="cd-btn small" id="cdPresetUse" type="button">使用预设</button>
+      <p class="cd-status" id="cdStatus">草稿与试聊不会写入正式角色、聊天或记忆。</p>
+      <div class="cd-editor" id="cdEditor" hidden>
+        <div class="cd-form-grid"><label class="cd-field"><span>作品 / 来源</span><input class="cd-input" id="cdSeries" maxlength="80" placeholder="可留空"></label><label class="cd-field"><span>别名（顿号或逗号分隔）</span><input class="cd-input" id="cdAliases" placeholder="最多 8 项"></label></div>
+        <label class="cd-field"><span>一句话简介</span><textarea class="cd-input" id="cdSummary" rows="2" maxlength="240"></textarea></label>
+        <label class="cd-field"><span>性别（决定第三人称：他 / 她）</span><select class="cd-input" id="cdGender"><option value="">自动判断</option><option value="male">男性（用「他」）</option><option value="female">女性（用「她」）</option><option value="other">不确定（用「TA」）</option></select></label>
+        <label class="cd-field"><span>兴趣（顿号或逗号分隔）</span><input class="cd-input" id="cdInterests" placeholder="最多 8 项"></label>
+        <label class="cd-field"><span>完整人设 Markdown</span><textarea class="cd-input cd-persona" id="cdPersona" rows="12" maxlength="12000"></textarea></label>
+        <div class="cd-edit-meta"><span id="cdRevision">草稿 revision 1</span><div class="cd-edit-actions"><button class="cd-btn small" id="cdSave" type="button">保存修改</button><button class="cd-btn small" id="cdExport" type="button">导出 JSON 角色卡</button></div></div>
+        <section class="cd-trial" aria-label="创建前试聊">
+          <div class="cd-trial-head"><div><strong>创建前试聊</strong><small>最多保留 24 条临时上下文，重启即清空</small></div><span class="cd-trial-badge">不写入记忆</span></div>
+          <div class="cd-trial-log" id="cdTrialLog"></div>
+          <div class="cd-trial-composer"><textarea class="cd-input" id="cdTrialInput" rows="2" maxlength="2000" placeholder="Enter 发送，Shift+Enter 换行"></textarea><button class="cd-btn primary" id="cdTrialSend" type="button">发送</button></div>
+        </section>
+      </div>
+    </div>
+    <div class="cd-actions"><button class="cd-btn" id="cdCancel" type="button">取消</button><button class="cd-btn primary" id="cdCommit" type="button" disabled>确认添加角色</button></div>
   </div>
 
   <div class="toast" id="toast"></div>
 </div>
+<input type="file" id="cdAvatarInput" accept="image/*" hidden>
+<input type="file" id="cdCardInput" accept=".json,application/json" hidden>
+<div class="cd-crop-mask" id="cdCropMask">
+  <div class="cd-crop-dialog" role="dialog" aria-modal="true" aria-label="裁剪角色头像">
+    <h3 class="cd-crop-title">裁剪头像</h3>
+    <div class="cd-crop-stage" id="cdCropStage"><img id="cdCropImg" alt="待裁剪头像"><span class="cd-crop-ring"></span></div>
+    <div class="cd-crop-zoom"><span>−</span><input type="range" id="cdCropZoom" min="100" max="400" value="100" aria-label="缩放"><span>+</span></div>
+    <p class="cd-hint">在圆圈内拖动调整位置，也可使用滑杆缩放。</p>
+    <div class="cd-crop-actions"><button class="cd-btn" id="cdCropRepick" type="button">重新选择</button><button class="cd-btn" id="cdCropCancel" type="button">取消</button><button class="cd-btn primary" id="cdCropConfirm" type="button">确认</button></div>
+  </div>
+</div>
 
+<script src="/character-presets.js"></script>
+<script src="/character-drafts.js"></script>
+<script src="/sticker-panel.js"></script>
 <script>
 const S = {
   chars: [], groups: [], cur: null, group: null, mode: 'dm',
@@ -1055,56 +1097,7 @@ function syncSendBtn(){
   $('sendBtn').classList.toggle('on', has);
 }
 
-/* ---------- 表情面板 ---------- */
-async function toggleStickers(){
-  const p = $('stkpanel');
-  if (p.classList.contains('on')){ p.classList.remove('on'); return; }
-  if (!S.stickers){
-    $('stkgrid').innerHTML = '<div class="stkempty"><span class="spin"></span>读取中…</div>';
-    p.classList.add('on');
-    S.stickers = await api('/api/stickers');
-    renderStkHead();
-  }
-  p.classList.add('on');
-  renderStkGrid();
-}
-
-function renderStkHead(){
-  const sets = (S.stickers && S.stickers.sets) || [];
-  const total = ((S.stickers && S.stickers.items) || []).length;
-  $('stkhead').innerHTML =
-    `<button class="${S.stkSet==='ALL'?'on':''}" onclick="pickSet(-1)">全部 ${total}</button>` +
-    sets.map((s,i) => `<button class="${S.stkSet===s.name?'on':''}" onclick="pickSet(${i})">${esc(s.name)} ${s.count}</button>`).join('') +
-    `<button style="margin-left:auto" onclick="closeStk()">✕</button>`;
-}
-
-function pickSet(i){
-  S.stkSet = i < 0 ? 'ALL' : ((S.stickers.sets[i]||{}).name || 'ALL');
-  renderStkHead();
-  renderStkGrid();
-}
-
-function renderStkGrid(){
-  const g = $('stkgrid');
-  let items = (S.stickers && S.stickers.items) || [];
-  if (S.stkSet !== 'ALL') items = items.filter(i => (i.source||'') === S.stkSet);
-  if (!items.length){
-    g.innerHTML = '<div class="stkempty">还没有表情包<br><span style="font-size:12px">把图片放进 stickers/ 目录，命名成「情绪_xxx.png」</span></div>';
-    S.stkView = [];
-    return;
-  }
-  S.stkView = items.slice(0, 300);
-  g.innerHTML = S.stkView.map((i, idx) =>
-    `<img src="${i.url}" loading="lazy" onclick="sendStk(${idx})">`).join('');
-}
-
-async function sendStk(idx){
-  const it = S.stkView[idx];
-  if (!it || !S.cur) { toast('群聊暂不支持发表情'); return; }
-  $('stkpanel').classList.remove('on');
-  addSticker('user', it.url);
-  await post('/api/stickers/send', {slug: S.cur.slug, file: it.file});
-}
+/* 图片表情面板由 sticker-panel.js 统一接管。 */
 
 /* ================= 表情（unicode） ================= */
 const EMOJI = {
@@ -1169,8 +1162,6 @@ function insertEmoji(e){
   syncSendBtn();
 }
 
-function closeStk(){ $('stkpanel').classList.remove('on'); }
-
 /* 点输入框时把浮层都收起来 */
 function hidePanels(){
   $('stkpanel').classList.remove('on');
@@ -1188,24 +1179,6 @@ function openActions(){
 function closeActions(){
   $('actmask').classList.remove('on');
   $('actsheet').classList.remove('on');
-}
-
-/* 打开表情包面板（从加号或菜单进来） */
-function openStickerPick(){
-  $('emopanel').classList.remove('on');
-  const p = $('stkpanel');
-  p.classList.add('on');
-  if (!S.stickers){
-    $('stkgrid').innerHTML = '<div class="stkempty"><span class="spin"></span>读取中…</div>';
-    api('/api/stickers').then(d => {
-      S.stickers = d;
-      renderStkHead();
-      renderStkGrid();
-    });
-  } else {
-    renderStkHead();
-    renderStkGrid();
-  }
 }
 
 /* 发图片 */
@@ -1900,115 +1873,11 @@ function saveTraits(){
   }, 250);
 }
 
-/* ---------- 添加角色 ---------- */
-let newAvatarB64 = null;
-
-function openAdd(){
-  newAvatarB64 = null;
-  $('addTitle').textContent = '添加角色';
-  $('addSheet').classList.add('on');
-  $('addbody').innerHTML = `
-    <div class="note">
-      <div class="kicker">只需一个名字</div>
-      <h3>模型会写出一张完整人格卡</h3>
-      <p>包括性格、说话方式、口癖，以及几条过往经历。生成后可以直接改，满意了再保存。</p>
-    </div>
-    <div class="field"><label>角色名 *</label><input id="aName" placeholder="例如：维尔汀"></div>
-    <div class="field"><label>作品（可空）</label><input id="aSeries" placeholder="原创角色留空就好"></div>
-    <div class="field"><label>补充要求（可空）</label><input id="aNotes" placeholder="例如：话少一点，别太热情"></div>
-    <div class="field"><label>头像（可选）</label>
-      <button class="btn" id="aAvBtn" onclick="pickNewAvatar()">选择图片</button></div>
-    <div class="btnrow"><button class="btn primary" id="aGen" onclick="doGenerate()">生成人设</button></div>
-    <div class="msgline" id="aMsg"></div>`;
-  setTimeout(() => { const el = $('aName'); if (el) el.focus(); }, 140);
-}
-
-function closeAdd(){
-  $('addSheet').classList.remove('on');
-}
-
-function pickNewAvatar(){
-  const inp = document.createElement('input');
-  inp.type = 'file'; inp.accept = 'image/*';
-  inp.onchange = async () => {
-    const f = inp.files[0]; if (!f) return;
-    newAvatarB64 = await fileToB64(f);
-    const b = $('aAvBtn');
-    if (b){ b.textContent = '已选择：' + f.name.slice(0, 18); b.style.color = 'var(--brand)'; }
-  };
-  inp.click();
-}
-
-async function doGenerate(){
-  const name = (($('aName') || {}).value || '').trim();
-  const msg = $('aMsg');
-  if (!name){ msg.className = 'msgline bad'; msg.textContent = '先填个名字'; return; }
-  $('aGen').disabled = true;
-  msg.className = 'msgline';
-  msg.innerHTML = '<span class="spin"></span>正在生成，可能要十几秒…';
-  try{
-    const d = await post('/api/characters/generate', {
-      name,
-      series: (($('aSeries') || {}).value || '').trim(),
-      notes: (($('aNotes') || {}).value || '').trim(),
-    });
-    if (!d.ok){ msg.className = 'msgline bad'; msg.textContent = d.error || '生成失败'; return; }
-    S.draft = d.draft;
-    renderDraft(d.draft);
-  }catch(e){
-    msg.className = 'msgline bad'; msg.textContent = '网络异常：' + e.message;
-  }finally{
-    const b = $('aGen'); if (b) b.disabled = false;
-  }
-}
-
-function renderDraft(dr){
-  $('addTitle').textContent = '确认人设';
-  $('addbody').innerHTML = `
-    <div class="note" style="background:linear-gradient(180deg,#eefaf3,#f8fdfa);border-color:#cfeedf">
-      <div class="kicker" style="color:#0f7a4f">生成完成</div>
-      <h3>${esc(dr.name)}</h3>
-      <p>${dr.persona_md.length} 字 · ${(dr.interests||[]).length} 个兴趣 ·
-         ${(dr.lore||[]).length} 条经历 · ${dr.used_search ? '已联网检索' : '模型知识蒸馏'}</p>
-    </div>
-    <div class="field"><label>一句话概括</label>
-      <input id="dSummary" value="${esc(dr.summary || '')}"></div>
-    <div class="field"><label>人格卡（可以直接改）</label>
-      <textarea id="dPersona" style="width:100%;min-height:300px;padding:12px;border:1px solid var(--line);
-        border-radius:11px;background:var(--bg2);font-size:13px;line-height:1.75;outline:none;
-        resize:vertical;color:var(--ink);font-family:inherit">${esc(dr.persona_md)}</textarea></div>
-    <div class="btnrow">
-      <button class="btn" onclick="openAdd()">重新生成</button>
-      <button class="btn primary" onclick="saveNewChar()">保存角色</button>
-    </div>
-    <div class="msgline" id="aMsg"></div>`;
-}
-
-async function saveNewChar(){
-  const persona = (($('dPersona') || {}).value || '').trim();
-  const msg = $('aMsg');
-  if (persona.length < 200){
-    msg.className = 'msgline bad';
-    msg.textContent = `人设只有 ${persona.length} 字，至少 200 字`;
-    return;
-  }
-  msg.className = 'msgline';
-  msg.innerHTML = '<span class="spin"></span>保存中…';
-  const d = await post('/api/characters/create', {
-    name: S.draft.name,
-    series: S.draft.series,
-    summary: (($('dSummary') || {}).value || '').trim(),
-    interests: S.draft.interests || [],
-    persona_md: persona,
-    lore: S.draft.lore || [],
-    avatar_base64: newAvatarB64,
-  });
-  if (d.error){ msg.className = 'msgline bad'; msg.textContent = d.error; return; }
-  closeAdd();
+/* 草稿正式提交后刷新列表并打开新角色；试聊不会触发此事件。 */
+document.addEventListener('character-committed', async event => {
   await loadAll();
-  toast('已添加：' + S.draft.name);
-  selectChar(d.slug);
-}
+  if (event.detail && event.detail.slug) await selectChar(event.detail.slug);
+});
 
 async function buildGroup(){
   toast('正在按剧情关系建群…');

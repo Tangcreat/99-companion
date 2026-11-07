@@ -43,6 +43,7 @@ class InternalCard:
     slug: str
     persona_md: str
     summary: str = ""
+    gender: str = ""             # male / female / other，决定第三人称用「他」还是「她」
     signature: str = ""          # 个性签名：她想让别人看到的一句话
     address: str = ""            # 她对聊天人的固定称呼（如「司辰」「阁下」）
     series: str = ""
@@ -209,6 +210,7 @@ def parse_card_dict(obj: dict, raw_name_hint: str = "",
         slug=slug,
         persona_md=persona,
         summary=(d.get("summary") or "").strip(),
+        gender=(d.get("gender") or "").strip(),
         signature=(d.get("signature") or "").strip(),
         address=(d.get("address") or "").strip(),
         series=(series or "").strip(),
@@ -284,7 +286,8 @@ class CardStore:
             "spec_version": "1.0",
             "data": {
                 "id": card.id, "name": card.name, "slug": card.slug,
-                "summary": card.summary, "signature": card.signature,
+                "summary": card.summary, "gender": card.gender,
+                "signature": card.signature,
                 "address": card.address,
                 "series": card.series,
                 "aliases": card.aliases, "interests": card.interests,
@@ -350,7 +353,7 @@ class CardStore:
                interests: list[str] | None = None, tags: list[str] | None = None,
                accent: str = "#9ecbff", avatar_bytes: bytes | None = None,
                traits: dict | None = None, schedule: dict | None = None,
-               min_chars: int | None = None) -> InternalCard:
+               min_chars: int | None = None, gender: str = "") -> InternalCard:
         name = (name or "").strip()
         if not name:
             raise CardError("角色名不能为空")
@@ -372,6 +375,7 @@ class CardStore:
             tags=[str(x) for x in (tags or []) if str(x).strip()],
             accent=accent if re.match(r"^#[0-9a-fA-F]{6}$", str(accent)) else "#9ecbff",
             traits=traits or {}, schedule=schedule or {},
+            gender=(gender if gender in ("male", "female", "other") else ""),
             source_spec="distilled", imported_at=time.time(),
         )
         self.save(card, avatar_bytes)

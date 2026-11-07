@@ -24,7 +24,7 @@ import requests
 from .llm import LLM, LLMError
 
 PERSONA_HEADINGS = [
-    "她是谁", "外貌与气质", "性格", "说话方式",
+    "身份", "外貌与气质", "性格", "说话方式",
     "在意的事", "回避的事", "关系定位", "边界",
 ]
 
@@ -35,9 +35,10 @@ GENERATE_SYSTEM = f"""你是角色卡撰写者。根据给定的角色名，产�
   "found": true,
   "name": "角色名",
   "series": "作品名（原创或不确定就留空字符串）",
+  "gender": "male 或 female 或 other（按这个角色真实的性别填）",
   "aliases": ["别名"],
   "summary": "一句话概括（不超过 30 字）",
-  "interests": ["她自己的兴趣1", "兴趣2", "兴趣3", "兴趣4", "兴趣5"],
+  "interests": ["角色自己的兴趣1", "兴趣2", "兴趣3", "兴趣4", "兴趣5"],
   "persona_md": "完整人格卡 Markdown",
   "lore": [
     {{
@@ -58,15 +59,16 @@ persona_md 的硬性要求：
 - 「说话方式」必须具体到可执行：句子长短、口头禅、标点习惯、遇到不知道的事怎么回应
 - 不要写成客服腔、不要大段抒情、不要出现「作为AI」「我是一个模型」这类句子
 - 不要编造具体剧情细节；不确定的地方就写得笼统些
-- 写"她"而不是"这个角色"
+- **人称必须与 gender 一致**：男性用「他」，女性用「她」，不确定或非二元用「TA」或直接省略主语。
+  李白、苏轼这类历史男性人物必须写「他」，不能写成「她」。拿不准就查资料确认，不要默认成女性。
 - 如果这个名字对应多个同名角色，选最知名的那个，并在 series 里写清作品
 
 lore 的硬性要求：
-- 写 4~6 条，覆盖这几类：一段过往（kind=history）、她所在的地方（place）、
-  她在意或纠葛的人（person）、一个生活上的习惯（habit）
+- 写 4~6 条，覆盖这几类：一段过往（kind=history）、角色所在的地方（place）、
+  角色在意或纠葛的人（person）、一个生活上的习惯（habit）
 - kind 只能是 history / place / person / habit / world / rule 之一
 - keywords 写 2~4 个"聊天时可能被提到"的词，要具体（"雨天"太宽泛，"旧书店的阁楼"才好）
-- content 必须具体到能画面感，不要写"她有一段复杂的过去"这种废话
+- content 必须具体到能画面感，不要写"角色有一段复杂的过去"这种废话
 - always 一律给 false；只有世界观级别的铁律才给 true"""
 
 
@@ -104,7 +106,8 @@ def _search_context(name: str, endpoint: str, timeout: int = 12) -> str:
 
 
 def generate_card(llm: LLM, name: str, series_hint: str = "",
-                  extra_notes: str = "", search_endpoint: str = "") -> dict:
+                  extra_notes: str = "", search_endpoint: str = "",
+                  gender_hint: str = "") -> dict:
     name = (name or "").strip()
     if not name:
         raise LLMError("请先填写角色名字")
@@ -118,6 +121,9 @@ def generate_card(llm: LLM, name: str, series_hint: str = "",
     user_parts = [f"角色名：{name}"]
     if series_hint:
         user_parts.append(f"作品/来源：{series_hint}")
+    if gender_hint in ("male", "female", "other"):
+        label = {"male": "男性", "female": "女性", "other": "非二元/不确定"}[gender_hint]
+        user_parts.append(f"这个角色的性别是：{label}。人称必须与人设一致。")
     if extra_notes:
         user_parts.append(f"补充要求：{extra_notes}")
     if context:
@@ -139,8 +145,14 @@ def generate_card(llm: LLM, name: str, series_hint: str = "",
     if len(persona) < 200:
         raise LLMError(f"生成的人设只有 {len(persona)} 字，太短了，换个模型或再试一次")
 
+    gender = (gender_hint if gender_hint in ("male", "female", "other")
+              else str(data.get("gender") or "").strip().lower())
+    if gender not in ("male", "female", "other"):
+        gender = "other"
+
     return {
         "name": (data.get("name") or name).strip(),
+        "gender": gender,
         "series": (data.get("series") or series_hint or "").strip(),
         "aliases": data.get("aliases") or [],
         "summary": (data.get("summary") or "").strip(),

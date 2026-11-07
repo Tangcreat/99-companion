@@ -17,14 +17,25 @@
 """
 from __future__ import annotations
 
+import base64
 import hashlib
 import json
 import os
 import random
 import re
+import threading
 from urllib.parse import quote
 
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp"}
+MAX_IMAGE_BYTES = 8 * 1024 * 1024
+MIME_EXT = {
+    "image/png": ".png", "image/jpeg": ".jpg", "image/jpg": ".jpg",
+    "image/gif": ".gif", "image/webp": ".webp", "image/bmp": ".bmp",
+}
+
+
+class StickerError(ValueError):
+    """表情图片、分类或路径不合法。"""
 
 # 把模型吐出的情绪词归一到表情包文件名的前缀词
 EMOTION_FAMILY = {
@@ -63,8 +74,66 @@ def classify(label: str) -> str | None:
 
 class StickerStore:
     def __init__(self, root: str):
-        self.root = root
+        self.root = os.path.abspath(root)
         self.index_path = os.path.join(root, "index.json")
+        self.lock = threading.RLock()
+
+    def _write_index(self, entries: list[dict]) -> None:
+        """原子更新索引，避免上传/删除与读取并发时看到半个 JSON。"""
+        os.makedirs(self.root, exist_ok=True)
+        entries = sorted(entries, key=lambda e: e.get("file", ""))
+        tmp = self.index_path + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(entries, f, ensure_ascii=False, indent=1)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, self.index_path)
+
+    def _category_path(self, name: str, create: bool = False) -> tuple[str, str]:
+        """分类只允许根目录下的一层普通目录，不接受路径分隔符。"""
+        name = str(name or "").strip()
+        if not name or name in (".", "..") or len(name) > 60:
+            raise StickerError("分类名不能为空，且不能超过 60 字")
+        if name.startswith(".") or re.search(r"[/\\\x00]", name):
+            raise StickerError("分类名不能包含路径分隔符")
+        if name.lower() in ("index.json", "thumbs", "thumbnails"):
+            raise StickerError("这个分类名被系统保留")
+        path = os.path.abspath(os.path.join(self.root, name))
+        if os.path.commonpath([self.root, path]) != self.root or os.path.islink(path):
+            raise StickerError("分类路径不合法")
+        if create:
+            os.makedirs(self.root, exist_ok=True)
+            if os.path.exists(path) and not os.path.isdir(path):
+                raise StickerError("分类名已被文件占用")
+            os.makedirs(path, exist_ok=True)
+        return name, path
+
+    @staticmethod
+    def _decode_upload(data_url: str) -> tuple[bytes, str]:
+        match = re.match(r"^data:(image/[a-zA-Z0-9.+-]+);base64,(.+)$",
+                         str(data_url or ""), re.S)
+        if not match:
+            raise StickerError("图片必须是有效的 dataURL")
+        mime = match.group(1).lower()
+        ext = MIME_EXT.get(mime)
+        if not ext:
+            raise StickerError("只支持 PNG、JPG、GIF、WebP、BMP 图片")
+        try:
+            raw = base64.b64decode(match.group(2), validate=True)
+        except Exception as e:
+            raise StickerError("图片数据损坏，请重新选择") from e
+        if not raw or len(raw) > MAX_IMAGE_BYTES:
+            raise StickerError("单张图片不能超过 8MB")
+        signatures = {
+            ".png": raw.startswith(b"\x89PNG\r\n\x1a\n"),
+            ".jpg": raw.startswith(b"\xff\xd8\xff"),
+            ".gif": raw.startswith((b"GIF87a", b"GIF89a")),
+            ".webp": len(raw) >= 12 and raw[:4] == b"RIFF" and raw[8:12] == b"WEBP",
+            ".bmp": raw.startswith(b"BM"),
+        }
+        if not signatures.get(ext, False):
+            raise StickerError("图片内容与格式不符")
+        return raw, ext
 
     # ---------------------------------------------------------------- 扫描
     def scan(self, force: bool = False) -> int:
@@ -77,6 +146,8 @@ class StickerStore:
 
         entries, seen = [], set()
         for dirpath, _dirs, files in os.walk(self.root):
+            _dirs[:] = [d for d in _dirs if not d.startswith(".") and
+                        d.lower() not in ("thumbs", "thumbnails")]
             for fn in files:
                 ext = os.path.splitext(fn)[1].lower()
                 if ext not in IMAGE_EXT:
@@ -89,9 +160,8 @@ class StickerStore:
                     continue
                 entries.append(self._make_entry(rel, fn))
 
-        entries.sort(key=lambda e: e["file"])
-        with open(self.index_path, "w", encoding="utf-8") as f:
-            json.dump(entries, f, ensure_ascii=False, indent=1)
+        with self.lock:
+            self._write_index(entries)
         return len(entries)
 
     def _make_entry(self, rel: str, filename: str) -> dict:
@@ -109,6 +179,7 @@ class StickerStore:
 
         return {
             "file": rel,
+            "name": stem,
             "desc": f"{emotion} {stem}".strip() if emotion else stem,
             "emotions": [emotion] if emotion else [],
             "raw_emotion": emotion,
@@ -131,13 +202,90 @@ class StickerStore:
         return self._read_index()
 
     def sets(self) -> list[dict]:
-        """按表情包集分组，给前端做标签页。"""
-        idx = self.load()
+        """按表情包集分组；空分类也显示，便于继续上传。"""
         groups: dict[str, int] = {}
-        for e in idx:
-            groups[e.get("source") or "默认"] = groups.get(e.get("source") or "默认", 0) + 1
-        out = [{"name": k, "count": v} for k, v in sorted(groups.items(), key=lambda x: -x[1])]
-        return out
+        for e in self.load():
+            source = e.get("source") or "默认"
+            groups[source] = groups.get(source, 0) + 1
+        if os.path.isdir(self.root):
+            for name in os.listdir(self.root):
+                if name.startswith(".") or name.lower() in ("thumbs", "thumbnails"):
+                    continue
+                if os.path.isdir(os.path.join(self.root, name)):
+                    groups.setdefault(name, 0)
+        return [{"key": k, "name": k, "count": v}
+                for k, v in sorted(groups.items(), key=lambda x: (-x[1], x[0]))]
+
+    # ---------------------------------------------------------------- 管理
+    def create_category(self, name: str) -> dict:
+        """创建空分类，重名时明确报错。"""
+        with self.lock:
+            name, path = self._category_path(name)
+            if os.path.exists(path):
+                raise StickerError("这个分类已经存在")
+            os.makedirs(self.root, exist_ok=True)
+            os.mkdir(path)
+            return {"key": name, "name": name, "count": 0}
+
+    def delete_category(self, name: str) -> None:
+        """仅删除真正空的分类目录，防止误删整套图片。"""
+        with self.lock:
+            name, path = self._category_path(name)
+            if not os.path.isdir(path):
+                raise StickerError("分类不存在")
+            if os.listdir(path):
+                raise StickerError("分类里还有图片，请先删除图片")
+            os.rmdir(path)
+            remaining = [e for e in self.load() if (e.get("source") or "默认") != name]
+            self._write_index(remaining)
+
+    def upload(self, name: str, data_url: str, set_name: str) -> dict:
+        """上传一张本地图片到分类目录，并立即写入索引。"""
+        raw, ext = self._decode_upload(data_url)
+        original = os.path.basename(str(name or "表情").replace("\\", "/"))
+        stem = os.path.splitext(original)[0]
+        stem = re.sub(r"[^\w\u4e00-\u9fff.-]+", "_", stem).strip(" ._")[:80] or "表情"
+        with self.lock:
+            set_name, directory = self._category_path(set_name or "默认", create=True)
+            if not os.path.exists(self.index_path):
+                self.scan()
+            candidate = stem + ext
+            if os.path.exists(os.path.join(directory, candidate)):
+                digest = hashlib.sha256(raw).hexdigest()[:8]
+                candidate = f"{stem}_{digest}{ext}"
+                n = 2
+                while os.path.exists(os.path.join(directory, candidate)):
+                    candidate = f"{stem}_{digest}_{n}{ext}"
+                    n += 1
+            full = os.path.join(directory, candidate)
+            with open(full, "xb") as f:
+                f.write(raw)
+            rel = f"{set_name}/{candidate}"
+            entry = self._make_entry(rel, candidate)
+            entries = [e for e in self.load() if e.get("file") != rel]
+            entries.append(entry)
+            try:
+                self._write_index(entries)
+            except Exception:
+                os.remove(full)
+                raise
+            return entry
+
+    def delete(self, file: str) -> None:
+        """删除图片、索引项以及可能存在的派生缩略图。"""
+        with self.lock:
+            full = self.resolve(file)
+            if not full:
+                raise StickerError("表情包不存在")
+            rel = str(file).replace("\\", "/").lstrip("/")
+            os.remove(full)
+            self._write_index([e for e in self.load() if e.get("file") != rel])
+            for base in (os.path.join(self.root, ".thumbs"),
+                         os.path.join(self.root, "thumbs"),
+                         os.path.join(self.root, "thumbnails")):
+                thumb = os.path.abspath(os.path.join(base, rel))
+                if os.path.commonpath([self.root, thumb]) == self.root and os.path.isfile(thumb):
+                    os.remove(thumb)
 
     def url_of(self, rel: str) -> str:
         parts = (rel or "").replace("\\", "/").split("/")
@@ -179,8 +327,11 @@ class StickerStore:
         rel = (rel or "").replace("\\", "/").lstrip("/")
         if not rel or ".." in rel.split("/"):
             return None
-        full = os.path.normpath(os.path.join(self.root, rel))
-        if not full.startswith(os.path.normpath(self.root)):
+        full = os.path.abspath(os.path.join(self.root, rel))
+        try:
+            if os.path.commonpath([self.root, full]) != self.root:
+                return None
+        except ValueError:
             return None
         if not os.path.isfile(full):
             return None

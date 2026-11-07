@@ -1,0 +1,93 @@
+/* 添加角色草稿弹窗：桌面与手机共用，布局只由外层属性区分。 */
+.cd-sheet{width:min(680px,96vw);max-height:92vh}
+.cd-heading{flex:1;min-width:0}
+.cd-heading h3{margin:0;font-size:16px;font-weight:600}
+.cd-subtitle{margin:3px 0 0;color:var(--ink3);font-size:11.5px;line-height:1.5}
+.cd-content{padding-top:14px}
+.cd-avatar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.cd-preview{width:70px;height:70px;flex:0 0 70px;border-radius:50%;display:grid;place-items:center;
+  overflow:hidden;background:var(--bg3,var(--bg));border:1px dashed var(--line);color:var(--ink3);
+  font-size:24px;font-weight:500}
+.cd-preview img{width:100%;height:100%;object-fit:cover}
+.cd-avatar-note{margin:6px 0 0;color:var(--ink3);font-size:11.5px;line-height:1.6}
+.cd-field{display:block;margin:0 0 12px;color:var(--ink2);font-size:12px}
+.cd-field>span{display:block;margin-bottom:5px}
+.cd-input{display:block;width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;
+  outline:none;background:var(--bg2,var(--bg));color:var(--ink);font:inherit;font-size:13px;line-height:1.6}
+.cd-input:focus{border-color:var(--brand)}
+textarea.cd-input{resize:vertical;min-height:64px}
+select.cd-input{appearance:auto}
+.cd-persona{min-height:250px!important;font-size:12.5px!important}
+.cd-source-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:3px 0 10px}
+.cd-preset-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px}
+.cd-btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 13px;border-radius:9px;
+  border:1px solid var(--line);background:var(--bg2,var(--bg));color:var(--ink);font:inherit;
+  font-size:12.5px;line-height:1.5;cursor:pointer;white-space:nowrap}
+.cd-btn:hover{background:var(--bg3,var(--bg))}
+.cd-btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:500}
+.cd-btn.primary:hover{filter:brightness(.94)}
+.cd-btn:disabled{opacity:.45;cursor:default;filter:none}
+.cd-btn.small{padding:6px 11px;font-size:12px}
+.cd-hint{color:var(--ink3);font-size:11.5px;line-height:1.7;margin:7px 0}
+.cd-status{min-height:22px;margin:10px 0;color:var(--ink2);font-size:12px;line-height:1.7}
+.cd-status.busy{color:var(--brand)}
+.cd-status.error{color:var(--bad,#dc2626)}
+.cd-editor{border-top:1px solid var(--line);margin-top:12px;padding-top:14px}
+.cd-editor[hidden]{display:none}
+.cd-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cd-edit-meta{display:flex;align-items:center;gap:10px;color:var(--ink3);font-size:11.5px;margin:2px 0 15px}
+.cd-edit-meta>span{flex:1}
+.cd-edit-actions{display:flex;gap:7px}
+.cd-trial{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg2,var(--bg))}
+.cd-trial-head{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.cd-trial-head>div{flex:1;min-width:0}
+.cd-trial-head strong{display:block;font-size:13px}
+.cd-trial-head small{display:block;color:var(--ink3);font-size:10.5px;margin-top:2px}
+.cd-trial-badge{flex:0 0 auto;padding:2px 7px;border-radius:12px;background:var(--brand-l);color:var(--brand);font-size:10.5px}
+.cd-trial-log{height:190px;overflow-y:auto;padding:12px;background:var(--bg2,var(--bg))}
+.cd-trial-empty{text-align:center;color:var(--ink3);font-size:12px;padding:50px 10px}
+.cd-trial-row{display:flex;margin-bottom:8px}
+.cd-trial-row.from-user{justify-content:flex-end}
+.cd-trial-bubble{max-width:82%;padding:7px 10px;border-radius:10px;background:var(--bg3,var(--bg));
+  font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.cd-trial-row.from-user .cd-trial-bubble{background:var(--brand);color:#fff}
+.cd-trial-composer{display:flex;align-items:flex-end;gap:8px;padding:9px;border-top:1px solid var(--line)}
+.cd-trial-composer textarea{min-height:58px;max-height:130px;resize:none}
+.cd-actions{display:flex;justify-content:flex-end;gap:9px;padding:12px 20px 16px;border-top:1px solid var(--line);
+  background:var(--bg2,var(--bg));flex:0 0 auto}
+.cd-resume{color:var(--brand);cursor:pointer}
+
+/* 头像裁剪始终位于添加角色弹窗之上。 */
+.cd-crop-mask{position:fixed;inset:0;z-index:110;background:rgba(15,23,42,.48);display:none;
+  place-items:center;backdrop-filter:blur(3px)}
+.cd-crop-mask.on{display:grid}
+.cd-crop-dialog{width:min(390px,92vw);max-height:92vh;overflow-y:auto;border-radius:15px;background:var(--bg2,var(--bg));
+  color:var(--ink);box-shadow:0 22px 70px rgba(0,0,0,.3);padding:18px}
+.cd-crop-title{margin:0 0 12px;font-size:16px}
+.cd-crop-stage{position:relative;width:280px;height:280px;max-width:100%;margin:0 auto;overflow:hidden;
+  border-radius:12px;background:var(--bg3,var(--bg));touch-action:none;cursor:grab;user-select:none}
+.cd-crop-stage.dragging{cursor:grabbing}
+.cd-crop-stage img{position:absolute;max-width:none;pointer-events:none;user-select:none}
+.cd-crop-ring{position:absolute;inset:0;border:2px solid rgba(255,255,255,.95);border-radius:50%;
+  box-shadow:0 0 0 999px rgba(10,15,25,.52);pointer-events:none}
+.cd-crop-zoom{display:flex;align-items:center;gap:10px;margin:15px 0 4px}
+.cd-crop-zoom input{flex:1;accent-color:var(--brand)}
+.cd-crop-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}
+
+[data-character-client="mobile"] .cd-content{padding:16px 16px calc(var(--safe-b) + 24px)}
+[data-character-client="mobile"] .cd-sheet{width:100%;max-height:none;border-radius:0}
+[data-character-client="mobile"] .cd-heading h3{font-size:17px}
+[data-character-client="mobile"] .cd-subtitle{font-size:11px}
+[data-character-client="mobile"] .cd-form-grid{grid-template-columns:1fr;gap:0}
+[data-character-client="mobile"] .cd-source-grid{grid-template-columns:1fr}
+[data-character-client="mobile"] .cd-preset-row{grid-template-columns:1fr}
+[data-character-client="mobile"] .cd-input{font-size:14px;padding:11px 12px}
+[data-character-client="mobile"] .cd-persona{min-height:280px!important}
+[data-character-client="mobile"] .cd-edit-meta{align-items:flex-start;flex-direction:column}
+[data-character-client="mobile"] .cd-edit-actions{width:100%}
+[data-character-client="mobile"] .cd-edit-actions .cd-btn{flex:1}
+[data-character-client="mobile"] .cd-trial-log{height:180px}
+[data-character-client="mobile"] .cd-actions{padding:12px 16px calc(var(--safe-b) + 14px)}
+[data-character-client="mobile"] .cd-actions .cd-btn{flex:1;padding:11px 14px;font-size:14px}
+[data-character-client="mobile"] .cd-crop-dialog{width:min(360px,94vw);padding:16px}
+[data-character-client="mobile"] .cd-crop-stage{width:min(280px,78vw);height:min(280px,78vw)}

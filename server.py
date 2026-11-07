@@ -38,6 +38,7 @@ sys.path.insert(0, HERE)
 
 from core import cards as cards_mod
 from core import clock
+from core import drafts as drafts_mod
 from core import groups as groups_mod
 from core import lore as lore_mod
 from core import persona_builder
@@ -74,6 +75,23 @@ def char_sort_key(payload: dict):
     if rank is not None:
         return (0, rank, payload["name"])
     return (1, 0, payload["name"])
+
+
+def sticker_payload(entry: dict) -> dict:
+    """统一表情列表与上传响应的字段，兼容旧索引的 desc/source。"""
+    source = entry.get("source") or "默认"
+    file = entry.get("file") or ""
+    return {
+        "file": file,
+        "name": entry.get("name") or entry.get("desc") or os.path.splitext(os.path.basename(file))[0],
+        "desc": entry.get("desc", ""),
+        "emotions": entry.get("emotions") or [],
+        "tags": entry.get("tags") or [],
+        "url": APP.stickers.url_of(file),
+        "set": source,
+        "source": source,
+        "size": entry.get("size") or 0,
+    }
 
 
 DEFAULT_CONFIG = {
@@ -148,6 +166,23 @@ def _safe_sentences(text: str) -> list[str]:
     return [p.strip() for p in parts if p.strip()]
 
 
+def guess_gender(text: str) -> str:
+    """从人设文本粗判性别。
+
+    只用在「调用方没给 gender」的兜底路径上（旧版添加角色界面）。
+    判据故意保守：两侧数量接近时不猜，返回 other，避免把女性角色写成「他」。
+    """
+    if not text:
+        return "other"
+    he = len(re.findall(r"他(?!们)", text))
+    she = text.count("她")
+    if he >= 3 and he > she * 2:
+        return "male"
+    if she >= 3 and she > he * 2:
+        return "female"
+    return "other"
+
+
 def split_bubbles(text: str, threshold: int, max_bubbles: int) -> list[str]:
     """一条长回复拆成几个气泡（真人不会一句话发三百字）。"""
     text = (text or "").strip()
@@ -188,6 +223,7 @@ class App:
         self.mem = Memory(self.store)
         self.cards = cards_mod.CardStore(CHAR_DIR)
         self.lore = lore_mod.LoreStore(CHAR_DIR)
+        self.drafts = drafts_mod.DraftStore(os.path.join(DATA_DIR, "character_drafts.json"))
         self.groups = groups_mod.GroupStore(DATA_DIR)
         self.cooccur = {}
         _co = os.path.join(DATA_DIR, "cooccur.json")
@@ -295,6 +331,7 @@ class App:
             "name": card.name,
             "series": card.series,
             "summary": card.summary,
+            "gender": card.gender,
             "signature": card.signature,
             "address": card.address,
             "tags": card.tags,
@@ -330,6 +367,135 @@ class App:
             except Exception:
                 pass
         return "老师"
+
+    # ---------------- 添加角色草稿 ----------------
+    @staticmethod
+    def _draft_avatar_bytes(avatar: str) -> bytes | None:
+        """只接受本地图片 dataURL 或项目目录内的已存图片，不读取外部 URL。"""
+        avatar = str(avatar or "").strip()
+        if not avatar:
+            return None
+        if avatar.startswith("data:"):
+            m = re.match(r"^data:image/[a-zA-Z0-9.+-]+;base64,(.+)$", avatar, re.S)
+            if not m:
+                raise cards_mod.CardError("头像必须是有效的本地图片 dataURL")
+            try:
+                raw = base64.b64decode(m.group(1), validate=True)
+            except Exception as e:
+                raise cards_mod.CardError("头像数据损坏，请重新选择图片") from e
+        else:
+            if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*://", avatar):
+                raise cards_mod.CardError("头像不能使用外部 URL")
+            base = os.path.abspath(BASE)
+            path = avatar if os.path.isabs(avatar) else os.path.join(base, avatar)
+            path = os.path.abspath(path)
+            try:
+                if os.path.commonpath([base, path]) != base:
+                    raise cards_mod.CardError("头像路径必须位于项目目录内")
+                with open(path, "rb") as f:
+                    raw = f.read(cards_mod.AVATAR_MAX_BYTES + 1)
+            except FileNotFoundError as e:
+                raise cards_mod.CardError("头像文件不存在，请重新选择") from e
+        if not raw or len(raw) > cards_mod.AVATAR_MAX_BYTES:
+            raise cards_mod.CardError("头像为空或超过 8MB")
+        return raw
+
+    def generate_draft(self, body: dict) -> dict:
+        name = str(body.get("name") or "").strip()
+        avatar = str(body.get("avatar") or "").strip()
+        self._draft_avatar_bytes(avatar)
+        gender_hint = str(body.get("gender") or "").strip().lower()
+        generated = persona_builder.generate_card(
+            self.llm, name, "", "",
+            (self.cfg.get("search") or {}).get("endpoint") or "",
+            gender_hint=gender_hint,
+        )
+        generated["avatar"] = avatar
+        return self.drafts.create(generated)
+
+    def import_draft(self, body: dict) -> dict:
+        """把 V1/V2、原生卡或预设归一化成可编辑草稿，不直接建卡。"""
+        card_obj = body.get("card") if "card" in body else body
+        if isinstance(card_obj, str):
+            try:
+                card_obj = json.loads(card_obj)
+            except json.JSONDecodeError as e:
+                raise cards_mod.CardError("角色卡 JSON 格式错误") from e
+        if not isinstance(card_obj, dict):
+            raise cards_mod.CardError("角色卡必须是 JSON 对象")
+        try:
+            parsed = cards_mod.parse_card_dict(card_obj, require_persona=False)
+        except cards_mod.CardError:
+            # 星伴原生导出把 persona_md 放在 data 中，且使用自己的 spec 名。
+            nested = card_obj.get("data")
+            if not isinstance(nested, dict):
+                raise
+            parsed = cards_mod.parse_card_dict(nested, require_persona=False)
+        source = card_obj.get("data") if isinstance(card_obj.get("data"), dict) else card_obj
+        avatar = str(body.get("avatar") or source.get("avatar") or "").strip()
+        self._draft_avatar_bytes(avatar)
+        return self.drafts.create({
+            "name": parsed.name,
+            "series": parsed.series,
+            "aliases": parsed.aliases,
+            "summary": parsed.summary,
+            "interests": parsed.interests,
+            "persona_md": parsed.persona_md,
+            "avatar": avatar,
+        })
+
+    def trial_draft(self, body: dict) -> dict:
+        """独立试聊：只把草稿上下文传给模型，绝不访问聊天、记忆或状态表。"""
+        draft = self.drafts.get(body.get("draft_id") or "")
+        self.drafts._require_revision(draft, body.get("revision"))
+        text = str(body.get("text") or "").strip()[:2000]
+        if not text:
+            raise drafts_mod.DraftError("试聊消息不能为空")
+        if not draft["persona_md"]:
+            raise drafts_mod.DraftError("请先填写完整人设再试聊")
+        if not self.llm.configured:
+            raise LLMError("模型还没配置好，先到「设置」填 Base URL、API Key 和模型名")
+        card = cards_mod.InternalCard(
+            id="draft", name=draft["name"], slug="draft",
+            persona_md=draft["persona_md"], summary=draft["summary"],
+            series=draft["series"], aliases=draft["aliases"],
+            interests=draft["interests"],
+        )
+        state = {"mood": "平静", "energy": 80, "affection": 50,
+                 "enthusiasm": 60, "last_spoke_at": None}
+        recent = list(draft["trial"]) + [{"role": "user", "text": text}]
+        reply = self.thinker.express(
+            card, state, sched_mod.build(card.name, {}), [], "", "", {}, recent,
+            extra_instruction=(
+                "这是正式添加前的独立试聊。只回应当前对话，不声称记住了其他聊天，"
+                "不要输出分析过程，也不要把试聊当作已经发生的正式关系经历。"
+            ),
+            user_name=self.my_name(),
+        )
+        reply = (reply or "……").strip()
+        self.drafts.append_trial(draft["id"], draft["revision"], "user", text)
+        self.drafts.append_trial(draft["id"], draft["revision"], "char", reply)
+        return {"ok": True, "reply": reply, "revision": draft["revision"],
+                "trial": self.drafts.get(draft["id"])["trial"]}
+
+    def commit_draft(self, body: dict) -> dict:
+        draft = self.drafts.get(body.get("draft_id") or "")
+        self.drafts._require_revision(draft, body.get("revision"))
+        avatar = self._draft_avatar_bytes(draft["avatar"])
+        if not avatar:
+            raise cards_mod.CardError("正式添加前请选择头像")
+        card = self.cards.create(
+            name=draft["name"], persona_md=draft["persona_md"],
+            series=draft["series"], summary=draft["summary"],
+            interests=draft["interests"], avatar_bytes=avatar,
+            gender=draft.get("gender") or "",
+        )
+        card.aliases = draft["aliases"]
+        if not card.signature and card.summary:
+            card.signature = re.sub(r"\s+", " ", card.summary.split("，")[0])[:24]
+        self.cards.save(card)
+        self.drafts.commit(draft["id"], draft["revision"])
+        return {"ok": True, "slug": card.slug, "character": self.card_payload(card)}
 
     # ---------------- 聊天主流程 ----------------
     def chat(self, slug: str, text: str, extra_instruction: str = "",
@@ -770,6 +936,9 @@ class Handler(BaseHTTPRequestHandler):
                 })
             return self._json({"messages": out})
 
+        if path == "/api/character-drafts":
+            return self._json({"drafts": APP.drafts.list()})
+
         if path == "/api/characters":
             items = [APP.card_payload(c) for c in APP.cards.list()]
             items.sort(key=char_sort_key)
@@ -888,16 +1057,23 @@ class Handler(BaseHTTPRequestHandler):
                 "bond": traits_mod.bond_stage(st.get("affection", 50))["name"],
             })
 
+        if path == "/api/sticker-sets":
+            groups = APP.stickers.sets()
+            return self._json({"sets": {s["key"]: s for s in groups}})
+
         if path == "/api/stickers":
-            items = []
-            for e in APP.stickers.load():
-                items.append({
-                    "file": e.get("file"),
-                    "url": APP.stickers.url_of(e.get("file", "")),
-                    "desc": e.get("desc", ""),
-                    "emotions": e.get("emotions") or [],
-                    "source": e.get("source", ""),
-                })
+            selected = (qs.get("set") or [""])[0].strip()
+            query = (qs.get("q") or [""])[0].strip().lower()
+            entries = APP.stickers.load()
+            if selected and selected != "ALL":
+                entries = [e for e in entries if (e.get("source") or "默认") == selected]
+            items = [sticker_payload(e) for e in entries]
+            if query:
+                def matches(item: dict) -> bool:
+                    haystack = [item["file"], item["name"], item["desc"],
+                                *item["emotions"], *item["tags"]]
+                    return any(query in str(text).lower() for text in haystack)
+                items = [item for item in items if matches(item)]
             return self._json({
                 "enabled": bool((APP.cfg.get("sticker") or {}).get("enabled")),
                 "dir": APP.stickers.root,
@@ -1045,14 +1221,34 @@ class Handler(BaseHTTPRequestHandler):
                 except ValueError as e:
                     return self._err(str(e))
 
+            if path == "/api/character-drafts/generate":
+                try:
+                    return self._json({"ok": True, "draft": APP.generate_draft(body)})
+                except (LLMError, cards_mod.CardError, drafts_mod.DraftError) as e:
+                    return self._json({"ok": False, "error": str(e)}, 200)
+
+            if path == "/api/character-drafts/import":
+                return self._json({"ok": True, "draft": APP.import_draft(body)})
+
+            if path == "/api/character-drafts/chat":
+                try:
+                    return self._json(APP.trial_draft(body))
+                except (LLMError, cards_mod.CardError, drafts_mod.DraftError) as e:
+                    return self._json({"ok": False, "error": str(e)}, 200)
+
+            if path == "/api/character-drafts/commit":
+                return self._json(APP.commit_draft(body))
+
             if path == "/api/characters/generate":
                 try:
+                    gender_hint = str(body.get("gender") or "").strip().lower()
                     draft = persona_builder.generate_card(
                         APP.llm,
                         body.get("name") or "",
                         body.get("series") or "",
                         body.get("notes") or "",
                         (APP.cfg.get("search") or {}).get("endpoint") or "",
+                        gender_hint=gender_hint,
                     )
                 except LLMError as e:
                     return self._json({"ok": False, "error": str(e)}, 200)
@@ -1074,6 +1270,8 @@ class Handler(BaseHTTPRequestHandler):
                     avatar_bytes=avatar,
                     traits=d.get("traits") or {},
                     schedule=d.get("schedule") or {},
+                    gender=(d.get("gender")
+                            or guess_gender(d.get("persona_md") or "")),
                 )
                 for e in (d.get("lore") or []):
                     try:
@@ -1173,6 +1371,24 @@ class Handler(BaseHTTPRequestHandler):
                     return self._json(APP.llm.ping())
                 except LLMError as e:
                     return self._json({"ok": False, "error": str(e)}, 200)
+
+            if path == "/api/stickers/upload":
+                entry = APP.stickers.upload(
+                    body.get("name") or "表情", body.get("data") or "",
+                    body.get("set") or "默认")
+                return self._json({"ok": True, "item": sticker_payload(entry)})
+
+            if path == "/api/stickers/delete":
+                APP.stickers.delete(body.get("file") or "")
+                return self._json({"ok": True})
+
+            if path == "/api/sticker-category/create":
+                created = APP.stickers.create_category(body.get("name") or "")
+                return self._json({"ok": True, "set": created})
+
+            if path == "/api/sticker-category/delete":
+                APP.stickers.delete_category(body.get("name") or "")
+                return self._json({"ok": True})
 
             if path == "/api/stickers/scan":
                 n = APP.stickers.scan(force=bool(body.get("force")))
@@ -1275,7 +1491,25 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json({"ok": True})
 
             return self._err("未知接口", 404)
-        except cards_mod.CardError as e:
+        except (cards_mod.CardError, drafts_mod.DraftError, sticker_mod.StickerError) as e:
+            return self._err(str(e), 200)
+        except Exception as e:
+            traceback.print_exc()
+            return self._err(f"{type(e).__name__}: {e}", 500)
+
+    def do_PATCH(self):
+        """保存草稿修改；revision 不一致时拒绝覆盖。"""
+        try:
+            body = self._body()
+            if urlparse(self.path).path != "/api/character-drafts":
+                return self._err("未知接口", 404)
+            draft_id = body.get("draft_id") or ""
+            changes = {k: v for k, v in body.items() if k not in ("draft_id", "revision")}
+            if "avatar" in changes:
+                APP._draft_avatar_bytes(str(changes.get("avatar") or ""))
+            draft = APP.drafts.patch(draft_id, body.get("revision"), changes)
+            return self._json({"ok": True, "draft": draft})
+        except (cards_mod.CardError, drafts_mod.DraftError, sticker_mod.StickerError) as e:
             return self._err(str(e), 200)
         except Exception as e:
             traceback.print_exc()

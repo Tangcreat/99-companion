@@ -19,7 +19,7 @@ import time
 import urllib.request
 
 APP_NAME = "99陪伴"
-APP_VERSION = "1.6"
+APP_VERSION = "1.7"
 # 桌面版没有 Android 的 BuildConfig，版本号从这里进诊断页
 os.environ.setdefault("STARLIT_APP_VERSION", APP_VERSION)
 PORT = int(os.environ.get("STARLIT_PORT") or 8787)
@@ -92,14 +92,59 @@ def ensure_layout():
         os.makedirs(os.path.join(root, sub), exist_ok=True)
 
 
+def service_healthy(port: int, timeout: float = 1.2) -> bool:
+    """端口上真有我们的服务在响应吗。
+
+    只看端口能不能连是不够的：进程被强杀后，Windows 上偶尔会留下
+    处于 LISTENING 的僵尸 socket，connect 能成功但没人 accept。
+    原逻辑据此认为「已经有一份在运行」，于是只开窗口不启动服务 —— 用户看到白屏。
+    """
+    try:
+        with urllib.request.urlopen(
+                f"http://127.0.0.1:{port}/api/characters", timeout=timeout) as r:
+            return r.getcode() == 200
+    except Exception:
+        return False
+
+
+def port_free(port: int) -> bool:
+    """能否在本机回环上 bind。不设 SO_REUSEADDR —— Windows 上那会让已占用的端口也假成功。"""
+    s = socket.socket()
+    try:
+        s.bind(("127.0.0.1", port))
+        return True
+    except OSError:
+        return False
+    finally:
+        s.close()
+
+
+def resolve_port(preferred: int) -> tuple[int, bool]:
+    """返回 (实际端口, 是否已有健康实例)。僵尸监听会被跳过，向后找空位。"""
+    if service_healthy(preferred):
+        return preferred, True
+    if port_free(preferred):
+        return preferred, False
+    for offset in range(1, 8):
+        p = preferred + offset
+        if service_healthy(p):
+            return p, True
+        if port_free(p):
+            return p, False
+    return preferred, False
+
+
 def main():
     ensure_layout()
 
-    # 端口被占：说明已有一份在跑，直接开窗口
-    s = socket.socket()
-    busy = s.connect_ex(("127.0.0.1", PORT)) == 0
-    s.close()
-    if busy:
+    global PORT
+    port, running = resolve_port(PORT)
+    if port != PORT:
+        print(f"端口 {PORT} 被占用且无服务响应，改用 {port}")
+        PORT = port
+        os.environ["STARLIT_PORT"] = str(port)
+    if running:
+        print(f"已有实例在 {PORT} 上运行，直接开窗口。")
         open_window()
         return 0
 

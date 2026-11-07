@@ -12,8 +12,8 @@ android {
         applicationId = "com.ninety.companion"
         minSdk = 24
         targetSdk = 34
-        versionCode = 7
-        versionName = "1.6"
+        versionCode = 8
+        versionName = "1.7"
 
         // 只打 arm64：现在几乎全是这个架构，且能把包体积砍掉一半
         ndk {
